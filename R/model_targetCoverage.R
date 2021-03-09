@@ -7,6 +7,7 @@
 # A Preparation ################################################################################################################
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+
 ### Packages ###
 library(tidyverse)
 library(ggbeeswarm)
@@ -17,6 +18,7 @@ library(emmeans)
 ### Start ###
 rm(list = ls())
 setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/data/processed")
+
 ### Load data ###
 sites <- read_csv2("data_processed_sites.csv", col_names = T, col_types = 
                      cols(

@@ -47,7 +47,7 @@ species <- read_csv2("data_raw_species.csv", col_names = T, col_types =
                       layer = col_factor()
                       )
                     ) %>%
-  select(-(Extra1:Extra4)) %>%
+  select(-abb, -(Extra1:Extra4)) %>%
   filter(layer == "h") %>%
   group_by(name) %>%
   mutate(sum = sum(c_across(IN1:AC6))) %>%
@@ -301,7 +301,7 @@ sites$fdisAbuLHS <- TdiversityAbu$FDis
 
 ### b LDMC -------------------------------------------------------------------------------------------
 Tspecies <- semi_join(species, traitsLDMC, by = "name")
-Ttraits <- semi_join(traitsSLA, Tspecies, by = "name")
+Ttraits <- semi_join(traitsLDMC, Tspecies, by = "name")
 Tspecies <- Tspecies %>%
   pivot_longer(-name, "site", "value") %>%
   pivot_wider(site, name) %>%
