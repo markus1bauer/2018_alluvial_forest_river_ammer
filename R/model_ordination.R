@@ -1,18 +1,85 @@
-###############################################################################################
-# Datenvorbereitung
-# Statistik
-# Plotten
-#############################################################################################
+# Model for ordination ####
+# Markus Bauer
 
 
-###############################################################################################
-# Datenvorbereitung ############################################################################
-###############################################################################################
 
-setwd("C:/Users/HB/Documents/0_Uni/10_Semester/Projekt_Schnalzaue/3_Aufnahmen_und_Ergebnisse")
-vdataIN <- read.table("vegetation.txt",header=T,na.strings="na",row.names=1)
-edataIN <- read.table("standort.txt",header=T)
-## Für Ordination
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# A Preparation ################################################################################################################
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+### Packages ###
+library(tidyverse)
+library(vegan)
+
+### Start ###
+rm(list = ls())
+setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/data/processed")
+
+### Load data ###
+sites <- read_csv2("data_processed_sites.csv", col_names = T, na = "na", col_types = 
+                     cols(
+                       .default = col_double(),
+                       ID = col_factor(),
+                       plot = col_factor(),
+                       block = col_factor(),
+                       dataset = col_factor(),
+                       year = col_factor()
+                     )        
+)
+
+sites <- sites %>%
+  select(ID, plot, block, year)
+
+species <- read_csv2("data_processed_species0318.csv", col_names = T, na = "na", col_types = 
+                       cols(
+                         .default = col_double(),
+                         name = col_factor()
+                       )        
+)
+
+###Exclude rare species (presence in less than 6 plots)
+notrare <- species %>%
+  pivot_longer(-name, "site","value") %>%
+  mutate(presence = if_else(value > 0, 1, 0)) %>%
+  group_by(name) %>%
+  summarise(sum = sum(presence)) %>%
+  mutate(notrare = if_else(sum > 5, 1, 0)) %>%
+  filter(notrare == 1)
+species <- semi_join(species, notrare)
+
+setwd("Z:/Documents/0_Uni/2018_Projekt_9_Masterthesis/3_Aufnahmen_und_Ergebnisse/2020_monitoring_Garchinger_Heide/data/raw")
+traits <- read_csv2("data_raw_traits.csv", col_names = T, na = "na", col_types = 
+                      cols(
+                        .default = col_double(),
+                        name = col_factor(),
+                        abb = col_factor(),
+                        family = col_factor(),
+                        rlg = col_factor(),
+                        rlb = col_factor(),
+                        target = col_factor()
+                      )        
+)
+traits <- select(traits, name, abb, family)
+traits <- semi_join(traits, species, by = "name") %>%
+  select(name, family, abb) %>%
+  mutate(family = if_else(family == "Poaceae" | family == "Cyperaceae" | family == "Juncaeae", 
+                          "Graminoids", if_else(family == "Fabaceae", 
+                                                "Legumes", "Forbs")))
+
+species <- species %>%  
+  pivot_longer(-name, "site", "value") %>%
+  pivot_wider(site, name) %>%
+  column_to_rownames("site")
+
+
+
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# B Statistics ################################################################################################################
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+### 1 NMDS #####################################################################################
+
 edata <- edataIN[-c(13:16),]
 vdataIN <- vdataIN[vdataIN$layer=="K",]
 vdataIN <- vdataIN[,c(2,15:30)]
@@ -20,7 +87,7 @@ row.names(vdataIN) <- vdataIN$nmds;vdataIN$nmds <- NULL
 vdata <- vdataIN[,c(1:12)]#nur SO und SU Spalten, mit Nuller-Zeilen
 vdataIN <- vdataIN[rowSums(vdataIN)>0,]
 vdata <- vdata[rowSums(vdata)>0,]
-## Für Artenzahlen
+## F?r Artenzahlen
 vOH <- vdataIN[,c(1:6)];vUK <- vdataIN[,c(7:12)];vOV <- vdataIN[,c(13:16)]
 vdataOH <- vdataIN[,c(1:6)];vdataUK <- vdataIN[,c(7:12)];vdataOV <- vdataIN[,c(13:16)]
 vdataIN <- t(vdataIN);vdata <- t(vdata)
@@ -83,7 +150,7 @@ library(ggplot2);library(grid)
 data.scores <- as.data.frame(scores(m1)) #Modell eingeben
 data.scores$site <- rownames(data.scores)
 data.scores$treatment <- edataIN$treatment #Daten und Hauptvariable eingeben
-data.scores.mean = aggregate(data.scores[1:2],list(group=data.scores$treatment),mean) #Hauptvariable ändern
+data.scores.mean = aggregate(data.scores[1:2],list(group=data.scores$treatment),mean) #Hauptvariable ?ndern
 veganCovEllipse <- function(cov,center=c(0,0),scale=1,npoints=100)
 {
   theta <- (0:npoints) * 2 * pi/npoints
@@ -117,7 +184,7 @@ data.scores$treatment <- edata$treatment #Daten und Hauptvariable eingeben
 ef <- envfit(m2 ~ (herbHeight) + (treeCover) + log(height) + (barrierDistance), data=edata, na.rm=T) #Modell, Daten und Variablen eingeben
 data.ef <- as.data.frame(ef$vectors$arrows*((sqrt(ef$vectors$r))))
 data.ef$variables <- rownames(data.ef)
-data.scores.mean = aggregate(data.scores[1:2],list(group=data.scores$treatment),mean) #Hauptvariable ändern
+data.scores.mean = aggregate(data.scores[1:2],list(group=data.scores$treatment),mean) #Hauptvariable ?ndern
 veganCovEllipse <- function(cov,center=c(0,0),scale=1,npoints=100)
 {
   theta <- (0:npoints) * 2 * pi/npoints

@@ -1,4 +1,4 @@
-﻿plot;year;treatment;barrierDistance;ditchDistance;riverDistance;plotHeight;plotSize;treeCover;shrubCover;herbHeight;herbCover;deadwoodCover;ldmc;height;seedmass;bankType;structureType;easting;northing;photoID;surveyDate
+﻿id;year;treatment;barrierDistance;ditchDistance;riverDistance;plotHeight;plotSize;treeCover;shrubCover;herbHeight;herbCover;deadwoodCover;ldmc;height;seedmass;bankType;structureType;easting;northing;photoID;surveyDate
 IN1;2017;behind_dam;205;16;NA;high;100;18,75;8,75;80;87,5;10;222,39;0,66;2,36;NA;lichter Grauerlenwald;4421900;5293363;107-0470;10.06.2017
 IN2;2017;behind_dam;239;16;NA;high;100;37,5;18,75;70;87,5;2;253,05;0,7;2,35;NA;lichter Eschen-Erlenwald;4421850;5293255;107-0472, 107-0473;11.06.2017
 IN3;2017;behind_dam;273;31;NA;high;100;37,5;18,75;50;87,5;18,75;249,33;1,57;2,11;NA;Grauerlenwald;4421837;5293341;107-0474, 107-0475;11.06.2017

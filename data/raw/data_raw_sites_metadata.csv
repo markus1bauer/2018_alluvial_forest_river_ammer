@@ -1,5 +1,5 @@
 ﻿variable;definition;source;unit;type;value;"comment		"
-plot;plot ID;NA;NA;factor;NA;"NA		"
+id;plot ID;NA;NA;factor;NA;"NA		"
 year;year of the vegetation surveys;NA;NA;numeric;NA;NA
 treatment;location of the plot;NA;NA;factor;behind_dam, no_dam, infront_dam;have a look on the map
 barrierDistance;distance from plot center to weir;NA;m;numeric;NA;NA
