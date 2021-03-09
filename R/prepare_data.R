@@ -15,9 +15,13 @@ rm(list = ls())
 setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/data/raw")
 
 
-### 1 Load data #####################################################################################
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# A Load data ##############################################################################
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-### a Sites -------------------------------------------------------------------------------------------
+
+### 1 Sites #####################################################################################
+
 sites <- read_csv2("data_raw_sites.csv", col_names = T, col_types = 
                     cols(
                       .default = col_double(),
@@ -30,10 +34,12 @@ sites <- read_csv2("data_raw_sites.csv", col_names = T, col_types =
                       surveyDate = col_date()
                       )
                    ) %>%
-  select(id, treatment, barrierDistance, treeCover, shrubCover, ldmc, height, seedmass) %>%
+  select(id, treatment, barrierDistance, treeCover, shrubCover, herbHeight) %>%
   filter(treatment != "infront_dam")
 
-### b Species -------------------------------------------------------------------------------------------
+
+### 2 Species #####################################################################################
+
 species <- read_csv2("data_raw_species.csv", col_names = T, col_types = 
                     cols(
                       .default = col_double(),
@@ -42,7 +48,7 @@ species <- read_csv2("data_raw_species.csv", col_names = T, col_types =
                       layer = col_factor()
                       )
                     ) %>%
-  select(-abb, -(Extra1:Extra4)) %>%
+  select(-(Extra1:Extra4)) %>%
   filter(layer == "h") %>%
   group_by(name) %>%
   mutate(sum = sum(c_across(IN1:AC6))) %>%
@@ -52,7 +58,8 @@ species <- read_csv2("data_raw_species.csv", col_names = T, col_types =
   select(-sum, -presence, -layer)
 
 
-### c Traits -------------------------------------------------------------------------------------------
+### 3 Traits #####################################################################################
+
 traits <- read_csv2("data_raw_traits.csv", col_names = T, col_types = 
                       cols(
                         .default = col_double(),
@@ -84,30 +91,108 @@ traits <- left_join(species, traits, by = "name") %>%
 #gg_miss_upset(traits)
 
 
-### 2 Create variables #####################################################################################
 
-### a Dummies for confidence interval -------------------------------------------------------------------------------------------
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# B Create variables ##############################################################################
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+### 1 Create simple variables #####################################################################################
+
 sites$conf.low <- c(1:length(sites$id))
 sites$conf.high <- c(1:length(sites$id))
 
+
 ### 2 Coverages #####################################################################################
 
-### a Querco-Fagetea' coverage -------------------------------------------------------------------------------------------
+### a Querco-Fagetea coverage -------------------------------------------------------------------------------------------
 data <- species %>%
-  mutate(type = traits$target) %>%
-  pivot_longer(names_to = "id", values_to = "n", cols = starts_with("X")) %>%
-  group_by(id, type) %>%
+  mutate(type = traits$sociality) %>%
+  filter(type >= 8400) %>%
+  pivot_longer(names_to = "id", values_to = "n", cols = starts_with("AC") | starts_with("IN")) %>%
+  group_by(id) %>%
   summarise(total = sum(n)) %>%
-  filter(type == "yes") %>%
-  select(-type) %>%
   ungroup() %>%
-  mutate(targetCov = round(total, 3), .keep = "unused")
+  mutate(targetClass = round(total, 3), .keep = "unused")
+sites <- left_join(sites, data, by = "id")
+data <- species %>%
+  mutate(type = traits$sociality) %>%
+  filter(type >= 81000 & type < 84000) %>%
+  pivot_longer(names_to = "id", values_to = "n", cols = starts_with("AC") | starts_with("IN")) %>%
+  group_by(id) %>%
+  summarise(total = sum(n)) %>%
+  ungroup() %>%
+  mutate(nontargetClass = round(total, 3), .keep = "unused")
 sites <- left_join(sites, data, by = "id")
 
-### b Querco-Fagetea' coverage -------------------------------------------------------------------------------------------
-### c Querco-Fagetea' coverage -------------------------------------------------------------------------------------------
-### d Querco-Fagetea' coverage -------------------------------------------------------------------------------------------
+### b Fagetalia coverage -------------------------------------------------------------------------------------------
+data <- species %>%
+  mutate(type = traits$sociality) %>%
+  filter(type >= 84300 & type < 84400) %>%
+  pivot_longer(names_to = "id", values_to = "n", cols = starts_with("AC") | starts_with("IN")) %>%
+  group_by(id) %>%
+  summarise(total = sum(n)) %>%
+  ungroup() %>%
+  mutate(targetOrder = round(total, 3), .keep = "unused")
+sites <- left_join(sites, data, by = "id")
+data <- species %>%
+  mutate(type = traits$sociality) %>%
+  filter(type >= 84100 & type < 84300) %>%
+  pivot_longer(names_to = "id", values_to = "n", cols = starts_with("AC") | starts_with("IN")) %>%
+  group_by(id) %>%
+  summarise(total = sum(n)) %>%
+  ungroup() %>%
+  mutate(nontargetOrder = round(total, 3), .keep = "unused")
+sites <- left_join(sites, data, by = "id")
 
+### c Alno-Ulmion coverage -------------------------------------------------------------------------------------------
+data <- species %>%
+  mutate(type = traits$sociality) %>%
+  filter(type >= 84330 & type < 84340) %>%
+  pivot_longer(names_to = "id", values_to = "n", cols = starts_with("AC") | starts_with("IN")) %>%
+  group_by(id) %>%
+  summarise(total = sum(n)) %>%
+  ungroup() %>%
+  mutate(targetAlliance = round(total, 3), .keep = "unused")
+sites <- left_join(sites, data, by = "id")
+data <- species %>%
+  mutate(type = traits$sociality) %>%
+  filter(type >= 84310 & type < 84330) %>%
+  pivot_longer(names_to = "id", values_to = "n", cols = starts_with("AC") | starts_with("IN")) %>%
+  group_by(id) %>%
+  summarise(total = sum(n)) %>%
+  ungroup() %>%
+  mutate(nontargetAlliance = round(total, 3), .keep = "unused")
+sites <- left_join(sites, data, by = "id")
+
+### d Alnetum incanae coverage -------------------------------------------------------------------------------------------
+data <- species %>%
+  mutate(type = traits$name) %>%
+  filter(type == "Thalictrum_aquilegiifolium" |
+           type == "Alnus_incana") %>%
+  pivot_longer(names_to = "id", values_to = "n", cols = starts_with("AC") | starts_with("IN")) %>%
+  group_by(id) %>%
+  summarise(total = sum(n)) %>%
+  ungroup() %>%
+  mutate(targetAssociation = round(total, 3), .keep = "unused")
+sites <- left_join(sites, data, by = "id")
+data <- species %>%
+  mutate(type = traits$name) %>%
+  filter(
+    type == "Prunus_padus" |
+      type == "Aegopodium_podagraria" |
+      type == "Brachypodim_sylvaticum" |
+      type == "Carex_sylvatica" |
+      type == "Paris_quadrifolia" |
+      type == "Stachys_sylvatica"
+      ) %>%
+  pivot_longer(names_to = "id", values_to = "n", cols = starts_with("AC") | starts_with("IN")) %>%
+  group_by(id) %>%
+  summarise(total = sum(n)) %>%
+  ungroup() %>%
+  mutate(nontargetAssociation = round(total, 3), .keep = "unused")
+sites <- left_join(sites, data, by = "id")
+rm(data)
 
 ### 3 Species richness #####################################################################################
 
@@ -153,7 +238,7 @@ sites <- left_join(sites, specRich_chwet, by = "id")
 rm(list=setdiff(ls(), c("sites", "species", "traits")))
 
 
-### 6 CWM of Ellenberg #####################################################################################
+### 4 CWM of Ellenberg #####################################################################################
 
 ### a N value -------------------------------------------------------------------------------------------
 Ntraits <- traits %>%
@@ -181,8 +266,26 @@ Ftraits <- column_to_rownames(Ftraits, "name")
 Fweighted <- dbFD(Ftraits, Fspecies, w.abun = T,
                   calc.FRic = F, calc.FDiv = F, corr = "sqrt")
 
+### c implement in sites data set -------------------------------------------------------------------------------------------
+sites$cwmAbuN <- round(as.numeric(as.character(Nweighted$CWM$n)), 3)
+sites$cwmAbuF <- round(as.numeric(as.character(Fweighted$CWM$f)), 3)
+rm(list=setdiff(ls(), c("sites", "species", "traits")))
 
-### 8 CWM and FDis of functional plant traits #####################################################################################
+
+### 5 CWM and FDis of functional plant traits #####################################################################################
+
+traitsLHS <- traits %>%
+  select(name, ldmc, seedmass, height) %>%
+  drop_na()
+traitsLDMC <- traits %>%
+  select(name, ldmc) %>%
+  drop_na()  
+traitsSM <- traits %>%
+  select(name, seedmass) %>%
+  drop_na()
+traitsH <- traits %>%
+  select(name, height) %>%
+  drop_na()
 
 ### a All -------------------------------------------------------------------------------------------
 Tspecies <- semi_join(species, traitsLHS, by = "name")
@@ -197,8 +300,8 @@ TdiversityAbu <- dbFD(log_Ttraits, Tspecies, w.abun = T,
                       calc.FRic = F, calc.FDiv = F, corr = "cailliez")
 sites$fdisAbuLHS <- TdiversityAbu$FDis
 
-### b SLA -------------------------------------------------------------------------------------------
-Tspecies <- semi_join(species, traitsSLA, by = "name")
+### b LDMC -------------------------------------------------------------------------------------------
+Tspecies <- semi_join(species, traitsLDMC, by = "name")
 Ttraits <- semi_join(traitsSLA, Tspecies, by = "name")
 Tspecies <- Tspecies %>%
   pivot_longer(-name, "site", "value") %>%
@@ -208,8 +311,8 @@ Ttraits <- column_to_rownames(Ttraits, "name")
 log_Ttraits <- log(Ttraits)
 TdiversityAbu <- dbFD(log_Ttraits, Tspecies, w.abun = T, 
                       calc.FRic = F, calc.FDiv = F, corr = "sqrt");
-sites$fdisAbuSla <- TdiversityAbu$FDis
-sites$cwmAbuSla <- exp(as.numeric(as.character(TdiversityAbu$CWM$sla)))
+sites$fdisAbuLdmc <- TdiversityAbu$FDis
+sites$cwmAbuLdmc <- exp(as.numeric(as.character(TdiversityAbu$CWM$ldmc)))
 
 ### b Seed mass -------------------------------------------------------------------------------------------
 Tspecies <- semi_join(species, traitsSM, by = "name")
@@ -238,9 +341,7 @@ TdiversityAbu <- dbFD(log_Ttraits, Tspecies, w.abun = T,
                       calc.FRic = F, calc.FDiv = F, corr = "sqrt");
 sites$fdisAbuHeight <- TdiversityAbu$FDis
 sites$cwmAbuHeight <- exp(as.numeric(as.character(TdiversityAbu$CWM$height)))
-rm(TdiversityAbu, log_Ttraits, Ttraits, Tspecies, traitsLHS, traitsSLA, traitsSM, traitsH)
-
-traits <- select(traits, -targetArrhenatherion, -table30, -table33, -table34, -nitrogenIndicator, -nitrogenIndicator2, leanIndicator)
+rm(list=setdiff(ls(), c("sites", "species", "traits")))
 
 
 
@@ -249,7 +350,7 @@ traits <- select(traits, -targetArrhenatherion, -table30, -table33, -table34, -n
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-setwd("Z:/Documents/0_Donaudeiche/3_Aufnahmen_und_Ergebnisse/2022_Danube_old_dikes/data/processed")
+setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/data/processed")
 write_csv2(sites, "data_processed_sites.csv")
 write_csv2(species, "data_processed_species.csv")
 write_csv2(traits, "data_processed_traits.csv")

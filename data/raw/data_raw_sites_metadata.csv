@@ -12,9 +12,6 @@ shrubCover;coverage of the shrub layer;NA;%;numeric;NA;NA
 herbHeight;average height of vegetation in the plot measured in the field;NA;cm;numeric;NA;"NA		"
 herbCover;coverage of the herb layer;NA;%;numeric;NA;"NA		"
 deadwoodCover;coverage of deadwood;NA;%;numeric;NA;"NA		"
-ldmc;community weighted mean (CWM) of leaf dry matter content;NA;mg g^-1;numeric;NA;"NA		"
-height;community weighted mean (CWM) of canopy height;NA;m;numeric;NA;"NA		"
-seedmass;community weighted mean (CWM) of seed mass;NA;mg;numeric;NA;"NA		"
 bankType;type of river bank;NA;NA;factor;NA;NA
 structureType;type of forest;NA;NA;character;NA;NA
 easting;Easting of the plot in Gauß-Krüger 4;NA;NA;numeric;NA;"NA		"

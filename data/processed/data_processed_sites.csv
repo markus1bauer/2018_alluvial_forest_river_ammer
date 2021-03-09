@@ -1,0 +1,13 @@
+id;treatment;barrierDistance;treeCover;shrubCover;herbHeight;conf.low;conf.high;speciesRichness;floodRichness;chwetRichness
+IN1;behind_dam;205;18,75;8,75;80;1;1;23;4;5
+IN2;behind_dam;239;37,50;18,75;70;2;2;27;4;7
+IN3;behind_dam;273;37,50;18,75;50;3;3;32;4;4
+IN4;behind_dam;353;37,50;18,75;60;4;4;26;3;4
+IN5;behind_dam;387;87,50;18,75;40;5;5;25;1;4
+IN6;behind_dam;421;37,50;18,75;40;6;6;37;2;9
+AC1;no_dam;205;87,50;62,50;40;7;7;36;4;6
+AC2;no_dam;239;62,50;37,50;40;8;8;29;3;3
+AC3;no_dam;273;87,50;18,75;40;9;9;38;4;7
+AC4;no_dam;380;62,50;18,75;40;10;10;39;3;7
+AC5;no_dam;414;62,50;18,75;50;11;11;24;1;4
+AC6;no_dam;448;62,50;37,50;50;12;12;29;3;3
