@@ -32,8 +32,7 @@ sites <- read_csv2("data_raw_sites.csv", col_names = T, col_types =
                       structureType = col_character(),
                       photoID = col_character(),
                       surveyDate = col_date()
-                      )
-                   ) %>%
+                      )) %>%
   select(id, treatment, barrierDistance, treeCover, shrubCover, herbHeight) %>%
   filter(treatment != "infront_dam")
 
