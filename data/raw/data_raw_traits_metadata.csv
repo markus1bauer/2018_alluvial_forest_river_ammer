@@ -1,0 +1,27 @@
+﻿Variable;Definition;Source;Unit;Type;Levels;Comment;;
+name;botanical species name;see column nomenclature;NA;factor;NA;NA;;
+descriptor;descriptor of the species;Plant List/Wisskirchen & Haeupler 1998;NA;character;NA;NA;;
+nomenclature;nomenclature used for the species name;NA;NA;factor;PL = The Plant List, RM = Rothmaler Ed. 20;NA;;
+abb;abbreviation of species name;NA;NA;factor;NA;NA;;
+nameTraits;species names for getting functional plant traits;NA;NA;factor;NA;NA;;
+layer;layer of vegetation;NA;NA;factor;t = tree, s = shrub, h = herb;NA;;
+lifeform;simplification of lifeformEllenberg;lifeformEllenberg;NA;factor;wood, perannual, perannual_annual;NA;;
+lifeformEllenberg;lifeform of species;Ellenberg et al. 2001;NA;character;NA;NA;;
+ldmc;leaf dry matter content;LEDA traitbase;mg g^-1;numeric;NA;NA;;
+height;canopy height;LEDA traitbase;m;numeric;NA;NA;;
+seedmass;seed mass;LEDA traitbase;mg;numeric;NA;NA;;
+l;Ellenberg L value;Ellenberg et al. 2001;NA;numeric;NA;NA;;
+f;Ellenberg F value;Ellenberg et al. 2001;NA;numeric;NA;NA;;
+n;Ellenberg N value;Ellenberg et al. 2001;NA;numeric;NA;NA;;
+flood;Ellenberg flooding indicator;Ellenberg et al. 2001;NA;factor;yes, no;NA;;
+chwet;Ellenberg changing wetness indicator;Ellenberg et al. 2001;NA;factor;yes, no;NA;;
+legal;legally protected in Germany;BArtSchV 2005;NA;factor;BG=besonders geschützt, SG=streng geschützt;NA;;
+rlg;Red list Germany;Ludwig & Schnittler (1996);NA;factor;NA = not threatened;NA;;
+rlb;Red list Bavaria;StMUGV 2005;NA;factor;NA = not threatened;NA;;"			"
+neophyte;is the species a neophyte;FloraWeb (www.floraweb.de);NA;factor;yes, no;NA;;
+continuity;number of plots in which the species occur;NA;NA;numeric;NA;NA;;
+sociality;Location in plant sociology;Ellenberg et al. 2001;NA;numeric;NA;NA;;"			"
+t;Ellenberg T value;Ellenberg et al. 2001;NA;numeric;NA;NA;;"			"
+n;Ellenberg N value;Ellenberg et al. 2001;NA;numeric;NA;NA;;"			"
+target;target species for Garchinger Heide;Ellenberg et al. 2001;NA;factor;"Typical (T) = 53xxx	 extended typical (Te) = 47xxx + 52xxx + 54110 + 61xxx + 71xxx + 72xxx + 8423x	 Lowland hay meadow (U) = 54000 + 542xx + 35xxx	 Neutral (N) = Rest";NA;;
+mapped73;mapped in the Diploma thesis 1973 by Briemle;Liebermann 1985;NA;factor;"1 = yes	 0 = no";only Altheide was included for this study;;"		"
