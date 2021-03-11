@@ -23,9 +23,12 @@ sites <- read_csv2("data_processed_sites.csv", col_names = T, col_types =
                        id = col_factor(),
                        treatment = col_factor()
                      )) %>% 
-  select(id, treatment, chwetRichness, floodRichness) %>%
-  pivot_longer(cols = c(chwetRichness, floodRichness), names_to = "indicator", values_to = "n") %>%
-  mutate(indicator = fct_recode(indicator, "Flood indicator" = "floodRichness", "Periodical wet conditions" = "chwetRichness"))
+  select(id, treatment, floodRichness, chwetRichness) %>%
+  pivot_longer(cols = c(floodRichness, chwetRichness), names_to = "indicator", values_to = "n") %>%
+  mutate(indicator = fct_relevel(indicator, c("floodRichness", "chwetRichness"))) %>%
+  mutate(indicator = fct_recode(indicator, "Flood indicator" = "floodRichness", "Periodical wet conditions" = "chwetRichness"))%>%
+  mutate(treatment = fct_relevel(treatment, c("no_dam", "behind_dam"))) %>%
+  mutate(treatment = fct_recode(treatment, "Active" = "no_dam", "Inactive" = "behind_dam"))
 
 
 
@@ -48,11 +51,10 @@ themeMB <- function(){
 pd <- position_dodge(.6)
 
 ggplot(sites, aes(treatment, n))+
-  geom_boxplot() +
-  geom_quasirandom(color = "grey70", dodge.width = .6, size = 0.7)+
+  geom_boxplot(color = "black") +
+  geom_quasirandom(color = "black", dodge.width = .6, size = .8)+
   facet_wrap(~indicator) +
-  scale_y_continuous(limits = c(0,10), breaks = seq(0, 100, 1))+
-  scale_x_discrete(labels = c("inactive","active")) +
+  scale_y_continuous(limits = c(0,10), breaks = seq(0, 100, 2))+
   labs(x = "", y = "Species richness [#]", shape = "")+
   guides(shape = F) +
   themeMB()

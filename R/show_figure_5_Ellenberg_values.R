@@ -25,7 +25,10 @@ sites <- read_csv2("data_processed_sites.csv", col_names = T, col_types =
                      )) %>% 
   select(id, treatment, cwmAbuF, cwmAbuN) %>%
   pivot_longer(cols = c(cwmAbuF, cwmAbuN), names_to = "indicator", values_to = "n") %>%
-  mutate(indicator = fct_recode(indicator, "F value" = "cwmAbuF", "N value" = "cwmAbuN"))
+  mutate(indicator = fct_recode(indicator, "Moisture" = "cwmAbuF", "Nutrients" = "cwmAbuN"))%>%
+  mutate(treatment = fct_relevel(treatment, c("no_dam", "behind_dam"))) %>%
+  mutate(treatment = fct_recode(treatment, "Active" = "no_dam", "Inactive" = "behind_dam"))
+
 
 
 
@@ -48,12 +51,11 @@ themeMB <- function(){
 pd <- position_dodge(.6)
 
 ggplot(sites, aes(treatment, n))+
-  geom_boxplot() +
-  geom_quasirandom(color = "grey70", dodge.width = .6, size = 0.7)+
+  geom_boxplot(colour = "black") +
+  geom_quasirandom(color = "black", dodge.width = .6, size = 0.8)+
   facet_wrap(~indicator) +
   scale_y_continuous(limits = c(5,9), breaks = seq(0, 100, 1))+
-  scale_x_discrete(labels = c("inactive","active")) +
-  labs(x = "", y = "Ellenberg value", shape = "")+
+  labs(x = "", y = "CWM Ellenberg value", shape = "")+
   guides(shape = F) +
   themeMB()
 

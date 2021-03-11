@@ -37,7 +37,9 @@ sites <- read_csv2("data_processed_sites.csv", col_names = T, col_types =
   mutate(target = fct_recode(target,
                            "Character species of target vegetation" = "target",
                            "Character species of other plant communities" = "nontarget"
-                           ))
+                           )) %>%
+  mutate(treatment = fct_relevel(treatment, c("no_dam", "behind_dam"))) %>%
+  mutate(treatment = fct_recode(treatment, "Active" = "no_dam", "Inactive" = "behind_dam"))
 
 
 
@@ -63,10 +65,10 @@ pd <- position_dodge(.6)
 
 ggplot(sites, aes(treatment, value, colour = target))+
   geom_boxplot() +
-  #geom_quasirandom(aes(target, value), color = "grey70", size = 0.7)+
+  #geom_quasirandom(color = "black", dodge.width = .9, size = 0.7)+
   facet_wrap(~type) +
   scale_y_continuous(limits = c(0,100), breaks = seq(0, 100, 20))+
-  scale_x_discrete(labels = c("Inactive","Active")) +
+  scale_colour_manual(values = c("black", "grey50")) +
   labs(x = "", y = "Coverage [%]", colour = "") +
   themeMB()
 

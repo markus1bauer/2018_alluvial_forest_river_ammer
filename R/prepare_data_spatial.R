@@ -64,9 +64,9 @@ sites <- read_csv2("data_raw_sites.csv", col_names = T, col_types =
                        surveyDate = col_date()
                      )) %>%
   select(id, easting, northing, treatment) %>%
-  rename(floodplain = "treatment") %>%
-  mutate(floodplain = fct_recode(floodplain, "inactive" = "behind_dam", "active" = "no_dam")) %>%
-  filter(floodplain != "infront_dam") %>%
+  rename(Floodplain = "treatment") %>%
+  mutate(Floodplain = fct_recode(Floodplain, "Inactive" = "behind_dam", "Active" = "no_dam")) %>%
+  filter(Floodplain != "infront_dam") %>%
   st_as_sf(coords = c("easting", "northing"), crs = 31468) %>%
   st_transform(4326)
 coord <- as_tibble(st_coordinates(sites))
