@@ -1,0 +1,13 @@
+﻿Variable;Definition;Source;Unit;Type;Levels;Comment;;
+name;botanical species name;see column nomenclature;NA;factor;NA;NA;;
+abb;abbreviation of species name;NA;NA;factor;NA;NA;;
+ldmc;leaf dry matter content;LEDA traitbase;mg g^-1;numeric;NA;NA;;
+height;canopy height;LEDA traitbase;m;numeric;NA;NA;;
+seedmass;seed mass;LEDA traitbase;mg;numeric;NA;NA;;
+l;Ellenberg L value;Ellenberg et al. 2001;NA;numeric;NA;NA;;
+f;Ellenberg F value;Ellenberg et al. 2001;NA;numeric;NA;NA;;
+n;Ellenberg N value;Ellenberg et al. 2001;NA;numeric;NA;NA;;
+flood;Ellenberg flooding indicator;Ellenberg et al. 2001;NA;factor;yes, no;NA;;
+chwet;Ellenberg changing wetness indicator;Ellenberg et al. 2001;NA;factor;yes, no;NA;;
+legal;legally protected in Germany;BArtSchV 2005;NA;factor;BG=besonders geschützt, SG=streng geschützt;NA;;
+sociality;Location in plant sociology;Ellenberg et al. 2001;NA;numeric;NA;NA;;"			"

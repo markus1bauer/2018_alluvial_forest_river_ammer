@@ -1,0 +1,4 @@
+﻿variable;definition;source;unit;type;levels;"comment			"
+name;botanical species NAme;NA;NA;factor;NA;"NA			"
+IN1;plot ID of plot IN1;NA;NA;numeric;NA;see data_raw_sites for explanation of the plotID
+etc.;;;;;;
