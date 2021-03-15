@@ -23,6 +23,7 @@ setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2
 
 ### Load data ###
 ger <- st_read("germany.shp")
+weir <- st_read("weir")
 sites <- st_read("sites.shp")
 sites2 <- read_csv2("sites2.csv", col_names = T, col_types = 
                       cols(
@@ -53,24 +54,22 @@ themeMB <- function(){
   )
 }
 
-
 ## 1 Preparation ##############################################################################
 
 ### a Map of project site -----------------------------------------------------------------------
-(sitesGraph <- ggmap(background_terrain, 
-                      base_layer = ggplot(sites2, aes(x = lon, y = lat, shape = Floodplain))) +
-   geom_point(size = 2, color = "black") +
-   geom_point(aes(x = 10.9595, y = 47.77385), pch = 15, size = 2, color = "black") +
-   annotate("text", x = 10.9595, y = 47.7736, label = "Weir", size = 3) +
-   coord_sf(crs = st_crs(4326)) +
-   annotate("text", x = 10.9553, y = 47.7743, label = "Inactive floodplain", size = 3) +
-   annotate("text", x = 10.9652, y = 47.77475, label = "Active floodplain", size = 3) +
-   ggspatial::annotation_scale(location = "br", pad_y = unit(0.6, "cm"), pad_x = unit(0.7, "cm"),
+(sitesGraph <- ggmap(background_terrain) + 
+    geom_point(data = sites2, aes(x = lon, y = lat, shape = Floodplain),
+              size = 2, color = "black") +
+    geom_point(aes(x = 10.9595, y = 47.77385), pch = 15, size = 2, color = "black") +
+    annotate("text", x = 10.9595, y = 47.7736, label = "Weir", size = 3) +
+    coord_sf(crs = st_crs(4326)) +
+    annotate("text", x = 10.9553, y = 47.7743, label = "Inactive floodplain", size = 3) +
+    annotate("text", x = 10.9652, y = 47.77475, label = "Active floodplain", size = 3) +
+    ggspatial::annotation_scale(location = "br", pad_y = unit(0.6, "cm"), pad_x = unit(0.7, "cm"),
                                width_hint = 0.4, height = unit(0.2, "cm")) +
-   ggspatial::annotation_north_arrow(location = "br", pad_y = unit(1.1, "cm"), pad_x = unit(0.6, "cm"), 
+    ggspatial::annotation_north_arrow(location = "br", pad_y = unit(1.1, "cm"), pad_x = unit(0.6, "cm"), 
                                      which_north = "true", style = ggspatial::north_arrow_fancy_orienteering(), height = unit(1, "cm"), width = unit(1, "cm")) +
-   themeMB()
-  )
+    themeMB())
 
 ### b Germany -----------------------------------------------------------------------
 gerGraph <- ggplot() +

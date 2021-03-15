@@ -68,13 +68,23 @@ sites <- read_csv2("data_raw_sites.csv", col_names = T, col_types =
   mutate(Floodplain = fct_recode(Floodplain, "Inactive" = "behind_dam", "Active" = "no_dam")) %>%
   filter(Floodplain != "infront_dam") %>%
   st_as_sf(coords = c("easting", "northing"), crs = 31468) %>%
-  st_transform(4326)
+  st_transform(crs = 4326)
 coord <- as_tibble(st_coordinates(sites))
 sites2 <- st_drop_geometry(sites)
 sites2$lon <- coord$X
 sites2$lat <- coord$Y
 sites2 <- as_tibble(sites2)
 rm(coord)
+
+### Digitize the weir ####
+require(uavRmp)
+require(mapview)
+require(sp)
+sites3 <- as_Spatial(sites)
+vecDraw(
+  zoom = 16, 
+  maplayer = "OpenStreetMap"
+  )
 
 
 
