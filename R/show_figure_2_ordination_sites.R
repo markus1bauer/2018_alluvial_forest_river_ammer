@@ -8,12 +8,13 @@
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 ### Packages ###
+library(here)
 library(tidyverse)
 library(vegan)
 
 ### Start ###
 rm(list = ls())
-setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/data/processed")
+setwd(here("data/processed"))
 
 ### Load data ###
 sites <- read_csv2("data_processed_sites.csv", col_names = T, col_types = 
@@ -103,6 +104,6 @@ ggplot() +
   scale_x_continuous(limits = c(-.86, .8), breaks = seq(-1, 100, .2)) +
   labs(fill = "", colour = "") +
   themeMB()
-setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/outputs/figures")
+setwd(here("outputs/figures"))
 ggsave("figure_2_ordination_sites_(800dpi_12x10cm).tiff",
        dpi = 800, width = 12, height = 10, units = "cm")
