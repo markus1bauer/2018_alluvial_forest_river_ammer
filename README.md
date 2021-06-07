@@ -34,7 +34,7 @@ This work is licensed under a
 
 ***
 
-When using the __data available__ in this repository, please cite the original publication and the dataset.  
+When using the __data available__ in this repository, please cite the original publication.  
 
 Contact markus1.bauer@tum.de for any further information.  
 
