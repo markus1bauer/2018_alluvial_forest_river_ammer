@@ -18,20 +18,22 @@ library(emmeans)
 
 ### Start ###
 rm(list = ls())
-setwd(here("data/processed"))
+setwd(here("data", "processed"))
 
 ### Load data ###
-sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE,
+sites <- read_csv2("data_processed_sites.csv", col_names = TRUE,
                    col_types =
                      cols(
                        .default = col_double(),
                        id = col_factor(),
                        treatment = col_factor()
                      )) %>%
-  select(id, treatment, targetClass, nontargetClass, targetOrder, nontargetOrder,
-         targetAlliance, nontargetAlliance, targetAssociation, nontargetAssociation) %>%
-  pivot_longer(c(targetClass, nontargetClass, targetOrder, nontargetOrder,
-                 targetAlliance, nontargetAlliance, targetAssociation, nontargetAssociation),
+  select(id, treatment, targetClass, nontargetClass, targetOrder,
+         nontargetOrder, targetAlliance, nontargetAlliance,
+         targetAssociation, nontargetAssociation) %>%
+  pivot_longer(c(targetClass, nontargetClass, targetOrder,
+                 nontargetOrder, targetAlliance, nontargetAlliance,
+                 targetAssociation, nontargetAssociation),
                names_to = "type", values_to = "value") %>%
   separate(type, c("target", "type"), sep = "target") %>%
   mutate(target = as_factor(paste0(target, "target"))) %>%
@@ -71,7 +73,6 @@ ggplot(sites, aes(treatment, value, color = target)) +
 dotchart((sites$value), groups = factor(sites$treatment),
          main = "Cleveland dotplot")
 boxplot(sites$value)
-#identify(rep(1, length(edata$rgr13)), edata$rgr13, labels = c(edata$n))
 plot(table((sites$value)), type = "h",
      xlab = "Observed values", ylab = "Frequency")
 ggplot(sites, aes(value)) + geom_density()

@@ -15,20 +15,23 @@ library(ggbeeswarm)
 
 ### Start ###
 rm(list = ls())
-setwd(here("data/processed"))
+setwd(here("data", "processed"))
 
 ### Load data ###
-sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE,
+sites <- read_csv2("data_processed_sites.csv", col_names = TRUE,
                    col_types =
                      cols(
                        .default = col_double(),
                        id = col_factor(),
                        treatment = col_factor()
                      )) %>%
-  select(id, treatment, targetClass, nontargetClass, targetOrder, nontargetOrder,
-         targetAlliance, nontargetAlliance, targetAssociation, nontargetAssociation) %>%
-  pivot_longer(c(targetClass, nontargetClass, targetOrder, nontargetOrder,
-                 targetAlliance, nontargetAlliance, targetAssociation, nontargetAssociation), 
+  select(id, treatment, targetClass, nontargetClass,
+         targetOrder, nontargetOrder, targetAlliance,
+         nontargetAlliance, targetAssociation,
+         nontargetAssociation) %>%
+  pivot_longer(c(targetClass, nontargetClass, targetOrder,
+                 nontargetOrder, targetAlliance, nontargetAlliance,
+                 targetAssociation, nontargetAssociation),
                names_to = "type", values_to = "value") %>%
   separate(type, c("target", "type"), sep = "target") %>%
   mutate(target = as_factor(paste0(target, "target")),
@@ -81,5 +84,5 @@ ggplot(sites, aes(treatment, value, colour = target)) +
   labs(x = "", y = "Coverage [%]", colour = "") +
   theme_mb()
 
-ggsave(here("outputs/figures/figure_3_target_coverage_(800dpi_12x10cm).tiff"),
+ggsave(here("outputs", "figures", "figure_3_target_coverage_(800dpi_12x10cm).tiff"),
        dpi = 800, width = 12, height = 10, units = "cm")

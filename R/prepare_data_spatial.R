@@ -14,9 +14,8 @@ library(sf)
 library(ggmap)
 
 ### Start ###
-#installr::updateR(browse_news = F, install_R = T, copy_packages = T, copy_Rprofile.site = T, keep_old_packages = T, update_packages = T, start_new_R = F, quit_R = T)
 rm(list = ls())
-setwd(here("data/raw"))
+setwd(here("data", "raw"))
 register_google(key = "AIzaSyB5nQU_dgB_kPsQkk-_cq7pA0g1-2qka4E")
 
 
@@ -53,7 +52,7 @@ ggmap(background_terrain)
 
 ## 2 Sites #############################################################
 
-sites <- read_csv2(here("data_raw_sites.csv"), col_names = TRUE, 
+sites <- read_csv2("data_raw_sites.csv", col_names = TRUE,
                    col_types =
                      cols(
                        .default = col_double(),
@@ -98,12 +97,11 @@ vecDraw(
 
 
 save(background_toner,
-     file = here("data/processed/shp_files/background_toner.rda"))
+     file = here("data", "processed", "shp_files", "background_toner.rda"))
 save(background_terrain,
-     file = here("data/processed/shp_files/background_terrain.rda"))
+     file = here("data", "processed", "shp_files", "background_terrain.rda"))
 st_write(ger, layer = "germany.shp", driver = "ESRI Shapefile",
-         dsn = here("data/processed/shp_files"))
+         dsn = here("data", "processed", "shp_files"))
 st_write(sites, layer = "sites.shp", driver = "ESRI Shapefile",
-         dsn = here("data/processed/shp_files"))
-setwd(here("data/processed/shp_files"))
-write_csv2(sites2, file = here("sites2.csv"))
+         dsn = here("data", "processed", "shp_files"))
+write_csv2(sites2, file = here("data", "processed", "shp_files", "sites2.csv"))

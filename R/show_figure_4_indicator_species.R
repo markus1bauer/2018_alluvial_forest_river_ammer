@@ -15,10 +15,10 @@ library(ggbeeswarm)
 
 ### Start ###
 rm(list = ls())
-setwd(here("data/processed"))
+setwd(here("data", "processed"))
 
 ### Load data ###
-sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE,
+sites <- read_csv2("data_processed_sites.csv", col_names = TRUE,
                    col_types =
                      cols(
                        .default = col_double(),
@@ -28,14 +28,14 @@ sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE,
   select(id, treatment, floodRichness, chwetRichness) %>%
   pivot_longer(cols = c(floodRichness, chwetRichness),
                names_to = "indicator", values_to = "n") %>%
-  mutate(indicator = fct_relevel(indicator, 
+  mutate(indicator = fct_relevel(indicator,
                                  c("floodRichness", "chwetRichness")),
-         indicator = fct_recode(indicator, 
-                                "Flood indicator" = "floodRichness", 
+         indicator = fct_recode(indicator,
+                                "Flood indicator" = "floodRichness",
                                 "Periodical wet conditions" = "chwetRichness"),
          treatment = fct_relevel(treatment, c("no_dam", "behind_dam")),
-         treatment = fct_recode(treatment, 
-                                "Active" = "no_dam", 
+         treatment = fct_recode(treatment,
+                                "Active" = "no_dam",
                                 "Inactive" = "behind_dam"))
 
 
@@ -70,5 +70,5 @@ ggplot(sites, aes(treatment, n)) +
   guides(shape = FALSE) +
   theme_mb()
 
-ggsave(here("outputs/figures/figure_4_indicator_species_(800dpi_10x6cm).tiff"),
+ggsave(here("outputs", "figures", "figure_4_indicator_species_(800dpi_10x6cm).tiff"),
        dpi = 800, width = 10, height = 6, units = "cm")

@@ -15,10 +15,10 @@ library(vegan)
 
 ### Start ###
 rm(list = ls())
-setwd(here("data/processed"))
+setwd(here("data", "processed"))
 
 ### Load data ###
-sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE,
+sites <- read_csv2("data_processed_sites.csv", col_names = TRUE,
                    col_types =
                      cols(
                        .default = col_double(),
@@ -54,7 +54,7 @@ stressplot(ordi) # stress: 0.xx
 
 #### b environmental factors --------------------------------------------
 (ef <- envfit(ordi ~ treeCover + treatment + shrubCover +
-                barrierDistance + herbHeight, 
+                barrierDistance + herbHeight,
               data = sites, permu = 999, na.rm = TRUE))
 plot(ordi, type = "n")
 plot(ef, add = TRUE, p. = .15)

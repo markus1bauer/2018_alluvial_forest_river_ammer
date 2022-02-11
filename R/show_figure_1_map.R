@@ -19,14 +19,14 @@ library(patchwork)
 
 ### Start ###
 rm(list = ls())
-setwd(here("data/processed/shp_files"))
+setwd(here("data", "processed", "shp_files"))
 
 
 ### Load data ###
-ger <- st_read(here("germany.shp"))
-weir <- st_read(here("weir"))
-sites <- st_read(here("sites.shp"))
-sites2 <- read_csv2(here("sites2.csv"), col_names = TRUE,
+ger <- st_read("germany.shp")
+weir <- st_read("weir")
+sites <- st_read("sites.shp")
+sites2 <- read_csv2("sites2.csv", col_names = TRUE,
                     col_types =
                       cols(
                         id = col_factor(),
@@ -60,7 +60,7 @@ theme_mb <- function() {
 ## 1 Preparation ########################################################
 
 ### a Map of project site -----------------------------------------------
-(sites_graph <- ggmap(background_terrain) + 
+(sites_graph <- ggmap(background_terrain) +
     geom_point(data = sites2, aes(x = lon, y = lat, shape = Floodplain),
               size = 2, color = "black") +
     geom_point(aes(x = 10.9595, y = 47.77385),
@@ -104,4 +104,4 @@ sites_graph + inset_element(ger_graph, .01, .65, .3, .99, on_top = TRUE)
 
 ggsave("figure_1_map_(300dpi_12x10cm).tiff",
        dpi = 300, width = 12, height = 10, units = "cm",
-       path = here("outputs/figures"))
+       path = here("outputs", "figures"))
