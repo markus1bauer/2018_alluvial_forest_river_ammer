@@ -27,7 +27,9 @@ sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE,
                      )) %>%
   select(id, treatment, cwmAbuSeedmass) %>%
   mutate(treatment = fct_relevel(treatment, c("no_dam", "behind_dam")),
-         treatment = fct_recode(treatment, "Active" = "no_dam", "Inactive" = "behind_dam"))
+         treatment = fct_recode(treatment, 
+                                "Active" = "no_dam", 
+                                "Inactive" = "behind_dam"))
 
 
 
@@ -53,7 +55,7 @@ theme_mb <- function() {
 ggplot(sites, aes(treatment, cwmAbuSeedmass)) +
   geom_boxplot(colour = "black") +
   geom_quasirandom(color = "black", dodge.width = .6, size = .8) +
-  scale_y_continuous(limits = c(1,3), breaks = seq(0, 100, .5)) +
+  scale_y_continuous(limits = c(1, 3), breaks = seq(0, 100, .5)) +
   labs(x = "", y = "CWM seed mass [mg]", size = 3) +
   theme_mb()
 

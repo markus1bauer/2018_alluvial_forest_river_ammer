@@ -28,13 +28,13 @@ register_google(key = "AIzaSyB5nQU_dgB_kPsQkk-_cq7pA0g1-2qka4E")
 
 ## 1 Base map ##########################################################
 
-ger <- raster::getData('GADM', country = 'DEU', level = 0)
+ger <- raster::getData("GADM", country = "DEU", level = 0)
 ger <- st_as_sf(ger)
 ger <- st_set_crs(ger, 4326)
 
 background_toner <- get_map(
   location = c(lon = 10.95948, lat = 47.77405),
-  zoom = 15, 
+  zoom = 15,
   scale = 1,
   maptype = "toner",
   source = "stamen"
@@ -43,7 +43,7 @@ ggmap(background_toner)
 
 background_terrain <- get_map(
   location = c(left = 10.950, bottom = 47.769, right = 10.970, top = 47.778),
-  zoom = 15, 
+  zoom = 15,
   scale = 1,
   maptype = "terrain",
   source = "stamen"
@@ -53,7 +53,8 @@ ggmap(background_terrain)
 
 ## 2 Sites #############################################################
 
-sites <- read_csv2(here("data_raw_sites.csv"), col_names = TRUE, col_types = 
+sites <- read_csv2(here("data_raw_sites.csv"), col_names = TRUE, 
+                   col_types =
                      cols(
                        .default = col_double(),
                        id = col_factor(),
@@ -66,7 +67,9 @@ sites <- read_csv2(here("data_raw_sites.csv"), col_names = TRUE, col_types =
                      )) %>%
   select(id, easting, northing, treatment) %>%
   rename(Floodplain = "treatment") %>%
-  mutate(Floodplain = fct_recode(Floodplain, "Inactive" = "behind_dam", "Active" = "no_dam")) %>%
+  mutate(Floodplain = fct_recode(Floodplain,
+                                 "Inactive" = "behind_dam",
+                                 "Active" = "no_dam")) %>%
   filter(Floodplain != "infront_dam") %>%
   st_as_sf(coords = c("easting", "northing"), crs = 31468) %>%
   st_transform(crs = 4326)
@@ -83,7 +86,7 @@ require(mapview)
 require(sp)
 sites3 <- as_Spatial(sites)
 vecDraw(
-  zoom = 16, 
+  zoom = 16,
   maplayer = "OpenStreetMap"
   )
 
@@ -94,8 +97,10 @@ vecDraw(
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-save(background_toner, file = here("data/processed/shp_files/background_toner.rda"))
-save(background_terrain, file = here("data/processed/shp_files/background_terrain.rda"))
+save(background_toner,
+     file = here("data/processed/shp_files/background_toner.rda"))
+save(background_terrain,
+     file = here("data/processed/shp_files/background_terrain.rda"))
 st_write(ger, layer = "germany.shp", driver = "ESRI Shapefile",
          dsn = here("data/processed/shp_files"))
 st_write(sites, layer = "sites.shp", driver = "ESRI Shapefile",

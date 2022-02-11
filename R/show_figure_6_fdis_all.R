@@ -18,15 +18,18 @@ rm(list = ls())
 setwd(here("data/processed"))
 
 ### Load data ###
-sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE, col_types = 
+sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE,
+                   col_types =
                      cols(
                        .default = col_double(),
                        id = col_factor(),
                        treatment = col_factor()
-                     )) %>% 
+                     )) %>%
   select(id, treatment, fdisAbuLHS) %>%
   mutate(treatment = fct_relevel(treatment, c("no_dam", "behind_dam")),
-         treatment = fct_recode(treatment, "Active" = "no_dam", "Inactive" = "behind_dam"))
+         treatment = fct_recode(treatment, 
+                                "Active" = "no_dam", 
+                                "Inactive" = "behind_dam"))
 
 
 

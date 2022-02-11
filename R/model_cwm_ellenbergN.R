@@ -18,12 +18,13 @@ library(emmeans)
 rm(list = ls())
 setwd(here("data/processed"))
 ### Load data ###
-sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE, col_types = 
+sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE,
+                   col_types =
                      cols(
                        .default = col_double(),
                        id = col_factor(),
                        treatment = col_factor()
-                     )) %>% 
+                     )) %>%
   select(id, treatment, cwmAbuN) %>%
   rename(value = cwmAbuN)
 
@@ -40,9 +41,12 @@ sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE, col_types
 plot(value ~ treatment, sites)
 
 ##### b Outliers, zero-inflation, transformations? ----------------------
-dotchart((sites$value), groups = factor(sites$treatment), main = "Cleveland dotplot")
-boxplot(sites$value);#identify(rep(1, length(edata$rgr13)), edata$rgr13, labels = c(edata$n))
-plot(table((sites$value)), type = "h", xlab = "Observed values", ylab = "Frequency")
+dotchart((sites$value), groups = factor(sites$treatment),
+         main = "Cleveland dotplot")
+boxplot(sites$value)
+#identify(rep(1, length(edata$rgr13)), edata$rgr13, labels = c(edata$n))
+plot(table((sites$value)), type = "h",
+     xlab = "Observed values", ylab = "Frequency")
 ggplot(sites, aes(value)) + geom_density()
 
 
@@ -57,7 +61,8 @@ simulateResiduals(m1, plot = TRUE)
 
 #### c model check ------------------------------------------------------
 simulationOutput <- simulateResiduals(m1, plot = TRUE)
-plotResiduals(main = "treatment", simulationOutput$scaledResiduals, sites$treatment)
+plotResiduals(main = "treatment",
+              simulationOutput$scaledResiduals, sites$treatment)
 
 
 ## 3 Chosen model output ################################################

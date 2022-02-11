@@ -27,7 +27,9 @@ sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE,
                      )) %>%
   select(id, treatment, cwmAbuLdmc) %>%
   mutate(treatment = fct_relevel(treatment, c("no_dam", "behind_dam")),
-         treatment = fct_recode(treatment, "Active" = "no_dam", "Inactive" = "behind_dam"))
+         treatment = fct_recode(treatment, 
+                                "Active" = "no_dam", 
+                                "Inactive" = "behind_dam"))
 
 
 

@@ -24,9 +24,12 @@ sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE,
                        .default = col_double(),
                        id = col_factor(),
                        treatment = col_factor()
-                     )) %>% 
-  select(id, treatment, targetClass, nontargetClass, targetOrder, nontargetOrder, targetAlliance, nontargetAlliance, targetAssociation, nontargetAssociation) %>%
-  pivot_longer(c(targetClass, nontargetClass, targetOrder, nontargetOrder, targetAlliance, nontargetAlliance, targetAssociation, nontargetAssociation), names_to = "type", values_to = "value") %>%
+                     )) %>%
+  select(id, treatment, targetClass, nontargetClass, targetOrder, nontargetOrder,
+         targetAlliance, nontargetAlliance, targetAssociation, nontargetAssociation) %>%
+  pivot_longer(c(targetClass, nontargetClass, targetOrder, nontargetOrder,
+                 targetAlliance, nontargetAlliance, targetAssociation, nontargetAssociation), 
+               names_to = "type", values_to = "value") %>%
   separate(type, c("target", "type"), sep = "target") %>%
   mutate(target = as_factor(paste0(target, "target")),
          type = as_factor(str_to_lower(type)),
@@ -40,7 +43,9 @@ sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE,
                            "Character species of target vegetation" = "target",
                            "Character species of other plant communities" = "nontarget"),
          treatment = fct_relevel(treatment, c("no_dam", "behind_dam")),
-         treatment = fct_recode(treatment, "Active" = "no_dam", "Inactive" = "behind_dam"))
+         treatment = fct_recode(treatment,
+                                "Active" = "no_dam",
+                                "Inactive" = "behind_dam"))
 
 
 
@@ -69,9 +74,9 @@ pd <- position_dodge(.6)
 
 ggplot(sites, aes(treatment, value, colour = target)) +
   geom_boxplot() +
-  #geom_quasirandom(color = "black", dodge.width = .9, size = 0.7)+
+  #geom_quasirandom(color = "black", dodge.width = .9, size = 0.7) +
   facet_wrap(~type) +
-  scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, 20))+
+  scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, 20)) +
   scale_colour_manual(values = c("black", "grey50")) +
   labs(x = "", y = "Coverage [%]", colour = "") +
   theme_mb()

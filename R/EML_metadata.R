@@ -19,7 +19,7 @@ rm(list = ls())
 
 creator <- eml$creator(
   individualName = eml$individualName(
-    givenName = "Markus", 
+    givenName = "Markus",
     surName = "Bauer"),
   electronicMailAddress = "markusbauer@mailbox.org"
 )
@@ -100,7 +100,8 @@ coverage <- set_coverage(
 
 
 dataset <- list(
-    title = "Alluvial forest vegetation in an active and inactive alpine floodplain – a case study from River Ammer (Bavaria)",
+    title = "Alluvial forest vegetation in an active and inactive alpine 
+    floodplain – a case study from River Ammer (Bavaria)",
     creator = creator,
     pubDate = "2018",
     language = "English",
