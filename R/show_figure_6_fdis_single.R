@@ -11,6 +11,7 @@
 ### Packages ###
 library(here)
 library(tidyverse)
+library(ggplot2)
 library(ggbeeswarm)
 
 ### Start ###
@@ -44,7 +45,7 @@ sites <- read_csv2("data_processed_sites.csv", col_names = TRUE,
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-theme_mb <- function(){
+theme_mb <- function() {
   theme(
     panel.background = element_rect(fill = "white"),
     text  = element_text(size = 10, color = "black"),

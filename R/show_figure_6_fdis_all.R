@@ -15,10 +15,10 @@ library(ggbeeswarm)
 
 ### Start ###
 rm(list = ls())
-setwd(here("data/processed"))
+setwd(here("data", "processed"))
 
 ### Load data ###
-sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE,
+sites <- read_csv2("data_processed_sites.csv", col_names = TRUE,
                    col_types =
                      cols(
                        .default = col_double(),
@@ -38,7 +38,7 @@ sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE,
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-theme_mb <- function(){
+theme_mb <- function() {
   theme(
     panel.background = element_rect(fill = "white"),
     text  = element_text(size = 10, color = "black"),

@@ -50,36 +50,36 @@ contact <-
 abstract <- "Most alpine floodplains are heavily modified and have lost
 their natural habitat dynamics and biodi-
 versity. However, little is known about the consequences for floodplain
-forests. To study this topic, the 
-Bavarian River Ammer was selected. An analysis of the effects of river
-regulation was possible within 
-the ‘Schnalzaue’ where 55 years ago a weir and a dam had been built
-separating an active and inactive 
-section of the floodplain. A comparison between both sections helps
-assessing the effect of the dam on 
-the  alluvial  grey-alder  forests  (Alnetum  incanae),  as  basis  for
-future  restoration.  We  expected  lower 
-disturbance, lower moisture and higher nutrient supply in the inactive
-floodplain and thus, a transition 
-to a maple-ash forest (Adoxo-Aceretum). Therefore, we analysed species
-composition, functional plant 
-traits of the leaf-height-seed scheme (leaf dry matter content, plant
-height, seed mass) and Ellenberg 
-indicators (indicator values for moisture and nutrients, indicator
-species for flooding and for periodical 
-wet  conditions).  The  ordination  results  indicated  different 
-species  compositions  in  both  floodplain 
-sections, while this was poorly reflected by the results of a
- syntaxonomic analysis. The latter suggested 
-presence of a rarely flooded Asarum-subassociation of grey-alder forest
-in both floodplain sections. In 
-the sections, similar site conditions prevailed regarding moisture and
-nutrient supply, while plant height 
-indicated slightly more disturbance in the active floodplain. Overall,
-the results reveal low disturbance 
-in both sections, even though the active one is connected with the river.
-A reason for this finding could 
-be increased erosion of River Ammer downstream the weir with respective
+forests. To study this topic, the Bavarian River Ammer was selected.
+An analysis of the effects of river
+regulation was possible within the ‘Schnalzaue’ where 55 years ago
+a weir and a dam had been built
+separating an active and inactive section of the floodplain. A
+comparison between both sections helps
+assessing the effect of the dam on the  alluvial  grey-alder
+forests  (Alnetum  incanae),  as  basis  for
+future  restoration.  We  expected  lower disturbance, lower moisture
+and higher nutrient supply in the inactive
+floodplain and thus, a transition to a maple-ash forest
+(Adoxo-Aceretum). Therefore, we analysed species
+composition, functional plant traits of the leaf-height-seed scheme
+(leaf dry matter content, plant
+height, seed mass) and Ellenberg indicators (indicator values for
+moisture and nutrients, indicator
+species for flooding and for periodical wet  conditions).  The
+ordination  results  indicated  different
+species  compositions  in  both  floodplain sections, while this
+was poorly reflected by the results of a
+ syntaxonomic analysis. The latter suggested presence of a
+ rarely flooded Asarum-subassociation of grey-alder forest
+in both floodplain sections. In the sections, similar site conditions
+prevailed regarding moisture and
+nutrient supply, while plant height indicated slightly more disturbance
+in the active floodplain. Overall,
+the results reveal low disturbance in both sections, even though the
+active one is connected with the river.
+A reason for this finding could be increased erosion of River Ammer
+downstream the weir with respective
 lower water levels. Accord-
 ingly, restoration should improve river dynamics in the entire
 floodplain to allow more frequent dis-
