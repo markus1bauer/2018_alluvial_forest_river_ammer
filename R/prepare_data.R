@@ -4,15 +4,21 @@
 
 
 ### Packages ###
+library(here)
 library(tidyverse)
 library(vegan)
 library(FD) #dbFD()
 library(naniar) #are_na()
+remotes::install_github("inbo/checklist")
+
+checklist::setup_package()
+x <- checklist::setup_package()
+checklist::write_checklist(x)
 
 ### Start ###
 #installr::updateR(browse_news = F, install_R = T, copy_packages = T, copy_Rprofile.site = T, keep_old_packages = T, update_packages = T, start_new_R = F, quit_R = T)
 rm(list = ls())
-setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/data/raw")
+setwd(here("data/raw"))
 
 
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -22,7 +28,7 @@ setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2
 
 ### 1 Sites #####################################################################################
 
-sites <- read_csv2("data_raw_sites.csv", col_names = T, col_types = 
+sites <- read_csv2(here("data_raw_sites.csv"), col_names = T, col_types = 
                     cols(
                       .default = col_double(),
                       id = col_factor(),
@@ -39,7 +45,7 @@ sites <- read_csv2("data_raw_sites.csv", col_names = T, col_types =
 
 ### 2 Species #####################################################################################
 
-species <- read_csv2("data_raw_species.csv", col_names = T, col_types = 
+species <- read_csv2(here("data_raw_species.csv"), col_names = T, col_types = 
                     cols(
                       .default = col_double(),
                       name = col_factor(),
@@ -50,8 +56,8 @@ species <- read_csv2("data_raw_species.csv", col_names = T, col_types =
   select(-abb, -(Extra1:Extra4)) %>%
   filter(layer == "h") %>%
   group_by(name) %>%
-  mutate(sum = sum(c_across(IN1:AC6))) %>%
-  mutate(presence = if_else(sum > 0, 1, 0)) %>%
+  mutate(sum = sum(c_across(IN1:AC6)),
+         presence = if_else(sum > 0, 1, 0)) %>%
   filter(presence == 1) %>%
   ungroup() %>%
   select(-sum, -presence, -layer)
@@ -59,7 +65,7 @@ species <- read_csv2("data_raw_species.csv", col_names = T, col_types =
 
 ### 3 Traits #####################################################################################
 
-traits <- read_csv2("data_raw_traits.csv", col_names = T, col_types = 
+traits <- read_csv2(here("data_raw_traits.csv"), col_names = T, col_types = 
                       cols(
                         .default = col_double(),
                         name = col_factor(),
@@ -345,11 +351,11 @@ rm(list=setdiff(ls(), c("sites", "species", "traits")))
 
 
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# C Save processed data ##############################################################################
+# C Save processed data ##########################################################################
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/data/processed")
-write_csv2(sites, "data_processed_sites.csv")
-write_csv2(species, "data_processed_species.csv")
-write_csv2(traits, "data_processed_traits.csv")
+setwd(here("data/processed"))
+write_csv2(sites, here("data_processed_sites.csv"))
+write_csv2(species, here("data_processed_species.csv"))
+write_csv2(traits, here("data_processed_traits.csv"))
