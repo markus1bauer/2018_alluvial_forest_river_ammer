@@ -65,7 +65,7 @@ ggplot(sites, aes(type, value, color = target)) +
   geom_quasirandom(dodge.width = .7, groupOnX = TRUE)
 #3way
 ggplot(sites, aes(treatment, value, color = target)) +
-  geom_boxplot() + 
+  geom_boxplot() +
   geom_quasirandom(dodge.width = .7, groupOnX = TRUE) +
   facet_grid(~type)
 

@@ -7,9 +7,9 @@
 library(here)
 library(tidyverse)
 library(vegan)
-library(FD) #dbFD()
-library(naniar) #are_na()
-remotes::install_github("inbo/checklist")
+library(FD) #dbFD
+library(naniar) #are_na
+remotes::install_github("inbo", "checklist")
 
 checklist::setup_source()
 x <- checklist::check_source()
@@ -111,8 +111,8 @@ gg_miss_upset(traits)
 ### 1 Create simple variables ##########################################
 
 sites <- sites %>%
-  mutate(conf.low = seq_len(length(id)),
-         conf.high = seq_len(length(id)))
+  mutate(conf.low = seq_along(id),
+         conf.high = seq_along(id))
 
 
 ### 2 Coverages ########################################################
@@ -335,7 +335,10 @@ log_data_traits <- log(data_traits)
 data_abundance <- dbFD(log_data_traits, data_species, w.abun = TRUE,
                       calc.FRic = FALSE, calc.FDiv = FALSE, corr = "sqrt")
 sites$fdisAbuLdmc <- data_abundance$FDis
-sites$cwmAbuLdmc <- exp(as.numeric(as.character(data_abundance$CWM$ldmc)))
+sites$cwmAbuLdmc <- data_abundance$CWM %>%
+  mutate(x = as.character(ldmc),
+         x = as.numeric(x),
+         x = exp(x))
 
 ### b Seed mass --------------------------------------------------------
 data_species <- semi_join(species, traits_seedmass, by = "name")
@@ -346,10 +349,13 @@ data_species <- data_species %>%
   column_to_rownames("site")
 data_traits <- column_to_rownames(data_traits, "name")
 log_data_traits <- log(data_traits)
-data_abundance <- dbFD(log_data_traits, data_species, w.abun = TRUE, 
+data_abundance <- dbFD(log_data_traits, data_species, w.abun = TRUE,
                       calc.FRic = FALSE, calc.FDiv = FALSE, corr = "sqrt")
 sites$fdisAbuSeedmass <- data_abundance$FDis
-sites$cwmAbuSeedmass <- exp(as.numeric(as.character(data_abundance$CWM$seedmass)))
+sites$cwmAbuSeedmass <- data_abundance$CWM %>%
+  mutate(x = as.character(seedmass),
+         x = as.numeric(x),
+         x = exp(x))
 
 ### c Canopy height ----------------------------------------------------
 data_species <- semi_join(species, traits_height, by = "name")
@@ -363,7 +369,11 @@ log_data_traits <- log(data_traits)
 data_abundance <- dbFD(log_data_traits, data_species, w.abun = TRUE,
                       calc.FRic = FALSE, calc.FDiv = FALSE, corr = "sqrt")
 sites$fdisAbuHeight <- data_abundance$FDis
-sites$cwmAbuHeight <- exp(as.numeric(as.character(data_abundance$CWM$height)))
+sites$cwmAbuHeight <- data_abundance$CWM %>%
+  mutate(x = as.character(height),
+         x = as.numeric(x),
+         x = exp(x))
+
 rm(list = setdiff(ls(), c("sites", "species", "traits")))
 
 

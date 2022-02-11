@@ -27,8 +27,8 @@ sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE,
                      )) %>%
   select(id, treatment, fdisAbuLHS) %>%
   mutate(treatment = fct_relevel(treatment, c("no_dam", "behind_dam")),
-         treatment = fct_recode(treatment, 
-                                "Active" = "no_dam", 
+         treatment = fct_recode(treatment,
+                                "Active" = "no_dam",
                                 "Inactive" = "behind_dam"))
 
 
@@ -59,5 +59,5 @@ ggplot(sites, aes(treatment, fdisAbuLHS)) +
   labs(x = "", y = "FDis", size = 3) +
   theme_mb()
 
-ggsave(here("outputs/figures/figure_6_fdis_all_(800dpi_6x6cm).tiff"),
+ggsave(here("outputs", "figures", "figure_6_fdis_all_(800dpi_6x6cm).tiff"),
        dpi = 800, width = 6, height = 6, units = "cm")

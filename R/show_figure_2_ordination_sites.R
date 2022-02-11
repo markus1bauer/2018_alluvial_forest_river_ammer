@@ -76,8 +76,8 @@ data_scores_mean <- aggregate(data_scores[1:2],
                              mean)
 vegan_cov_ellipse <- function(cov, center = c(0, 0), scale = 1, npoints = 100) {
   theta <- (0:npoints) * 2 * pi / npoints
-  Circle <- cbind(cos(theta), sin(theta))
-  t(center + scale * t(Circle %*% chol(cov)))
+  circle <- cbind(cos(theta), sin(theta))
+  t(center + scale * t(circle %*% chol(cov)))
 }
 
 df_ell <- data.frame()
@@ -86,7 +86,8 @@ for (g in levels(data_scores$variable)){
                   cbind(as.data.frame(
                     with(data_scores[data_scores$variable == g, ],
                          vegan_cov_ellipse(cov.wt(cbind(NMDS1, NMDS2),
-                                                wt = rep(1 / length(NMDS1), length(NMDS1))
+                                                wt = rep(1 / length(NMDS1), 
+                                                         length(NMDS1))
                                                 )$cov,
                                          center = c(mean(NMDS1), mean(NMDS2)))))
                                 , variable = g))
