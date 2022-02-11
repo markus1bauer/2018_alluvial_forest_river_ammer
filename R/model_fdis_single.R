@@ -3,11 +3,13 @@
 
 
 
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# A Preparation ################################################################################################################
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# A Preparation #########################################################
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 
 ### Packages ###
+library(here)
 library(tidyverse)
 library(ggbeeswarm)
 library(DHARMa)
@@ -16,9 +18,10 @@ library(emmeans)
 
 ### Start ###
 rm(list = ls())
-setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/data/processed")
+setwd(here("data/processed"))
+
 ### Load data ###
-sites <- read_csv2("data_processed_sites.csv", col_names = T, col_types = 
+sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE, col_types = 
                      cols(
                        .default = col_double(),
                        id = col_factor(),
@@ -31,21 +34,21 @@ sites <- read_csv2("data_processed_sites.csv", col_names = T, col_types =
 
 
 
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# B Statistics ################################################################################################################
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# B Statistics ##########################################################
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-### 1 Data exploration #####################################################################################
+### 1 Data exploration ##################################################
 
-#### a Graphs ---------------------------------------------------------------------------------------------
+#### a Graphs -----------------------------------------------------------
 #simple effects:
 plot(value ~ treatment, sites)
 plot(value ~ type, sites)
 #2way
 ggplot(sites, aes(type, value, color = treatment)) + geom_boxplot() + geom_quasirandom(dodge.width = .7, groupOnX = T)
 
-##### b Outliers, zero-inflation, transformations? -----------------------------------------------------
+##### b Outliers, zero-inflation, transformations? ----------------------
 dotchart((sites$value), groups = factor(sites$treatment), main = "Cleveland dotplot")
 dotchart((sites$value), groups = factor(sites$type), main = "Cleveland dotplot")
 par(mfrow = c(1,1))
@@ -55,29 +58,29 @@ ggplot(sites, aes(value)) + geom_density()
 ggplot(sites, aes(log(value))) + geom_density()
 
 
-## 2 Model building ################################################################################
+## 2 Model building #####################################################
 
-#### a models ----------------------------------------------------------------------------------------
+#### a models -----------------------------------------------------------
 #random structure
 m1 <- lm(value ~ treatment * type, sites)
-simulateResiduals(m1, plot = T)
+simulateResiduals(m1, plot = TRUE)
 
-#### b comparison -----------------------------------------------------------------------------------------
+#### b comparison -------------------------------------------------------
 
-#### c model check -----------------------------------------------------------------------------------------
-simulationOutput <- simulateResiduals(m1, plot = T)
+#### c model check ------------------------------------------------------
+simulationOutput <- simulateResiduals(m1, plot = TRUE)
 par(mfrow = c(2,2))
 plotResiduals(main = "treatment", simulationOutput$scaledResiduals, sites$treatment)
 plotResiduals(main = "type", simulationOutput$scaledResiduals, sites$type)
 
 
-## 3 Chosen model output ################################################################################
+## 3 Chosen model output ################################################
 
-### Model output ---------------------------------------------------------------------------------------------
+### Model output --------------------------------------------------------
 summary(m1)[1]
 summary(m1)
 car::Anova(m1, type = 3)
 
-### Effect sizes -----------------------------------------------------------------------------------------
+### Effect sizes --------------------------------------------------------
 (emm <- emmeans(m1, revpairwise ~ treatment | type, type = "response"))
-plot(emm, comparison = T)
+plot(emm, comparison = TRUE)

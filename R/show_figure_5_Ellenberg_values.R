@@ -3,21 +3,22 @@
 
 
 
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# A Preparation ################################################################################################################
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# A Preparation #########################################################
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 ### Packages ###
+library(here)
 library(tidyverse)
 library(ggbeeswarm)
 
 ### Start ###
 rm(list = ls())
-setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/data/processed")
+setwd(here("data/processed"))
 
 ### Load data ###
-sites <- read_csv2("data_processed_sites.csv", col_names = T, col_types = 
+sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE, col_types = 
                      cols(
                        .default = col_double(),
                        id = col_factor(),
@@ -32,9 +33,11 @@ sites <- read_csv2("data_processed_sites.csv", col_names = T, col_types =
 
 
 
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# B Plotten ################################################################################################################
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# B Plotten #############################################################
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 themeMB <- function(){
   theme(
     panel.background = element_rect(fill = "white"),
@@ -54,11 +57,10 @@ ggplot(sites, aes(treatment, n))+
   geom_boxplot(colour = "black") +
   geom_quasirandom(color = "black", dodge.width = .6, size = 0.8)+
   facet_wrap(~indicator) +
-  scale_y_continuous(limits = c(5,9), breaks = seq(0, 100, 1))+
+  scale_y_continuous(limits = c(5, 9), breaks = seq(0, 100, 1))+
   labs(x = "", y = "CWM Ellenberg value", shape = "")+
-  guides(shape = F) +
+  guides(shape = FALSE) +
   themeMB()
 
-setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/outputs/figures")
-ggsave("figure_5_Ellenberg_values_(800dpi_10x6cm).tiff",
+ggsave(here("outputs/figures/figure_5_Ellenberg_values_(800dpi_10x6cm).tiff"),
        dpi = 800, width = 10, height = 6, units = "cm")

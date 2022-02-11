@@ -3,12 +3,13 @@
 
 
 
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# A Preparation ################################################################################################################
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# A Preparation #########################################################
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 ### Packages ###
+library(here)
 library(tidyverse)
 library(sf)
 library(ggmap)
@@ -18,14 +19,14 @@ library(patchwork)
 
 ### Start ###
 rm(list = ls())
-setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/data/processed/shp_files")
+setwd(here("data/processed/shp_files"))
 
 
 ### Load data ###
-ger <- st_read("germany.shp")
-weir <- st_read("weir")
-sites <- st_read("sites.shp")
-sites2 <- read_csv2("sites2.csv", col_names = T, col_types = 
+ger <- st_read(here("germany.shp"))
+weir <- st_read(here("weir"))
+sites <- st_read(here("sites.shp"))
+sites2 <- read_csv2(here("sites2.csv"), col_names = TRUE, col_types = 
                       cols(
                         id = col_factor(),
                         Floodplain = col_factor()
@@ -36,9 +37,11 @@ load("background_terrain.rda")
 
 
 
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# B Plot ##############################################################################
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# B Plot ################################################################
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 themeMB <- function(){
   theme(
     panel.background = element_rect(fill = NA),
@@ -54,9 +57,9 @@ themeMB <- function(){
   )
 }
 
-## 1 Preparation ##############################################################################
+## 1 Preparation ########################################################
 
-### a Map of project site -----------------------------------------------------------------------
+### a Map of project site -----------------------------------------------
 (sitesGraph <- ggmap(background_terrain) + 
     geom_point(data = sites2, aes(x = lon, y = lat, shape = Floodplain),
               size = 2, color = "black") +
@@ -67,11 +70,16 @@ themeMB <- function(){
     annotate("text", x = 10.9652, y = 47.77475, label = "Active floodplain", size = 3) +
     ggspatial::annotation_scale(location = "br", pad_y = unit(0.6, "cm"), pad_x = unit(0.7, "cm"),
                                width_hint = 0.4, height = unit(0.2, "cm")) +
-    ggspatial::annotation_north_arrow(location = "br", pad_y = unit(1.1, "cm"), pad_x = unit(0.6, "cm"), 
-                                     which_north = "true", style = ggspatial::north_arrow_fancy_orienteering(), height = unit(1, "cm"), width = unit(1, "cm")) +
+    ggspatial::annotation_north_arrow(location = "br", 
+                                      pad_y = unit(1.1, "cm"), 
+                                      pad_x = unit(0.6, "cm"), 
+                                     which_north = "true", 
+                                     style = ggspatial::north_arrow_fancy_orienteering(), 
+                                     height = unit(1, "cm"), 
+                                     width = unit(1, "cm")) +
     themeMB())
 
-### b Germany -----------------------------------------------------------------------
+### b Germany -----------------------------------------------------------
 gerGraph <- ggplot() +
    geom_sf(data = ger, fill = "transparent", colour = "black") +
    geom_point(aes(x = 10.95948, y = 47.77405), size = 1, colour = "white") +
@@ -80,13 +88,13 @@ gerGraph <- ggplot() +
      plot.background = element_blank()
    )
 
-### c Inset -----------------------------------------------------------------------
-sitesGraph + inset_element(gerGraph, .01, .65, .3, .99, on_top = T)
+### c Inset --------------------------------------------------------------
+sitesGraph + inset_element(gerGraph, .01, .65, .3, .99, on_top = TRUE)
 
 
 
-# 2 Save ##############################################################################
+# 2 Save #################################################################
 
 ggsave("figure_1_map_(300dpi_12x10cm).tiff", 
        dpi = 300, width = 12, height = 10, units = "cm",
-       path = "Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/outputs/figures")
+       path = here("outputs/figures"))

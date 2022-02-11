@@ -3,21 +3,22 @@
 
 
 
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# A Preparation ################################################################################################################
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# A Preparation #########################################################
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 ### Packages ###
+library(here)
 library(tidyverse)
 library(ggbeeswarm)
 
 ### Start ###
 rm(list = ls())
-setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/data/processed")
+setwd(here("data/processed"))
 
 ### Load data ###
-sites <- read_csv2("data_processed_sites.csv", col_names = T, col_types = 
+sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE, col_types = 
                      cols(
                        .default = col_double(),
                        id = col_factor(),
@@ -32,9 +33,11 @@ sites <- read_csv2("data_processed_sites.csv", col_names = T, col_types =
 
 
 
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# B Plotten ################################################################################################################
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# B Plotten #############################################################
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 themeMB <- function(){
   theme(
     panel.background = element_rect(fill = "white"),
@@ -48,6 +51,7 @@ themeMB <- function(){
     plot.margin = margin(.5, 0, 0, 0, "cm")
   )
 }
+
 pd <- position_dodge(.6)
 
 ggplot(sites, aes(treatment, n))+
@@ -59,6 +63,5 @@ ggplot(sites, aes(treatment, n))+
   guides(shape = F) +
   themeMB()
 
-setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/outputs/figures")
-ggsave("figure_4_indicator_species_(800dpi_10x6cm).tiff",
+ggsave(here("outputs/figures/figure_4_indicator_species_(800dpi_10x6cm).tiff"),
        dpi = 800, width = 10, height = 6, units = "cm")

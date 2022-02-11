@@ -3,9 +3,9 @@
 
 
 
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# A Preparation ################################################################################################################
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# A Preparation ########################################################
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 ### Packages ###
 library(here)
@@ -17,7 +17,7 @@ rm(list = ls())
 setwd(here("data/processed"))
 
 ### Load data ###
-sites <- read_csv2("data_processed_sites.csv", col_names = T, col_types = 
+sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE, col_types = 
                      cols(
                        .default = col_double(),
                        id = col_factor(),
@@ -28,7 +28,7 @@ sites <- read_csv2("data_processed_sites.csv", col_names = T, col_types =
   mutate(treatment = fct_recode(treatment, "Active" = "no_dam", "Inactive" = "behind_dam"))
 
 
-species <- read_csv2("data_processed_species.csv", col_names = T, na = "na", col_types = 
+species <- read_csv2("data_processed_species.csv", col_names = TRUE, na = "na", col_types = 
                        cols(
                          .default = col_double(),
                          name = col_factor(),
@@ -38,15 +38,15 @@ species <- read_csv2("data_processed_species.csv", col_names = T, na = "na", col
   pivot_wider(site, name) %>%
   column_to_rownames("site")
 
-#### a Choosen model ----------------------------------------------------------------------------------------
-(ordi <- metaMDS(species, try = 99, previous.best = T, na.rm = T))
-ef <- envfit(ordi ~ (herbHeight) + (treeCover) + (barrierDistance), data = sites, na.rm = T) #Modell, Daten und Variablen eingeben
+#### a Choosen model ---------------------------------------------------
+(ordi <- metaMDS(species, try = 99, previous.best = TRUE, na.rm = TRUE))
+ef <- envfit(ordi ~ (herbHeight) + (treeCover) + (barrierDistance), data = sites, na.rm = TRUE) #Modell, Daten und Variablen eingeben
 
 
 
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# B Plot ################################################################################################################
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# B Plot ###############################################################
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 themeMB <- function(){
@@ -104,6 +104,6 @@ ggplot() +
   scale_x_continuous(limits = c(-.86, .8), breaks = seq(-1, 100, .2)) +
   labs(fill = "", colour = "") +
   themeMB()
-setwd(here("outputs/figures"))
-ggsave("figure_2_ordination_sites_(800dpi_12x10cm).tiff",
+
+ggsave(here("outputs/figures/figure_2_ordination_sites_(800dpi_12x10cm).tiff"),
        dpi = 800, width = 12, height = 10, units = "cm")

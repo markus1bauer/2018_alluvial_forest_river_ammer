@@ -2,12 +2,13 @@
 # Markus Bauer
 
 
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# A Preparation ################################################################################################################
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# A Preparation ########################################################
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 ### Packages ###
+library(here)
 library(tidyverse)
 library(sf)
 library(ggmap)
@@ -15,17 +16,17 @@ library(ggmap)
 ### Start ###
 #installr::updateR(browse_news = F, install_R = T, copy_packages = T, copy_Rprofile.site = T, keep_old_packages = T, update_packages = T, start_new_R = F, quit_R = T)
 rm(list = ls())
-setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/data/raw")
+setwd(here("data/raw"))
 register_google(key = "AIzaSyB5nQU_dgB_kPsQkk-_cq7pA0g1-2qka4E")
 
 
 
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# B Load data ##########################################################################################################
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# B Load data ##########################################################
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-## 1 Base map #################################################################################################
+## 1 Base map ##########################################################
 
 ger <- raster::getData('GADM', country = 'DEU', level = 0)
 ger <- st_as_sf(ger)
@@ -50,9 +51,9 @@ background_terrain <- get_map(
 ggmap(background_terrain)
 
 
-## 2 Sites #################################################################################################
+## 2 Sites #############################################################
 
-sites <- read_csv2("data_raw_sites.csv", col_names = T, col_types = 
+sites <- read_csv2(here("data_raw_sites.csv"), col_names = TRUE, col_types = 
                      cols(
                        .default = col_double(),
                        id = col_factor(),
@@ -88,16 +89,16 @@ vecDraw(
 
 
 
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# C Save ##############################################################################
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# C Save ###############################################################
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-save(background_toner, file = "Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/data/processed/shp_files/background_toner.rda")
-save(background_terrain, file = "Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/data/processed/shp_files/background_terrain.rda")
+save(background_toner, file = here("data/processed/shp_files/background_toner.rda"))
+save(background_terrain, file = here("data/processed/shp_files/background_terrain.rda"))
 st_write(ger, layer = "germany.shp", driver = "ESRI Shapefile",
-         dsn = "Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/data/processed/shp_files")
+         dsn = here("data/processed/shp_files"))
 st_write(sites, layer = "sites.shp", driver = "ESRI Shapefile",
-         dsn = "Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/data/processed/shp_files")
-setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/data/processed/shp_files")
-write_csv2(sites2, file = "sites2.csv")
+         dsn = here("data/processed/shp_files"))
+setwd(here("data/processed/shp_files"))
+write_csv2(sites2, file = here("sites2.csv"))

@@ -3,21 +3,22 @@
 
 
 
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# A Preparation ################################################################################################################
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# A Preparation #########################################################
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 ### Packages ###
+library(here)
 library(tidyverse)
 library(vegan)
 
 ### Start ###
 rm(list = ls())
-setwd("Z:/Documents/0_Uni/2017_Projekt_8_Schnalzaue/3_Aufnahmen_und_Ergebnisse/2018_floodplain_Schnalz/data/processed")
+setwd(here("data/processed"))
 
 ### Load data ###
-sites <- read_csv2("data_processed_sites.csv", col_names = T, col_types = 
+sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE, col_types = 
                      cols(
                        .default = col_double(),
                        id = col_factor(),
@@ -25,7 +26,7 @@ sites <- read_csv2("data_processed_sites.csv", col_names = T, col_types =
                      )) %>% 
   select(id, treatment, treeCover, shrubCover, barrierDistance, herbHeight)
 
-species <- read_csv2("data_processed_species.csv", col_names = T, na = "na", col_types = 
+species <- read_csv2("data_processed_species.csv", col_names = TRUE, na = "na", col_types = 
                        cols(
                          .default = col_double(),
                          name = col_factor(),
@@ -38,27 +39,27 @@ species <- read_csv2("data_processed_species.csv", col_names = T, na = "na", col
 
 
 
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# B Statistics ################################################################################################################
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# B Statistics ##########################################################
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-### 1 NMDS #####################################################################################
+### 1 NMDS ##############################################################
 
-#### a ordination ----------------------------------------------------------------------------------------
-(ordi <- metaMDS(species, try = 99, previous.best = T, na.rm = T))
+#### a ordination -------------------------------------------------------
+(ordi <- metaMDS(species, try = 99, previous.best = TRUE, na.rm = TRUE))
 stressplot(ordi) # stress: 0.xx
 
-#### b environmental factors ----------------------------------------------------------------------------------------
+#### b environmental factors --------------------------------------------
 (ef <- envfit(ordi ~ treeCover + treatment + shrubCover + barrierDistance + herbHeight, 
-              data = sites, permu = 999, na.rm = T))
+              data = sites, permu = 999, na.rm = TRUE))
 plot(ordi, type = "n")
-plot(ef, add = T, p. = .15)
+plot(ef, add = TRUE, p. = .15)
 text(ordi, dis = "sites", cex = .7)
-ordiellipse(ordi, sites$treatment, kind = "sd", draw = "lines", label = T)
+ordiellipse(ordi, sites$treatment, kind = "sd", draw = "lines", label = TRUE)
 
 
-### 2 PERMANOVA #####################################################################################
+### 2 PERMANOVA #########################################################
 
 (disp <- betadisper(vegdist(species), sites$treatment))
 permutest(disp) # similar dispersion -> PERMANOVA possible
