@@ -18,17 +18,19 @@ rm(list = ls())
 setwd(here("data/processed"))
 
 ### Load data ###
-sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE, col_types = 
+sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE,
+                   col_types =
                      cols(
                        .default = col_double(),
                        id = col_factor(),
                        treatment = col_factor()
                      )) %>% 
   select(id, treatment, cwmAbuF, cwmAbuN) %>%
-  pivot_longer(cols = c(cwmAbuF, cwmAbuN), names_to = "indicator", values_to = "n") %>%
-  mutate(indicator = fct_recode(indicator, "Moisture" = "cwmAbuF", "Nutrients" = "cwmAbuN"))%>%
-  mutate(treatment = fct_relevel(treatment, c("no_dam", "behind_dam"))) %>%
-  mutate(treatment = fct_recode(treatment, "Active" = "no_dam", "Inactive" = "behind_dam"))
+  pivot_longer(cols = c(cwmAbuF, cwmAbuN), 
+               names_to = "indicator", values_to = "n") %>%
+  mutate(indicator = fct_recode(indicator, "Moisture" = "cwmAbuF", "Nutrients" = "cwmAbuN"),
+         treatment = fct_relevel(treatment, c("no_dam", "behind_dam")),
+         treatment = fct_recode(treatment, "Active" = "no_dam", "Inactive" = "behind_dam"))
 
 
 
@@ -38,7 +40,7 @@ sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE, col_types
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-themeMB <- function(){
+theme_mb <- function() {
   theme(
     panel.background = element_rect(fill = "white"),
     text  = element_text(size = 10, color = "black"),
@@ -60,7 +62,7 @@ ggplot(sites, aes(treatment, n))+
   scale_y_continuous(limits = c(5, 9), breaks = seq(0, 100, 1))+
   labs(x = "", y = "CWM Ellenberg value", shape = "")+
   guides(shape = FALSE) +
-  themeMB()
+  theme_mb()
 
 ggsave(here("outputs/figures/figure_5_Ellenberg_values_(800dpi_10x6cm).tiff"),
        dpi = 800, width = 10, height = 6, units = "cm")

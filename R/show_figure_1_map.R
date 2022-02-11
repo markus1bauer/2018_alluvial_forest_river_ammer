@@ -26,12 +26,12 @@ setwd(here("data/processed/shp_files"))
 ger <- st_read(here("germany.shp"))
 weir <- st_read(here("weir"))
 sites <- st_read(here("sites.shp"))
-sites2 <- read_csv2(here("sites2.csv"), col_names = TRUE, col_types = 
+sites2 <- read_csv2(here("sites2.csv"), col_names = TRUE, 
+                    col_types =
                       cols(
                         id = col_factor(),
                         Floodplain = col_factor()
-                        )
-                    ) 
+                        ))
 load("background_toner.rda")
 load("background_terrain.rda")
 
@@ -42,7 +42,7 @@ load("background_terrain.rda")
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-themeMB <- function(){
+theme_mb <- function() {
   theme(
     panel.background = element_rect(fill = NA),
     panel.grid = element_line(colour = NA),
@@ -77,7 +77,7 @@ themeMB <- function(){
                                      style = ggspatial::north_arrow_fancy_orienteering(), 
                                      height = unit(1, "cm"), 
                                      width = unit(1, "cm")) +
-    themeMB())
+    theme_mb())
 
 ### b Germany -----------------------------------------------------------
 gerGraph <- ggplot() +

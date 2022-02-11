@@ -17,15 +17,16 @@ rm(list = ls())
 setwd(here("data/processed"))
 
 ### Load data ###
-sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE, col_types = 
+sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE, 
+                   col_types = 
                      cols(
                        .default = col_double(),
                        id = col_factor(),
                        treatment = col_factor()
                      )) %>% 
   select(id, treatment, treeCover, shrubCover, barrierDistance, herbHeight) %>%
-  mutate(treatment = fct_relevel(treatment, c("no_dam", "behind_dam"))) %>%
-  mutate(treatment = fct_recode(treatment, "Active" = "no_dam", "Inactive" = "behind_dam"))
+  mutate(treatment = fct_relevel(treatment, c("no_dam", "behind_dam")),
+         treatment = fct_recode(treatment, "Active" = "no_dam", "Inactive" = "behind_dam"))
 
 
 species <- read_csv2("data_processed_species.csv", col_names = TRUE, na = "na", col_types = 
@@ -49,7 +50,7 @@ ef <- envfit(ordi ~ (herbHeight) + (treeCover) + (barrierDistance), data = sites
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-themeMB <- function(){
+theme_mb <- function() {
   theme(
     panel.background = element_rect(fill = "white"),
     text  = element_text(size = 10, color = "black"),
@@ -67,8 +68,7 @@ data.scores$site <- rownames(data.scores)
 data.scores$variable <- sites$treatment #Write data and 1. variable
 ### Create Ellipses ###
 data.scores.mean = aggregate(data.scores[1:2], list(group = data.scores$variable), mean)
-veganCovEllipse <- function(cov, center = c(0,0), scale = 1, npoints = 100)
-{
+veganCovEllipse <- function(cov, center = c(0,0), scale = 1, npoints = 100) {
   theta <- (0:npoints) * 2 * pi / npoints
   Circle <- cbind(cos(theta), sin(theta))
   t(center + scale * t(Circle %*% chol(cov)))
@@ -86,7 +86,8 @@ data.ef$variables <- rownames(data.ef)
 
 ### Plot ###
 ggplot() +
-  geom_label(aes(x = NMDS1, y = NMDS2, label = site, fill = variable), data = data.scores, 
+  geom_label(aes(x = NMDS1, y = NMDS2, label = site, fill = variable), 
+             data = data.scores, 
              size = 3, colour = "white", label.size = 0) +
   geom_path(aes(x = NMDS1, y = NMDS2, colour = variable), data = df_ell, 
             size = 1, show.legend = F) +
@@ -103,7 +104,7 @@ ggplot() +
   scale_y_continuous(limits = c(-.42, .6), breaks = seq(-1, 100, .2)) +
   scale_x_continuous(limits = c(-.86, .8), breaks = seq(-1, 100, .2)) +
   labs(fill = "", colour = "") +
-  themeMB()
+  theme_mb()
 
 ggsave(here("outputs/figures/figure_2_ordination_sites_(800dpi_12x10cm).tiff"),
        dpi = 800, width = 12, height = 10, units = "cm")

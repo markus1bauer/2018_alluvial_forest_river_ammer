@@ -25,8 +25,8 @@ sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE, col_types
                        treatment = col_factor()
                      )) %>% 
   select(id, treatment, fdisAbuLHS) %>%
-  mutate(treatment = fct_relevel(treatment, c("no_dam", "behind_dam"))) %>%
-  mutate(treatment = fct_recode(treatment, "Active" = "no_dam", "Inactive" = "behind_dam"))
+  mutate(treatment = fct_relevel(treatment, c("no_dam", "behind_dam")),
+         treatment = fct_recode(treatment, "Active" = "no_dam", "Inactive" = "behind_dam"))
 
 
 
@@ -35,7 +35,7 @@ sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE, col_types
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-themeMB <- function(){
+theme_mb <- function() {
   theme(
     panel.background = element_rect(fill = "white"),
     text  = element_text(size = 10, color = "black"),
@@ -54,7 +54,7 @@ ggplot(sites, aes(treatment, fdisAbuLHS)) +
   geom_quasirandom(color = "black", dodge.width = .6, size = .8) +
   scale_y_continuous(limits = c(.6, 1.4), breaks = seq(0, 100, .2)) +
   labs(x = "", y = "FDis", size = 3) +
-  themeMB()
+  theme_mb()
 
 ggsave(here("outputs/figures/figure_6_fdis_all_(800dpi_6x6cm).tiff"),
        dpi = 800, width = 6, height = 6, units = "cm")

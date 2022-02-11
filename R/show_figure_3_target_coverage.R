@@ -18,7 +18,8 @@ rm(list = ls())
 setwd(here("data/processed"))
 
 ### Load data ###
-sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE, col_types = 
+sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE,
+                   col_types =
                      cols(
                        .default = col_double(),
                        id = col_factor(),
@@ -48,7 +49,7 @@ sites <- read_csv2(here("data_processed_sites.csv"), col_names = TRUE, col_types
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-themeMB <- function(){
+theme_mb <- function() {
   theme(
     panel.background = element_rect(fill = "white"),
     text  = element_text(size = 10, color = "black"),
@@ -73,7 +74,7 @@ ggplot(sites, aes(treatment, value, colour = target)) +
   scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, 20))+
   scale_colour_manual(values = c("black", "grey50")) +
   labs(x = "", y = "Coverage [%]", colour = "") +
-  themeMB()
+  theme_mb()
 
 ggsave(here("outputs/figures/figure_3_target_coverage_(800dpi_12x10cm).tiff"),
        dpi = 800, width = 12, height = 10, units = "cm")
