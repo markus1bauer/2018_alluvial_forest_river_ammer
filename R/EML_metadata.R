@@ -31,7 +31,7 @@ address <- list(
   postalCode = "85354",
   country = "Germany")
 
-contact <- 
+contact <-
   list(
     individualName = creator$individualName,
     electronicMailAddress = creator$electronicMailAddress,
