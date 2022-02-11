@@ -17,7 +17,7 @@ library(emmeans)
 
 ### Start ###
 rm(list = ls())
-setwd(here("data/processed"))
+setwd(here("data", "processed"))
 
 ### Load data ###
 sites <- read_csv2("data_processed_sites.csv", col_names = TRUE,
@@ -46,7 +46,6 @@ plot(value ~ treatment, sites)
 dotchart((sites$value), groups = factor(sites$treatment),
          main = "Cleveland dotplot")
 boxplot(sites$value)
-#identify(rep(1, length(edata$rgr13)), edata$rgr13, labels = c(edata$n))
 plot(table((sites$value)), type = "h",
      xlab = "Observed values", ylab = "Frequency")
 ggplot(sites, aes(value)) + geom_density()
@@ -62,9 +61,9 @@ simulateResiduals(m1, plot = TRUE)
 #### b comparison -------------------------------------------------------
 
 #### c model check ------------------------------------------------------
-simulationOutput <- simulateResiduals(m1, plot = TRUE)
+simulation_output <- simulateResiduals(m1, plot = TRUE)
 plotResiduals(main = "treatment",
-              simulationOutput$scaledResiduals, sites$treatment)
+              simulation_output$scaledResiduals, sites$treatment)
 
 
 ## 3 Chosen model output ################################################

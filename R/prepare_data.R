@@ -9,17 +9,19 @@ library(tidyverse)
 library(vegan)
 library(FD) #dbFD()
 library(naniar) #are_na()
-#remotes::install_github("inbo/checklist")
+remotes::install_github("inbo/checklist")
 
 checklist::setup_source()
 x <- checklist::check_source()
-#checklist::write_checklist(x)
-#x <- checklist::check_source()
+checklist::write_checklist(x)
+x <- checklist::check_source()
 
 ### Start ###
-#installr::updateR(browse_news = F, install_R = TRUE, copy_packages = TRUE, copy_Rprofile.site = TRUE, keep_old_packages = TRUE, update_packages = TRUE, start_new_R = FALSE, quit_R = TRUE)
+installr::updateR(browse_news = FALSE, install_R = TRUE, copy_packages = TRUE,
+                  copy_Rprofile.site = TRUE, keep_old_packages = TRUE,
+                  update_packages = TRUE, start_new_R = FALSE, quit_R = TRUE)
 rm(list = ls())
-setwd(here("data/raw"))
+setwd(here("data", "raw"))
 
 
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -29,7 +31,7 @@ setwd(here("data/raw"))
 
 ### 1 Sites ############################################################
 
-sites <- read_csv2(here("data_raw_sites.csv"), col_names = TRUE,
+sites <- read_csv2("data_raw_sites.csv", col_names = TRUE,
                    col_types =
                     cols(
                       .default = col_double(),
@@ -47,7 +49,7 @@ sites <- read_csv2(here("data_raw_sites.csv"), col_names = TRUE,
 
 ### 2 Species ##########################################################
 
-species <- read_csv2(here("data_raw_species.csv"), col_names = TRUE,
+species <- read_csv2("data_raw_species.csv", col_names = TRUE,
                      col_types =
                     cols(
                       .default = col_double(),
@@ -68,7 +70,7 @@ species <- read_csv2(here("data_raw_species.csv"), col_names = TRUE,
 
 ### 3 Traits ###########################################################
 
-traits <- read_csv2(here("data_raw_traits.csv"), col_names = TRUE,
+traits <- read_csv2("data_raw_traits.csv", col_names = TRUE,
                     col_types =
                       cols(
                         .default = col_double(),
@@ -93,11 +95,11 @@ traits <- read_csv2(here("data_raw_traits.csv"), col_names = TRUE,
 traits <- left_join(species, traits, by = "name") %>%
   select(name, abb, l, f, n, flood, chwet, ldmc, height, seedmass, sociality)
 
-#miss_var_summary(traits)
-#vis_miss(traits, cluster = FALSE)
-#gg_miss_var(traits)
-#gg_miss_case(traits, order_cases = FALSE)
-#gg_miss_upset(traits)
+miss_var_summary(traits)
+vis_miss(traits, cluster = FALSE)
+gg_miss_var(traits)
+gg_miss_case(traits, order_cases = FALSE)
+gg_miss_upset(traits)
 
 
 
@@ -109,8 +111,8 @@ traits <- left_join(species, traits, by = "name") %>%
 ### 1 Create simple variables ##########################################
 
 sites <- sites %>%
-  mutate(conf.low = c(1:length(id)),
-         conf.high = c(1:length(id)))
+  mutate(conf.low = seq_len(length(id)),
+         conf.high = seq_len(length(id)))
 
 
 ### 2 Coverages ########################################################
@@ -214,11 +216,11 @@ rm(data)
 
 ### 3 Species richness #################################################
 
-specRich <- left_join(species, traits, by = "name") %>%
+spec_rich <- left_join(species, traits, by = "name") %>%
   select(starts_with("IN"), starts_with("AC"), name, flood, chwet)
 
 ### a total species richness -------------------------------------------
-specRich_all <- specRich %>%
+spec_rich_all <- spec_rich %>%
   pivot_longer(names_to = "id", values_to = "n",
                cols = starts_with("AC") | starts_with("IN")) %>%
   group_by(id) %>%
@@ -229,7 +231,7 @@ specRich_all <- specRich %>%
   ungroup()
 
 ### b Ellenberg flood indicators (species richness) --------------------
-specRich_flood <- specRich %>%
+spec_rich_flood <- spec_rich %>%
   pivot_longer(names_to = "id", values_to = "n",
                cols = starts_with("AC") | starts_with("IN")) %>%
   group_by(id, flood) %>%
@@ -241,7 +243,7 @@ specRich_flood <- specRich %>%
   ungroup()
 
 ### c Ellenberg changing wetness indicators (species richness) ---------
-specRich_chwet <- specRich %>%
+spec_rich_chwet <- spec_rich %>%
   pivot_longer(names_to = "id", values_to = "n",
                cols = starts_with("IN") | starts_with("AC")) %>%
   group_by(id, chwet) %>%
@@ -253,115 +255,115 @@ specRich_chwet <- specRich %>%
   ungroup()
 
 ### d implement in sites data set --------------------------------------
-sites <- left_join(sites, specRich_all, by = "id")
-sites <- left_join(sites, specRich_flood, by = "id")
-sites <- left_join(sites, specRich_chwet, by = "id")
+sites <- left_join(sites, spec_rich_all, by = "id")
+sites <- left_join(sites, spec_rich_flood, by = "id")
+sites <- left_join(sites, spec_rich_chwet, by = "id")
 rm(list = setdiff(ls(), c("sites", "species", "traits")))
 
 
 ### 4 CWM of Ellenberg #################################################
 
 ### a N value ----------------------------------------------------------
-Ntraits <- traits %>%
+data_traits <- traits %>%
   select(name, n) %>%
   filter(n > 0)
-Nspecies <- semi_join(species, Ntraits, by = "name") %>%
+data_species <- semi_join(species, data_traits, by = "name") %>%
   pivot_longer(-name, "site", "value") %>%
   pivot_wider(site, name) %>%
   column_to_rownames("site")
-Ntraits <- column_to_rownames(Ntraits, "name")
+data_traits <- column_to_rownames(data_traits, "name")
 ### Calculate CWM ###
-Nweighted <- dbFD(Ntraits, Nspecies, w.abun = TRUE,
+n_weighted <- dbFD(data_traits, data_species, w.abun = TRUE,
                   calc.FRic = FALSE, calc.FDiv = FALSE, corr = "sqrt")
 
 ### b F value ----------------------------------------------------------
-Ftraits <- traits %>%
+data_traits <- traits %>%
   select(name, f) %>%
   filter(f > 0)
-Fspecies <- semi_join(species, Ftraits, by = "name") %>%
+data_species <- semi_join(species, data_traits, by = "name") %>%
   pivot_longer(-name, "site", "value") %>%
   pivot_wider(site, name) %>%
   column_to_rownames("site")
-Ftraits <- column_to_rownames(Ftraits, "name")
+data_traits <- column_to_rownames(data_traits, "name")
 ### Calculate CWM ###
-Fweighted <- dbFD(Ftraits, Fspecies, w.abun = TRUE,
+f_weighted <- dbFD(data_traits, data_species, w.abun = TRUE,
                   calc.FRic = FALSE, calc.FDiv = FALSE, corr = "sqrt")
 
 ### c implement in sites data set --------------------------------------
-sites$cwmAbuN <- round(as.numeric(as.character(Nweighted$CWM$n)), 3)
-sites$cwmAbuF <- round(as.numeric(as.character(Fweighted$CWM$f)), 3)
+sites$cwmAbuN <- round(as.numeric(as.character(n_weighted$CWM$n)), 3)
+sites$cwmAbuF <- round(as.numeric(as.character(f_weighted$CWM$f)), 3)
 rm(list = setdiff(ls(), c("sites", "species", "traits")))
 
 
 ### 5 CWM and FDis of functional plant traits ##########################
 
-traitsLHS <- traits %>%
+traits_lhs <- traits %>%
   select(name, ldmc, seedmass, height) %>%
   drop_na()
-traitsLDMC <- traits %>%
+traits_ldmc <- traits %>%
   select(name, ldmc) %>%
   drop_na()
-traitsSM <- traits %>%
+traits_seedmass <- traits %>%
   select(name, seedmass) %>%
   drop_na()
-traitsH <- traits %>%
+traits_height <- traits %>%
   select(name, height) %>%
   drop_na()
 
 ### a All --------------------------------------------------------------
-Tspecies <- semi_join(species, traitsLHS, by = "name")
-Ttraits <- semi_join(traitsLHS, Tspecies, by = "name")
-Tspecies <- Tspecies %>%
+data_species <- semi_join(species, traits_lhsS, by = "name")
+data_traits <- semi_join(traits_lhs, data_species, by = "name")
+data_species <- data_species %>%
   pivot_longer(-name, "site", "value") %>%
   pivot_wider(site, name) %>%
   column_to_rownames("site")
-Ttraits <- column_to_rownames(Ttraits, "name")
-log_Ttraits <- log(Ttraits)
-TdiversityAbu <- dbFD(log_Ttraits, Tspecies, w.abun = TRUE,
+data_traits <- column_to_rownames(data_traits, "name")
+log_data_traits <- log(data_traits)
+data_abundance <- dbFD(log_data_traits, data_species, w.abun = TRUE,
                       calc.FRic = FALSE, calc.FDiv = FALSE, corr = "cailliez")
-sites$fdisAbuLHS <- TdiversityAbu$FDis
+sites$fdisAbuLHS <- data_abundance$FDis
 
 ### b LDMC -------------------------------------------------------------
-Tspecies <- semi_join(species, traitsLDMC, by = "name")
-Ttraits <- semi_join(traitsLDMC, Tspecies, by = "name")
-Tspecies <- Tspecies %>%
+data_species <- semi_join(species, traits_ldmc, by = "name")
+data_traits <- semi_join(traitsLDMC, data_species, by = "name")
+data_species <- data_species %>%
   pivot_longer(-name, "site", "value") %>%
   pivot_wider(site, name) %>%
   column_to_rownames("site")
-Ttraits <- column_to_rownames(Ttraits, "name")
-log_Ttraits <- log(Ttraits)
-TdiversityAbu <- dbFD(log_Ttraits, Tspecies, w.abun = TRUE,
+data_traits <- column_to_rownames(data_traits, "name")
+log_data_traits <- log(data_traits)
+data_abundance <- dbFD(log_data_traits, data_species, w.abun = TRUE,
                       calc.FRic = FALSE, calc.FDiv = FALSE, corr = "sqrt")
-sites$fdisAbuLdmc <- TdiversityAbu$FDis
-sites$cwmAbuLdmc <- exp(as.numeric(as.character(TdiversityAbu$CWM$ldmc)))
+sites$fdisAbuLdmc <- data_abundance$FDis
+sites$cwmAbuLdmc <- exp(as.numeric(as.character(data_abundance$CWM$ldmc)))
 
 ### b Seed mass --------------------------------------------------------
-Tspecies <- semi_join(species, traitsSM, by = "name")
-Ttraits <- semi_join(traitsSM, Tspecies, by = "name")
-Tspecies <- Tspecies %>%
+data_species <- semi_join(species, traits_seedmass, by = "name")
+data_traits <- semi_join(traitsSM, data_species, by = "name")
+data_species <- data_species %>%
   pivot_longer(-name, "site", "value") %>%
   pivot_wider(site, name) %>%
   column_to_rownames("site")
-Ttraits <- column_to_rownames(Ttraits, "name")
-log_Ttraits <- log(Ttraits)
-TdiversityAbu <- dbFD(log_Ttraits, Tspecies, w.abun = TRUE, 
+data_traits <- column_to_rownames(data_traits, "name")
+log_data_traits <- log(data_traits)
+data_abundance <- dbFD(log_data_traits, data_species, w.abun = TRUE, 
                       calc.FRic = FALSE, calc.FDiv = FALSE, corr = "sqrt")
-sites$fdisAbuSeedmass <- TdiversityAbu$FDis
-sites$cwmAbuSeedmass <- exp(as.numeric(as.character(TdiversityAbu$CWM$seedmass)))
+sites$fdisAbuSeedmass <- data_abundance$FDis
+sites$cwmAbuSeedmass <- exp(as.numeric(as.character(data_abundance$CWM$seedmass)))
 
 ### c Canopy height ----------------------------------------------------
-Tspecies <- semi_join(species, traitsH, by = "name")
-Ttraits <- semi_join(traitsH, Tspecies, by = "name")
-Tspecies <- Tspecies %>%
+data_species <- semi_join(species, traits_height, by = "name")
+data_traits <- semi_join(traitsH, data_species, by = "name")
+data_species <- data_species %>%
   pivot_longer(-name, "site", "value") %>%
   pivot_wider(site, name) %>%
   column_to_rownames("site")
-Ttraits <- column_to_rownames(Ttraits, "name")
-log_Ttraits <- log(Ttraits)
-TdiversityAbu <- dbFD(log_Ttraits, Tspecies, w.abun = TRUE,
+data_traits <- column_to_rownames(data_traits, "name")
+log_data_traits <- log(data_traits)
+data_abundance <- dbFD(log_data_traits, data_species, w.abun = TRUE,
                       calc.FRic = FALSE, calc.FDiv = FALSE, corr = "sqrt")
-sites$fdisAbuHeight <- TdiversityAbu$FDis
-sites$cwmAbuHeight <- exp(as.numeric(as.character(TdiversityAbu$CWM$height)))
+sites$fdisAbuHeight <- data_abundance$FDis
+sites$cwmAbuHeight <- exp(as.numeric(as.character(data_abundance$CWM$height)))
 rm(list = setdiff(ls(), c("sites", "species", "traits")))
 
 
@@ -371,7 +373,7 @@ rm(list = setdiff(ls(), c("sites", "species", "traits")))
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-setwd(here("data/processed"))
-write_csv2(sites, here("data_processed_sites.csv"))
-write_csv2(species, here("data_processed_species.csv"))
-write_csv2(traits, here("data_processed_traits.csv"))
+setwd(here("data", "processed"))
+write_csv2(sites, "data_processed_sites.csv")
+write_csv2(species, "data_processed_species.csv")
+write_csv2(traits, "data_processed_traits.csv")
