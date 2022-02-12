@@ -10,17 +10,12 @@ library(vegan)
 library(FD) #dbFD
 library(naniar) #are_na
 remotes::install_github(file.path("inbo", "checklist"))
-library(checklist)
 
-checklist::setup_source()
-x <- checklist::check_source()
-checklist::write_checklist(x)
-x <- checklist::check_source()
+
 
 ### Start ###
-installr::updateR(browse_news = FALSE, install_R = TRUE, copy_packages = TRUE,
-                  copy_Rprofile.site = TRUE, keep_old_packages = TRUE,
-                  update_packages = TRUE, start_new_R = FALSE, quit_R = TRUE)
+#installr::updateR(browse_news = FALSE, install_R = TRUE, copy_packages = TRUE, copy_Rprofile.site = TRUE, keep_old_packages = TRUE, update_packages = TRUE, start_new_R = FALSE, quit_R = TRUE)
+#checklist::check_source()
 rm(list = ls())
 setwd(here("data", "raw"))
 
@@ -91,17 +86,13 @@ traits <- read_csv2("data_raw_traits.csv", col_names = TRUE,
                         neophyte = col_factor()
                       )
                    ) %>%
-  filter(layer == "h")
+  filter(layer == "herb")
 
-traits <- left_join(species, traits, by = "name") %>%
-  select(name, abb, l, f, n, flood, chwet, ldmc, height, seedmass, sociality)
+traits <- traits %>%
+  semi_join(species, by = "name")
 
 miss_var_summary(traits)
-vis_miss(traits, cluster = FALSE)
 gg_miss_var(traits)
-gg_miss_case(traits, order_cases = FALSE)
-gg_miss_upset(traits)
-
 
 
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -128,7 +119,8 @@ data <- species %>%
   summarise(total = sum(n)) %>%
   ungroup() %>%
   mutate(targetClass = round(total, 3), .keep = "unused")
-sites <- left_join(sites, data, by = "id")
+sites <- sites %>%
+  left_join(data, by = "id")
 data <- species %>%
   mutate(type = traits$sociality) %>%
   filter(type >= 81000 & type < 84000) %>%
@@ -138,7 +130,8 @@ data <- species %>%
   summarise(total = sum(n)) %>%
   ungroup() %>%
   mutate(nontargetClass = round(total, 3), .keep = "unused")
-sites <- left_join(sites, data, by = "id")
+sites <- sites %>%
+  left_join(data, by = "id")
 
 ### b Fagetalia coverage -----------------------------------------------
 data <- species %>%
@@ -150,7 +143,8 @@ data <- species %>%
   summarise(total = sum(n)) %>%
   ungroup() %>%
   mutate(targetOrder = round(total, 3), .keep = "unused")
-sites <- left_join(sites, data, by = "id")
+sites <- sites %>%
+  left_join(data, by = "id")
 data <- species %>%
   mutate(type = traits$sociality) %>%
   filter(type >= 84100 & type < 84300) %>%
@@ -160,7 +154,8 @@ data <- species %>%
   summarise(total = sum(n)) %>%
   ungroup() %>%
   mutate(nontargetOrder = round(total, 3), .keep = "unused")
-sites <- left_join(sites, data, by = "id")
+sites <- sites %>%
+  left_join(data, by = "id")
 
 ### c Alno-Ulmion coverage ---------------------------------------------
 data <- species %>%
@@ -172,7 +167,8 @@ data <- species %>%
   summarise(total = sum(n)) %>%
   ungroup() %>%
   mutate(targetAlliance = round(total, 3), .keep = "unused")
-sites <- left_join(sites, data, by = "id")
+sites <- sites %>%
+  left_join(data, by = "id")
 data <- species %>%
   mutate(type = traits$sociality) %>%
   filter(type >= 84310 & type < 84330) %>%
@@ -182,7 +178,8 @@ data <- species %>%
   summarise(total = sum(n)) %>%
   ungroup() %>%
   mutate(nontargetAlliance = round(total, 3), .keep = "unused")
-sites <- left_join(sites, data, by = "id")
+sites <- sites %>%
+  left_join(data, by = "id")
 
 ### d Alnetum incanae coverage -----------------------------------------
 data <- species %>%
@@ -195,7 +192,8 @@ data <- species %>%
   summarise(total = sum(n)) %>%
   ungroup() %>%
   mutate(targetAssociation = round(total, 3), .keep = "unused")
-sites <- left_join(sites, data, by = "id")
+sites <- sites %>%
+  left_join(data, by = "id")
 data <- species %>%
   mutate(type = traits$name) %>%
   filter(
@@ -212,12 +210,16 @@ data <- species %>%
   summarise(total = sum(n)) %>%
   ungroup() %>%
   mutate(nontargetAssociation = round(total, 3), .keep = "unused")
-sites <- left_join(sites, data, by = "id")
+sites <- sites %>%
+  left_join(data, by = "id")
+
 rm(data)
+
 
 ### 3 Species richness #################################################
 
-spec_rich <- left_join(species, traits, by = "name") %>%
+spec_rich <- species %>%
+  left_join(traits, by = "name") %>%
   select(starts_with("IN"), starts_with("AC"), name, flood, chwet)
 
 ### a total species richness -------------------------------------------
@@ -256,9 +258,11 @@ spec_rich_chwet <- spec_rich %>%
   ungroup()
 
 ### d implement in sites data set --------------------------------------
-sites <- left_join(sites, spec_rich_all, by = "id")
-sites <- left_join(sites, spec_rich_flood, by = "id")
-sites <- left_join(sites, spec_rich_chwet, by = "id")
+sites <- sites%>%
+  left_join(spec_rich_all, by = "id") %>%
+  left_join(spec_rich_flood, by = "id") %>%
+  left_join(spec_rich_chwet, by = "id")
+
 rm(list = setdiff(ls(), c("sites", "species", "traits")))
 
 
@@ -291,8 +295,15 @@ f_weighted <- dbFD(data_traits, data_species, w.abun = TRUE,
                   calc.FRic = FALSE, calc.FDiv = FALSE, corr = "sqrt")
 
 ### c implement in sites data set --------------------------------------
-sites$cwmAbuN <- round(as.numeric(as.character(n_weighted$CWM$n)), 3)
-sites$cwmAbuF <- round(as.numeric(as.character(f_weighted$CWM$f)), 3)
+sites <- sites %>%
+  mutate(x = n_weighted$CWM$n,
+         x = as.character(x),
+         cwmAbuN = as.numeric(x))
+sites <- sites %>%
+  mutate(x = f_weighted$CWM$f,
+         x = as.character(x),
+         cwmAbuF = as.numeric(x))
+
 rm(list = setdiff(ls(), c("sites", "species", "traits")))
 
 
@@ -312,7 +323,7 @@ traits_height <- traits %>%
   drop_na()
 
 ### a All --------------------------------------------------------------
-data_species <- semi_join(species, traits_lhsS, by = "name")
+data_species <- semi_join(species, traits_lhs, by = "name")
 data_traits <- semi_join(traits_lhs, data_species, by = "name")
 data_species <- data_species %>%
   pivot_longer(-name, "site", "value") %>%
@@ -322,11 +333,15 @@ data_traits <- column_to_rownames(data_traits, "name")
 log_data_traits <- log(data_traits)
 data_abundance <- dbFD(log_data_traits, data_species, w.abun = TRUE,
                       calc.FRic = FALSE, calc.FDiv = FALSE, corr = "cailliez")
-sites$fdisAbuLHS <- data_abundance$FDis
+sites <- sites %>%
+  mutate(fdisAbuLHS = data_abundance$FDis,
+         fdisAbuLHS = as.character(fdisAbuLHS),
+         fdisAbuLHS = as.numeric(fdisAbuLHS))
+  
 
 ### b LDMC -------------------------------------------------------------
 data_species <- semi_join(species, traits_ldmc, by = "name")
-data_traits <- semi_join(traitsLDMC, data_species, by = "name")
+data_traits <- semi_join(traits_ldmc, data_species, by = "name")
 data_species <- data_species %>%
   pivot_longer(-name, "site", "value") %>%
   pivot_wider(site, name) %>%
@@ -335,15 +350,18 @@ data_traits <- column_to_rownames(data_traits, "name")
 log_data_traits <- log(data_traits)
 data_abundance <- dbFD(log_data_traits, data_species, w.abun = TRUE,
                       calc.FRic = FALSE, calc.FDiv = FALSE, corr = "sqrt")
-sites$fdisAbuLdmc <- data_abundance$FDis
-sites$cwmAbuLdmc <- data_abundance$CWM %>%
-  mutate(x = as.character(ldmc),
+sites <- sites %>%
+  mutate(x = data_abundance$FDis,
+         x = as.character(x),
+         fdisAbuLdmc = as.numeric(x))
+sites <- sites %>%
+  mutate(x = as.character(data_abundance$CWM$ldmc),
          x = as.numeric(x),
-         x = exp(x))
+         cwmAbuLdmc = exp(x))
 
 ### b Seed mass --------------------------------------------------------
 data_species <- semi_join(species, traits_seedmass, by = "name")
-data_traits <- semi_join(traitsSM, data_species, by = "name")
+data_traits <- semi_join(traits_seedmass, data_species, by = "name")
 data_species <- data_species %>%
   pivot_longer(-name, "site", "value") %>%
   pivot_wider(site, name) %>%
@@ -352,15 +370,18 @@ data_traits <- column_to_rownames(data_traits, "name")
 log_data_traits <- log(data_traits)
 data_abundance <- dbFD(log_data_traits, data_species, w.abun = TRUE,
                       calc.FRic = FALSE, calc.FDiv = FALSE, corr = "sqrt")
-sites$fdisAbuSeedmass <- data_abundance$FDis
-sites$cwmAbuSeedmass <- data_abundance$CWM %>%
-  mutate(x = as.character(seedmass),
+sites <- sites %>%
+  mutate(x = data_abundance$FDis,
+         x = as.character(x),
+         fdisAbuSeedmass = as.numeric(x))
+sites <- sites %>%
+  mutate(x = as.character(data_abundance$CWM$seedmass),
          x = as.numeric(x),
-         x = exp(x))
+         cwmAbuSeedmass = exp(x))
 
 ### c Canopy height ----------------------------------------------------
 data_species <- semi_join(species, traits_height, by = "name")
-data_traits <- semi_join(traitsH, data_species, by = "name")
+data_traits <- semi_join(traits_height, data_species, by = "name")
 data_species <- data_species %>%
   pivot_longer(-name, "site", "value") %>%
   pivot_wider(site, name) %>%
@@ -369,11 +390,14 @@ data_traits <- column_to_rownames(data_traits, "name")
 log_data_traits <- log(data_traits)
 data_abundance <- dbFD(log_data_traits, data_species, w.abun = TRUE,
                       calc.FRic = FALSE, calc.FDiv = FALSE, corr = "sqrt")
-sites$fdisAbuHeight <- data_abundance$FDis
-sites$cwmAbuHeight <- data_abundance$CWM %>%
-  mutate(x = as.character(height),
+sites <- sites %>%
+  mutate(x = data_abundance$FDis,
+         x = as.character(x),
+         fdisAbuHeight = as.numeric(x))
+sites <- sites %>%
+  mutate(x = as.character(data_abundance$CWM$height),
          x = as.numeric(x),
-         x = exp(x))
+         cwmAbuHeight = exp(x))
 
 rm(list = setdiff(ls(), c("sites", "species", "traits")))
 

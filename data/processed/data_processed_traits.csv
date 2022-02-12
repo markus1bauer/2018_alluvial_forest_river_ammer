@@ -1,95 +1,95 @@
-name;abb;l;f;n;flood;chwet;ldmc;height;seedmass;sociality
-Acer_pseudoplatanus;Acerpseu;4;6;7;no;no;264,00;27,50;44,80;84340
-Aconitum_lycoctonum;Aconalti;3;7;8;no;no;140,00;NA;NA;NA
-Aegopodium_podagraria;Aegopoda;5;6;8;no;no;246,00;0,58;1,54;35310
-Agrostis_gigantea;Agrogiga;7;8;6;no;no;241,17;0,98;0,09;54000
-Agrostis_stolonifera_agg;Agrostol;8;7;5;no;yes;265,50;NA;0,05;38100
-Alnus_incana;Alnuinca;6;7;NA;yes;no;213,84;14,00;0,55;84330
-Angelica_sylvestris;Angesylv;7;8;4;no;no;220,00;0,90;2,96;54100
-Aquilegia_atrata;Aquisylv;6;4;3;no;yes;NA;0,40;1,48;71110
-Asarum_europaeum;Asareuro;3;5;6;no;no;142,81;0,08;3,44;84300
-Calamagrostis_epigejos;Calaepig;7;NA;6;no;yes;395,00;1,00;0,07;NA
-Cardamine_impatiens;Cardimpa;5;6;8;no;no;311,00;0,40;0,30;35320
-Cardamine_trifolia;Cardtrif;3;6;7;no;no;NA;0,18;1,64;84315
-Carduus_personata;Cardpers;7;8;8;no;no;NA;0,83;1,80;NA
-Carex_acutiformis;Careacut;7;9;5;no;yes;333,43;0,75;1,11;NA
-Carex_alba;Carealba;5;4;2;no;no;363,16;0,10;2,83;71110
-Carex_digitata;Caredigi;3;5;4;no;no;274,16;0,10;1,45;84000
-Carex_ornithopoda_sstr;Careorni;6;3;3;no;no;275,00;0,04;NA;NA
-Carex_pendula;Carepend;5;8;6;no;no;301,50;0,50;0,75;84330
-Carex_sylvatica;Caresylv;2;5;5;no;no;324,00;0,43;1,65;84300
-Chaerophyllum_hirsutum_sstr;Chaehirs;6;8;7;no;no;133,87;0,58;3,33;54100
-Cicuta_virosa;Cicuviro;7;9;5;yes;no;115,32;0,83;1,86;15111
-Cirsium_arvense;Cirsarve;8;NA;7;no;no;153,00;0,86;1,24;30000
-Cirsium_oleraceum;Cirsoler;6;7;5;no;no;142,83;0,80;2,54;54150
-Clematis_vitalba;Clemvita;7;5;7;no;no;237,00;20,00;2,76;84400
-Convallaria_majalis;Convmaja;5;4;4;no;no;221,50;0,15;17,00;84000
-Cornus_sanguinea;Cornsang;7;5;NA;no;no;255,00;3,00;55,20;84400
-Corydalis_cava;Corycava;3;6;8;no;no;141,05;0,16;11,80;84300
-Crataegus_monogyna;Cratmono;7;4;4;no;no;308,00;4,00;104,62;84400
-Dactylis_glomerata;Dactyglom;7;5;6;no;no;262,00;0,45;0,98;NA
-Daphne_mezereum;Daphmeze;4;5;5;no;no;186,50;0,78;43,90;84300
-Deschampsia_cespitosa;Desccesp;6;7;3;no;yes;349,20;0,27;0,20;NA
-Dipsacus_pilosus;Dipspilo;7;6;7;no;yes;172,94;0,60;5,11;35320
-Dryopteris_carthusiana;Dryocart;5;NA;3;no;no;275,39;0,38;NA;NA
-Equisetum_arvense;Equiarve;6;NA;3;no;yes;237,81;0,33;NA;NA
-Equisetum_hyemale;Equihyem;5;7;6;no;yes;154,20;0,95;NA;84330
-Eupatorium_cannabinum;Eupacann;7;7;8;no;no;202,00;1,00;0,34;35210
-Fagus_sylvatica;Fagusylv;3;5;NA;no;no;305,00;32,50;158,00;84300
-Filipendula_ulmaria;Filiulma;7;8;5;no;no;391,00;0,88;0,71;54120
-Fraxinus_excelsior;Fraxexce;4;NA;7;no;no;257,00;25,00;60,89;84300
-Galium_aparine;Galiapar;7;NA;8;no;no;135,00;0,68;9,54;35000
-Galium_mollugo_agg;Galimoll;7;4;NA;no;no;166,00;0,50;0,71;NA
-Geranium_phaeum;Geraphae;6;5;5;no;no;152,19;0,43;NA;61110
-Geranium_robertianum;Gerarobe;5;NA;7;no;no;186,00;0,25;1,51;35320
-Geum_urbanum;Geumurba;4;5;7;no;no;302,00;0,40;2,45;84300
-Glechoma_hederacea;Glechede;6;6;7;no;no;160,00;0,20;0,68;35300
-Gymnadenia_odoratissima;Gymnodor;6;4;2;no;yes;115,06;0,15;NA;71110
-Holcus_lanatus;Holclana;7;6;5;no;no;232,00;0,33;0,40;54000
-Holcus_mollis;Holcmoll;5;5;3;no;no;216,00;0,28;0,33;84111
-Humulus_lupulus;Humulupu;7;8;8;yes;no;292,50;NA;4,23;80000
-Hypericum_hirsutum;Hypehirs;7;5;7;no;no;275,50;0,63;0,09;62120
-Hypericum_tetrapterum;Hypetetr;7;8;5;yes;no;198,50;0,43;0,04;54120
-Knautia_dipsacifolia;Knaudips;5;6;6;no;no;NA;0,40;5,13;61110
-Lamium_maculatum;Lamimacu;5;6;8;no;no;206,00;0,38;1,80;35210
-Lathyrus_pratensis;Lathprat;7;6;6;no;no;276,00;0,65;13,27;54000
-Leucanthemum_vulgare;Leucvulg;7;4;3;no;no;124,00;0,36;0,41;54200
-Ligustrum_vulgare;Liguvulg;7;4;3;no;no;273,00;3,00;15,63;84400
-Lonicera_xylosteum;Lonixylo;5;5;6;no;no;NA;1,50;6,01;84000
-Lycopus_europaeus;Lycoeuro;7;9;7;yes;no;103,92;0,65;0,23;15000
-Lysimachia_vulgaris;Lysivulg;6;8;NA;no;yes;198,00;0,97;0,35;NA
-Melica_nutans;Melinuta;4;4;3;no;yes;340,00;0,23;2,03;84000
-Mentha_aquatica;Mentaqua;7;9;5;yes;no;179,00;0,48;0,14;15100
-Mentha_aquatica_x_spicata;Menthaaqxsp;NA;NA;NA;no;no;NA;NA;NA;NA
-Mercurialis_perennis;Mercpere;2;NA;7;no;no;224,50;0,23;2,17;84300
-Molinia_arundinacea;Moliarun;7;NA;3;no;yes;NA;0,79;NA;NA
-Molinia_caerulea;Molicaer;7;7;2;no;no;380,21;NA;0,70;NA
-Neottia_ovata;Listovat;6;6;7;no;yes;119,00;0,14;NA;NA
-Petasites_hybridus;Petahypr;7;8;8;yes;no;201,50;0,58;0,24;35310
-Phalaris_arundinacea;Phalarun;7;8;7;no;yes;263,00;1,45;0,67;15100
-Phragmites_australis;Phraaust;7;10;7;no;no;428,69;2,50;0,14;15110
-Picea_abies;Piceabie;5;NA;NA;no;no;NA;50,00;7,15;73100
-Pimpinella_major;Pimpmajo;7;5;6;no;no;207,00;0,63;2,12;54210
-Pleurospermum_austriacum;Pleuaust;5;6;4;no;yes;NA;0,83;4,21;61100
-Poa_compressa;Poacomp;9;3;3;no;no;299,00;0,38;0,20;36100
-Poa_palustris;Poapalu;7;9;7;yes;no;334,45;0,82;0,17;15100
-Prunella_vulgaris;Prunvulg;7;5;NA;no;no;165,00;0,15;0,67;54000
-Prunus_padus;Prunpadu;5;8;6;yes;no;153,73;9,00;80,50;84330
-Pulmonaria_officinalis;Pulmoffi;5;5;6;no;no;114,20;0,15;3,64;84300
-Quercus_robur;Querrobu;7;NA;NA;no;no;280,00;40,00;3413,00;84000
-Ranunculus_repens;Ranurepe;6;7;7;no;yes;190,56;0,20;2,28;NA
-Rubus_caesius;Rubucaes;6;NA;7;no;no;408,00;0,48;3,63;NA
-Salix_alba;Salialba;5;8;7;yes;no;298,62;17,50;0,12;81120
-Salix_eleagnos;Salielea;7;7;4;no;yes;NA;NA;NA;81110
-Solidago_gigantea;Soligiga;8;6;7;no;no;308,00;1,38;0,06;35000
-Stachys_sylvatica;Stacsylv;4;7;7;no;no;207,00;0,53;1,42;84330
-Symphytum_officinale;Sympoffi;7;7;8;no;no;81,73;0,65;8,32;NA
-Thalictrum_aquilegiifolium;Thalaqui;5;8;7;yes;no;205,36;0,68;2,00;84330
-Ulmus_glabra;Ulmuglab;4;6;7;no;no;254,00;30,00;11,20;84340
-Valeriana_dioica;Valedioi;7;8;2;no;no;160,00;0,17;0,63;54100
-Valeriana_excelsa_subsp_excelsa;Valeexce;7;8;6;yes;no;NA;NA;NA;NA
-Viburnum_lantana;Vibulant;7;4;4;no;no;234,90;3,50;31,02;84410
-Vicia_cracca_sstr;Vicicracc;7;6;NA;no;no;219,50;0,75;14,29;54000
-Vinca_minor;Vincmino;4;5;6;no;no;195,00;0,59;6,13;84320
-Viola_odorata;Violodor;5;5;8;no;no;220,00;0,24;3,28;35300
-Carex SU3;NA;NA;NA;NA;no;no;NA;NA;NA;NA
+name;descriptor;nomenclature;abb;nameTraits;layer;lifeform;lifeformEllenberg;ldmc;height;seedmass;l;f;n;flood;chwet;legal;rlg;rlb;neophyte;continuity;sociality
+Acer_pseudoplatanus;L.;PL;Acerpseu;Acer_pseudoplatanus;herb;wood;P;264,00;27,50;44,80;4;6;7;no;no;"NA";"NA";"NA";no;10;84340
+Aconitum_lycoctonum;L.;PL;Aconalti;Aconitum_lycoctonum;herb;perannual;H;140,00;NA;NA;3;7;8;no;no;BG;"NA";"NA";no;1;NA
+Aegopodium_podagraria;L.;PL;Aegopoda;Aegopodium_podagraria;herb;perannual;G,H;246,00;0,58;1,54;5;6;8;no;no;"NA";"NA";"NA";no;16;35310
+Agrostis_gigantea;Roth;PL;Agrogiga;Agrostis_gigantea;herb;perannual;H;241,17;0,98;0,09;7;8;6;no;no;"NA";"NA";"NA";no;1;54000
+Agrostis_stolonifera_agg;na;PL;Agrostol;Agrostis_stolonifera;herb;perannual;H;265,50;NA;0,05;8;7;5;no;yes;"NA";"NA";"NA";no;1;38100
+Alnus_incana;(L.) Moench;PL;Alnuinca;Alnus_incana;herb;wood;P;213,84;14,00;0,55;6;7;NA;yes;no;"NA";"NA";"NA";no;13;84330
+Angelica_sylvestris;L.;PL;Angesylv;Angelica_sylvestris;herb;perannual;H;220,00;0,90;2,96;7;8;4;no;no;"NA";"NA";"NA";no;4;54100
+Aquilegia_atrata;Koch;PL;Aquisylv;Aquilegia_atrata;herb;perannual;H;NA;0,40;1,48;6;4;3;no;yes;BG;"NA";"NA";no;1;71110
+Asarum_europaeum;L.;PL;Asareuro;Asarum_europaeum;herb;perannual;H,G;142,81;0,08;3,44;3;5;6;no;no;"NA";"NA";"NA";no;15;84300
+Calamagrostis_epigejos;(L.) Roth;PL;Calaepig;Calamagrostis_epigejos;herb;perannual;G,H;395,00;1,00;0,07;7;NA;6;no;yes;"NA";"NA";"NA";no;7;NA
+Cardamine_impatiens;L.;PL;Cardimpa;Cardamine_impatiens;herb;perannual_annual;H,T;311,00;0,40;0,30;5;6;8;no;no;"NA";"NA";"NA";no;4;35320
+Cardamine_trifolia;L.;PL;Cardtrif;Cardamine_trifolia;herb;perannual;G;NA;0,18;1,64;3;6;7;no;no;"NA";"NA";"NA";no;4;84315
+Carduus_personata;(L.) Jacq.;PL;Cardpers;Carduus_personata;herb;perannual;H;NA;0,83;1,80;7;8;8;no;no;"NA";"NA";"NA";no;5;NA
+Carex_acutiformis;Ehrh.;PL;Careacut;Carex_acutiformis;herb;perannual;G,A;333,43;0,75;1,11;7;9;5;no;yes;"NA";"NA";"NA";no;12;NA
+Carex_alba;Scop.;PL;Carealba;Carex_alba;herb;perannual;G,H;363,16;0,10;2,83;5;4;2;no;no;"NA";"NA";"NA";no;7;71110
+Carex_digitata;L.;PL;Caredigi;Carex_digitata;herb;perannual;H;274,16;0,10;1,45;3;5;4;no;no;"NA";"NA";"NA";no;2;84000
+Carex_ornithopoda_sstr;Willd.;PL;Careorni;Carex_ornithopoda;herb;perannual;H;275,00;0,04;NA;6;3;3;no;no;"NA";"NA";"NA";no;3;NA
+Carex_pendula;Huds.;PL;Carepend;Carex_pendula;herb;perannual;H;301,50;0,50;0,75;5;8;6;no;no;"NA";"NA";"NA";no;3;84330
+Carex_sylvatica;Huds.;PL;Caresylv;Carex_sylvatica;herb;perannual;H;324,00;0,43;1,65;2;5;5;no;no;"NA";"NA";"NA";no;3;84300
+Chaerophyllum_hirsutum_sstr;L.;PL;Chaehirs;Chaerophyllum_hirsutum;herb;perannual;H;133,87;0,58;3,33;6;8;7;no;no;"NA";"NA";"NA";no;2;54100
+Cicuta_virosa;L.;PL;Cicuviro;Cicuta_virosa;herb;perannual;H;115,32;0,83;1,86;7;9;5;yes;no;"NA";3;2;no;1;15111
+Cirsium_arvense;(L.) Scop.;PL;Cirsarve;Cirsium_arvense;herb;perannual;G;153,00;0,86;1,24;8;NA;7;no;no;"NA";"NA";"NA";no;4;30000
+Cirsium_oleraceum;(L.) Scop.;PL;Cirsoler;Cirsium_oleraceum;herb;perannual;H;142,83;0,80;2,54;6;7;5;no;no;"NA";"NA";"NA";no;8;54150
+Clematis_vitalba;L.;PL;Clemvita;Clematis_vitalba;herb;wood;Pli;237,00;20,00;2,76;7;5;7;no;no;"NA";"NA";"NA";no;2;84400
+Convallaria_majalis;L.;PL;Convmaja;Convallaria_majalis;herb;perannual;G;221,50;0,15;17,00;5;4;4;no;no;"NA";"NA";"NA";no;1;84000
+Cornus_sanguinea;L.;PL;Cornsang;Cornus_sanguinea;herb;wood;N;255,00;3,00;55,20;7;5;NA;no;no;"NA";"NA";"NA";no;12;84400
+Corydalis_cava;(L.) Schweigg. & Körte;PL;Corycava;Corydalis_cava;herb;perannual;G;141,05;0,16;11,80;3;6;8;no;no;"NA";"NA";"NA";no;7;84300
+Crataegus_monogyna;Jacq.;PL;Cratmono;Crataegus_monogyna;herb;wood;N,P;308,00;4,00;104,62;7;4;4;no;no;"NA";"NA";"NA";no;12;84400
+Dactylis_glomerata;L.;PL;Dactyglom;Dactylis_glomerata;herb;perannual;H;262,00;0,45;0,98;7;5;6;no;no;"NA";"NA";"NA";no;1;NA
+Daphne_mezereum;L.;PL;Daphmeze;Daphne_mezereum;herb;wood;N,Z;186,50;0,78;43,90;4;5;5;no;no;BG;"NA";"NA";no;2;84300
+Deschampsia_cespitosa;(L.) P.Beauv.;PL;Desccesp;Deschampsia_cespitosa;herb;perannual;H;349,20;0,27;0,20;6;7;3;no;yes;"NA";"NA";"NA";no;14;NA
+Dipsacus_pilosus;L.;PL;Dipspilo;Dipsacus_pilosus;herb;perannual;H;172,94;0,60;5,11;7;6;7;no;yes;"NA";"NA";3;no;1;35320
+Dryopteris_carthusiana;(Vill.) H.P. Fuchs;PL;Dryocart;Dryopteris_carthusiana;herb;perannual;H;275,39;0,38;NA;5;NA;3;no;no;"NA";"NA";"NA";no;1;NA
+Equisetum_arvense;L.;PL;Equiarve;Equisetum_arvense;herb;perannual;G;237,81;0,33;NA;6;NA;3;no;yes;"NA";"NA";"NA";no;9;NA
+Equisetum_hyemale;L.;PL;Equihyem;Equisetum_hyemale;herb;perannual;C;154,20;0,95;NA;5;7;6;no;yes;"NA";"NA";"NA";no;4;84330
+Eupatorium_cannabinum;L.;PL;Eupacann;Eupatorium_cannabinum;herb;perannual;H;202,00;1,00;0,34;7;7;8;no;no;"NA";"NA";"NA";no;15;35210
+Fagus_sylvatica;L.;PL;Fagusylv;Fagus_sylvatica;herb;wood;P;305,00;32,50;158,00;3;5;NA;no;no;"NA";"NA";"NA";no;1;84300
+Filipendula_ulmaria;(L.) Maxim.;PL;Filiulma;Filipendula_ulmaria;herb;perannual;H;391,00;0,88;0,71;7;8;5;no;no;"NA";"NA";"NA";no;11;54120
+Fraxinus_excelsior;L.;PL;Fraxexce;Fraxinus_excelsior;herb;wood;P;257,00;25,00;60,89;4;NA;7;no;no;"NA";"NA";"NA";no;12;84300
+Galium_aparine;L.;PL;Galiapar;Galium_aparine;herb;annual;Tli;135,00;0,68;9,54;7;NA;8;no;no;"NA";"NA";"NA";no;2;35000
+Galium_mollugo_agg;na;PL;Galimoll;Galium_mollugo;herb;perannual;H;166,00;0,50;0,71;7;4;NA;no;no;"NA";"NA";"NA";no;10;NA
+Geranium_phaeum;L.;PL;Geraphae;Geranium_phaeum;herb;perannual;H;152,19;0,43;NA;6;5;5;no;no;"NA";"NA";"NA";no;1;61110
+Geranium_robertianum;L.;PL;Gerarobe;Geranium_robertianum;herb;perannual_annual;T,H;186,00;0,25;1,51;5;NA;7;no;no;"NA";"NA";"NA";no;2;35320
+Geum_urbanum;L.;PL;Geumurba;Geum_urbanum;herb;perannual;H;302,00;0,40;2,45;4;5;7;no;no;"NA";"NA";"NA";no;2;84300
+Glechoma_hederacea;L.;PL;Glechede;Glechoma_hederacea;herb;perannual;G,H;160,00;0,20;0,68;6;6;7;no;no;"NA";"NA";"NA";no;6;35300
+Gymnadenia_odoratissima;(L.) Rich.;PL;Gymnodor;Gymnadenia_odoratissima;herb;perannual;G;115,06;0,15;NA;6;4;2;no;yes;BG;3;"NA";no;2;71110
+Holcus_lanatus;L.;PL;Holclana;Holcus_lanatus;herb;perannual;H;232,00;0,33;0,40;7;6;5;no;no;"NA";"NA";"NA";no;10;54000
+Holcus_mollis;L.;PL;Holcmoll;Holcus_mollis;herb;perannual;G,H;216,00;0,28;0,33;5;5;3;no;no;"NA";"NA";"NA";no;1;84111
+Humulus_lupulus;L.;PL;Humulupu;Humulus_lupulus;herb;perannual;Hli;292,50;NA;4,23;7;8;8;yes;no;"NA";"NA";"NA";no;4;80000
+Hypericum_hirsutum;L.;PL;Hypehirs;Hypericum_hirsutum;herb;perannual;H;275,50;0,63;0,09;7;5;7;no;no;"NA";"NA";"NA";no;3;62120
+Hypericum_tetrapterum;Fr.;PL;Hypetetr;Hypericum_tetrapterum;herb;perannual;H;198,50;0,43;0,04;7;8;5;yes;no;"NA";V;"NA";no;2;54120
+Knautia_dipsacifolia;Kreutzer;PL;Knaudips;Knautia_dipsacifolia;herb;perannual;H;NA;0,40;5,13;5;6;6;no;no;"NA";"NA";"NA";no;3;61110
+Lamium_maculatum;(L.) L.;PL;Lamimacu;Lamium_maculatum;herb;perannual;H;206,00;0,38;1,80;5;6;8;no;no;"NA";"NA";"NA";no;4;35210
+Lathyrus_pratensis;L.;PL;Lathprat;Lathyrus_pratensis;herb;perannual;Hli;276,00;0,65;13,27;7;6;6;no;no;"NA";"NA";"NA";no;5;54000
+Leucanthemum_vulgare;(Vaill.) Lam.;PL;Leucvulg;Leucanthemum_vulgare;herb;perannual;H;124,00;0,36;0,41;7;4;3;no;no;"NA";"NA";"NA";no;1;54200
+Ligustrum_vulgare;L.;PL;Liguvulg;Ligustrum_vulgare;herb;wood;N;273,00;3,00;15,63;7;4;3;no;no;"NA";"NA";"NA";no;4;84400
+Lonicera_xylosteum;L.;PL;Lonixylo;Lonicera_xylosteum;herb;wood;N;NA;1,50;6,01;5;5;6;no;no;"NA";"NA";"NA";no;9;84000
+Lycopus_europaeus;L.;PL;Lycoeuro;Lycopus_europaeus;herb;perannual;H,A;103,92;0,65;0,23;7;9;7;yes;no;"NA";"NA";"NA";no;1;15000
+Lysimachia_vulgaris;L.;PL;Lysivulg;Lysimachia_vulgaris;herb;perannual;H;198,00;0,97;0,35;6;8;NA;no;yes;"NA";"NA";"NA";no;2;NA
+Melica_nutans;L.;PL;Melinuta;Melica_nutans;herb;perannual;G,H;340,00;0,23;2,03;4;4;3;no;yes;"NA";"NA";"NA";no;4;84000
+Mentha_aquatica;L.;PL;Mentaqua;Mentha_aquatica;herb;perannual;H,A;179,00;0,48;0,14;7;9;5;yes;no;"NA";"NA";"NA";no;5;15100
+Mentha_aquatica_x_spicata;na;PL;Menthaaqxsp;Mentha_aquatica_x_spicata;herb;"NA";"NA";NA;NA;NA;NA;NA;NA;no;no;"NA";"NA";"NA";"NA";1;NA
+Mercurialis_perennis;L.;PL;Mercpere;Mercurialis_perennis;herb;perannual;G,H;224,50;0,23;2,17;2;NA;7;no;no;"NA";"NA";"NA";no;15;84300
+Molinia_arundinacea;Schrank;RM;Moliarun;Molinia_arundinacea;herb;perannual;H;NA;0,79;NA;7;NA;3;no;yes;"NA";"NA";"NA";no;2;NA
+Molinia_caerulea;(L.) Moench;PL;Molicaer;Molinia_caerulea;herb;perannual;H;380,21;NA;0,70;7;7;2;no;no;"NA";"NA";"NA";no;1;NA
+Neottia_ovata;(L.) R.Br.;PL;Listovat;Neottia_ovata;herb;perannual;G;119,00;0,14;NA;6;6;7;no;yes;BG;"NA";"NA";no;1;NA
+Petasites_hybridus;"(L.) ""G. Gaertn., B. Mey. & Scherb.""";PL;Petahypr;Petasites_hybridus;herb;perannual;G,H;201,50;0,58;0,24;7;8;8;yes;no;"NA";"NA";"NA";no;2;35310
+Phalaris_arundinacea;L.;PL;Phalarun;Phalaris_arundinacea;herb;perannual;G,H;263,00;1,45;0,67;7;8;7;no;yes;"NA";"NA";"NA";no;12;15100
+Phragmites_australis;(Cav.) Trin. Ex Steud.;PL;Phraaust;Phragmites_australis;herb;perannual;G,A;428,69;2,50;0,14;7;10;7;no;no;"NA";"NA";"NA";no;2;15110
+Picea_abies;(L.) H.Karst.;PL;Piceabie;Picea_abies;herb;wood;P;NA;50,00;7,15;5;NA;NA;no;no;"NA";"NA";"NA";no;8;73100
+Pimpinella_major;(L.) Huds.;PL;Pimpmajo;Pimpinella_major;herb;perannual;H;207,00;0,63;2,12;7;5;6;no;no;"NA";"NA";"NA";no;1;54210
+Pleurospermum_austriacum;(L.) Hoffm.;PL;Pleuaust;Pleurospermum_austriacum;herb;perannual;H;NA;0,83;4,21;5;6;4;no;yes;"NA";"NA";"NA";no;2;61100
+Poa_compressa;L.;PL;Poacomp;Poa_compressa;herb;perannual;H;299,00;0,38;0,20;9;3;3;no;no;"NA";"NA";"NA";no;1;36100
+Poa_palustris;L.;PL;Poapalu;Poa_palustris;herb;perannual;H;334,45;0,82;0,17;7;9;7;yes;no;"NA";"NA";"NA";no;2;15100
+Prunella_vulgaris;L.;PL;Prunvulg;Prunella_vulgaris;herb;perannual;H;165,00;0,15;0,67;7;5;NA;no;no;"NA";"NA";"NA";no;1;54000
+Prunus_padus;L.;PL;Prunpadu;Prunus_padus;herb;wood;P,N;153,73;9,00;80,50;5;8;6;yes;no;"NA";"NA";"NA";no;5;84330
+Pulmonaria_officinalis;L.;PL;Pulmoffi;Pulmonaria_officinalis;herb;perannual;H;114,20;0,15;3,64;5;5;6;no;no;"NA";"NA";"NA";no;8;84300
+Quercus_robur;L.;PL;Querrobu;Quercus_robur;herb;wood;P;280,00;40,00;3413,00;7;NA;NA;no;no;"NA";"NA";"NA";no;4;84000
+Ranunculus_repens;L.;PL;Ranurepe;Ranunculus_repens;herb;perannual;H;190,56;0,20;2,28;6;7;7;no;yes;"NA";"NA";"NA";no;1;NA
+Rubus_caesius;L.;PL;Rubucaes;Rubus_caesius;herb;perannual;zli;408,00;0,48;3,63;6;NA;7;no;no;"NA";"NA";"NA";no;16;NA
+Salix_alba;L.;PL;Salialba;Salix_alba;herb;wood;P;298,62;17,50;0,12;5;8;7;yes;no;"NA";"NA";"NA";no;1;81120
+Salix_eleagnos;Scop.;PL;Salielea;Salix_eleagnos;herb;wood;N;NA;NA;NA;7;7;4;no;yes;"NA";"NA";"NA";no;1;81110
+Solidago_gigantea;Aiton;PL;Soligiga;Solidago_gigantea;herb;perannual;H,G;308,00;1,38;0,06;8;6;7;no;no;"NA";"NA";"NA";yes;9;35000
+Stachys_sylvatica;L.;PL;Stacsylv;Stachys_sylvatica;herb;perannual;H;207,00;0,53;1,42;4;7;7;no;no;"NA";"NA";"NA";no;14;84330
+Symphytum_officinale;L.;PL;Sympoffi;Symphytum_officinale;herb;perannual;H,G;81,73;0,65;8,32;7;7;8;no;no;"NA";"NA";"NA";no;3;NA
+Thalictrum_aquilegiifolium;L.;PL;Thalaqui;Thalictrum_aquilegiifolium;herb;perannual;H;205,36;0,68;2,00;5;8;7;yes;no;"NA";V;"NA";no;2;84330
+Ulmus_glabra;Huds.;PL;Ulmuglab;Ulmus_glabra;herb;wood;P;254,00;30,00;11,20;4;6;7;no;no;"NA";"NA";"NA";no;2;84340
+Valeriana_dioica;L.;PL;Valedioi;Valeriana_dioica;herb;perannual;H;160,00;0,17;0,63;7;8;2;no;no;"NA";V;"NA";no;4;54100
+Valeriana_excelsa_subsp_excelsa;Poir.;RM;Valeexce;Valeriana_excelsa_subsp_excelsa;herb;perannual;H;NA;NA;NA;7;8;6;yes;no;"NA";"NA";"NA";no;6;NA
+Viburnum_lantana;L.;PL;Vibulant;Viburnum_lantana;herb;wood;N;234,90;3,50;31,02;7;4;4;no;no;"NA";"NA";"NA";no;5;84410
+Vicia_cracca_sstr;L.;PL;Vicicracc;Vicia_cracca;herb;perannual;Hli;219,50;0,75;14,29;7;6;NA;no;no;"NA";"NA";"NA";no;3;54000
+Vinca_minor;L.;PL;Vincmino;Vinca_minor;herb;perannual;C;195,00;0,59;6,13;4;5;6;no;no;"NA";"NA";"NA";no;4;84320
+Viola_odorata;L.;PL;Violodor;Viola_odorata;herb;perannual;H;220,00;0,24;3,28;5;5;8;no;no;"NA";"NA";"NA";no;2;35300
+Carex SU3;NA;PL;"NA";"NA";herb;"NA";"NA";NA;NA;NA;NA;NA;NA;no;no;"NA";"NA";"NA";"NA";1;NA
