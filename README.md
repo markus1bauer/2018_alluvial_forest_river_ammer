@@ -43,3 +43,9 @@ Contact markus1.bauer@tum.de for any further information.
 **Citation:**
 
 > Bauer M, Dorbath K, Kollmann J (2018). Alluvial forest vegetation in an active and inactive alpine floodplain – a case study from River Ammer (Bavaria). _Tuexenia_ 38, 43-60. https://doi.org/10.14471/2018.38.006
+
+***
+
+__Dataset DOI__
+
+> [![DOI](https://zenodo.org/badge/345939636.svg)](https://zenodo.org/badge/latestdoi/345939636)
