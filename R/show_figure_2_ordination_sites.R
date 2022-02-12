@@ -55,15 +55,15 @@ ef <- envfit(ordi ~ (herbHeight) + (treeCover) + (barrierDistance),
 
 
 theme_mb <- function() {
-  theme(
-    panel.background = element_rect(fill = "white"),
-    text  = element_text(size = 10, color = "black"),
-    axis.line.y = element_line(),
-    axis.line.x = element_line(),
-    legend.key = element_rect(fill = "white"),
+  ggplot2::theme(
+    panel.background = ggplot2::element_rect(fill = "white"),
+    text  = ggplot2::element_text(size = 10, color = "black"),
+    axis.line.y = ggplot2::element_line(),
+    axis.line.x = ggplot2::element_line(),
+    legend.key = ggplot2::element_rect(fill = "white"),
     legend.position = "bottom",
-    legend.margin = margin(-.4, 0, 0, 0, "cm"),
-    plot.margin = margin(.1, .15, 0, 0, "cm")
+    legend.margin = ggplot2::margin(-.4, 0, 0, 0, "cm"),
+    plot.margin = ggplot2::margin(.1, .15, 0, 0, "cm")
   )
 }
 
@@ -123,5 +123,6 @@ ggplot() +
   labs(fill = "", colour = "") +
   theme_mb()
 
-ggsave(here("outputs", "figures", "figure_2_ordination_sites_(800dpi_12x10cm).tiff"),
+ggsave(here("outputs", "figures",
+            "figure_2_ordination_sites_(800dpi_12x10cm).tiff"),
        dpi = 800, width = 12, height = 10, units = "cm")

@@ -46,16 +46,16 @@ sites <- read_csv2("data_processed_sites.csv", col_names = TRUE,
 
 
 theme_mb <- function() {
-  theme(
-    panel.background = element_rect(fill = "white"),
-    text  = element_text(size = 10, color = "black"),
-    axis.line.y = element_line(),
-    axis.line.x = element_blank(),
-    axis.ticks.x = element_blank(),
-    legend.key = element_rect(fill = "white"),
+  ggplot2::theme(
+    panel.background = ggplot2::element_rect(fill = "white"),
+    text  = ggplot2::element_text(size = 10, color = "black"),
+    axis.line.y = ggplot2::element_line(),
+    axis.line.x = ggplot2::element_blank(),
+    axis.ticks.x = ggplot2::element_blank(),
+    legend.key = ggplot2::element_rect(fill = "white"),
     legend.position = "right",
-    legend.margin = margin(0, 0, 0, 0, "cm"),
-    plot.margin = margin(.5, 0, 0, 0, "cm")
+    legend.margin = ggplot2::margin(0, 0, 0, 0, "cm"),
+    plot.margin = ggplot2::margin(.5, 0, 0, 0, "cm")
   )
 }
 
@@ -70,5 +70,6 @@ ggplot(sites, aes(treatment, n)) +
   guides(shape = FALSE) +
   theme_mb()
 
-ggsave(here("outputs", "figures", "figure_4_indicator_species_(800dpi_10x6cm).tiff"),
+ggsave(here("outputs", "figures",
+            "figure_4_indicator_species_(800dpi_10x6cm).tiff"),
        dpi = 800, width = 10, height = 6, units = "cm")

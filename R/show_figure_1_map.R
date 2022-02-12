@@ -43,17 +43,17 @@ load("background_terrain.rda")
 
 
 theme_mb <- function() {
-  theme(
-    panel.background = element_rect(fill = NA),
-    panel.grid = element_line(colour = NA),
-    text  = element_text(size = 10, color = "black"),
-    axis.title = element_blank(),
-    axis.text = element_blank(),
-    axis.ticks = element_blank(),
-    axis.line.x = element_blank(),
-    axis.line.y = element_blank(),
+  ggplot2::theme(
+    panel.background = ggplot2::element_rect(fill = NA),
+    panel.grid = ggplot2::element_line(colour = NA),
+    text  = ggplot2::element_text(size = 10, color = "black"),
+    axis.title = ggplot2::element_blank(),
+    axis.text = ggplot2::element_blank(),
+    axis.ticks = ggplot2::element_blank(),
+    axis.line.x = ggplot2::element_blank(),
+    axis.line.y = ggplot2::element_blank(),
     legend.position = "none",
-    plot.margin = margin(.5, 0, 0, 0, "cm")
+    plot.margin = ggplot2::margin(.5, 0, 0, 0, "cm")
   )
 }
 
@@ -81,7 +81,8 @@ theme_mb <- function() {
                                       pad_y = unit(1.1, "cm"),
                                       pad_x = unit(0.6, "cm"),
                                       which_north = "true",
-                                      style = ggspatial::north_arrow_fancy_orienteering(),
+                                      style = 
+                                        ggspatial::north_arrow_fancy_orienteering(),
                                       height = unit(1, "cm"),
                                       width = unit(1, "cm")) +
     theme_mb())
