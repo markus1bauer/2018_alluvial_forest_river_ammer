@@ -69,5 +69,5 @@ ggplot(sites, aes(treatment, n)) +
   theme_mb()
 
 ggsave(here("outputs", "figures",
-            "figure_5_Ellenberg_values_800dpi_10x6cm.tiff"),
+            "figure_5_ellenberg_values_800dpi_10x6cm.tiff"),
        dpi = 800, width = 10, height = 6, units = "cm")
