@@ -48,4 +48,4 @@ Contact markus1.bauer@tum.de for any further information.
 
 __Dataset DOI__
 
-> [![DOI](https://zenodo.org/badge/345939636.svg)](https://zenodo.org/badge/latestdoi/345939636)
+[![DOI](https://zenodo.org/badge/345939636.svg)](https://zenodo.org/badge/latestdoi/345939636)
