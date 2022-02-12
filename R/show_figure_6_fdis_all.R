@@ -59,5 +59,5 @@ ggplot(sites, aes(treatment, fdisAbuLHS)) +
   labs(x = "", y = "FDis", size = 3) +
   theme_mb()
 
-ggsave(here("outputs", "figures", "figure_6_fdis_all_(800dpi_6x6cm).tiff"),
+ggsave(here("outputs", "figures", "figure_6_fdis_all_800dpi_6x6cm.tiff"),
        dpi = 800, width = 6, height = 6, units = "cm")

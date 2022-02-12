@@ -73,5 +73,5 @@ ggplot(sites, aes(x = treatment, y = value, fill = type)) +
   theme_mb()
 
 
-ggsave(here("outputs", "figures", "figure_6_fdis_single_(800dpi_12x6cm).tiff"),
+ggsave(here("outputs", "figures", "figure_6_fdis_single_800dpi_12x6cm.tiff"),
        dpi = 800, width = 12, height = 6, units = "cm")

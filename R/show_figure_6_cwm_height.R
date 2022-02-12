@@ -59,5 +59,5 @@ ggplot(sites, aes(treatment, cwmAbuHeight)) +
   labs(x = "", y = "CWM canopy heihgt [m]", size = 3) +
   theme_mb()
 
-ggsave(here("outputs", "figures", "figure_6_cwm_height_(800dpi_6x6cm).tiff"),
+ggsave(here("outputs", "figures", "figure_6_cwm_height_800dpi_6x6cm.tiff"),
        dpi = 800, width = 6, height = 6, units = "cm")

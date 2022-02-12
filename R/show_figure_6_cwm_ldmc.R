@@ -59,5 +59,5 @@ ggplot(sites, aes(treatment, cwmAbuLdmc)) +
   labs(x = "", y = expression(CWM~LDMC~"["*mg~g^-1*"]"), size = 3) +
   theme_mb()
 
-ggsave(here("outputs", "figures", "figure_6_cwm_ldmc_(800dpi_6x6cm).tiff"),
+ggsave(here("outputs", "figures", "figure_6_cwm_ldmc_800dpi_6x6cm.tiff"),
        dpi = 800, width = 6, height = 6, units = "cm")
