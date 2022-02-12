@@ -1,0 +1,8 @@
+[1,"Installing 'cowplot' ...\r\n"]
+[1,"\r\n"]
+[2,"Installiere Paket nach 'C:/Users/HB/Documents/R/win-library/4.1'\r\n(da 'lib' nicht spezifiziert)\r\n"]
+[1,"package 'cowplot' successfully unpacked and MD5 sums checked\r\n"]
+[1,"\r\n"]
+[1,"The downloaded binary packages are in\r\n"]
+[1,"\tC:\\Users\\HB\\AppData\\Local\\Temp\\RtmpIlnvkv\\downloaded_packages\r\n"]
+[2,"versuche URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/cowplot_1.1.1.zip'\r\nContent type 'application/zip' length 1375707 bytes (1.3 MB)\r\n==================================================\r\ndownloaded 1.3 MB\r\n\r\n\r\n\r\n<U+2714> Package 'cowplot' successfully installed.\r\n"]

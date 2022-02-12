@@ -1,0 +1,26 @@
+{
+    "id": "0C3E32CA",
+    "path": "Z:/Documents/_university/2017_projekt_8_schnalz/3_data_and_analyses/2018_floodplain_schnalz_river_ammer/R/prepare_data.R",
+    "project_path": "R/prepare_data.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": true,
+    "created": 1644601728115.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "15,0",
+        "scrollLine": "1"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1644672328,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1644672864230,
+    "read_only": false,
+    "read_only_alternatives": []
+}
