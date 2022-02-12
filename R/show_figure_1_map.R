@@ -81,8 +81,7 @@ theme_mb <- function() {
                                       pad_y = unit(1.1, "cm"),
                                       pad_x = unit(0.6, "cm"),
                                       which_north = "true",
-                                      style = 
-                                        ggspatial::north_arrow_fancy_orienteering(),
+                                      style = ggspatial::north_arrow_fancy_orienteering(),
                                       height = unit(1, "cm"),
                                       width = unit(1, "cm")) +
     theme_mb())
@@ -103,6 +102,6 @@ sites_graph + inset_element(ger_graph, .01, .65, .3, .99, on_top = TRUE)
 
 # 2 Save #################################################################
 
-ggsave("figure_1_map_(300dpi_12x10cm).tiff",
+ggsave("figure_1_map_300dpi_12x10cm.tiff",
        dpi = 300, width = 12, height = 10, units = "cm",
        path = here("outputs", "figures"))

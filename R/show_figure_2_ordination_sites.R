@@ -86,7 +86,7 @@ for (g in levels(data_scores$variable)){
                   cbind(as.data.frame(
                     with(data_scores[data_scores$variable == g, ],
                          vegan_cov_ellipse(cov.wt(cbind(NMDS1, NMDS2),
-                                                wt = rep(1 / length(NMDS1), 
+                                                wt = rep(1 / length(NMDS1),
                                                          length(NMDS1))
                                                 )$cov,
                                          center = c(mean(NMDS1), mean(NMDS2)))))
@@ -124,5 +124,5 @@ ggplot() +
   theme_mb()
 
 ggsave(here("outputs", "figures",
-            "figure_2_ordination_sites_(800dpi_12x10cm).tiff"),
+            "figure_2_ordination_sites_800dpi_12x10cm.tiff"),
        dpi = 800, width = 12, height = 10, units = "cm")

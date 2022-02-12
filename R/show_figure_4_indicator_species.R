@@ -71,5 +71,5 @@ ggplot(sites, aes(treatment, n)) +
   theme_mb()
 
 ggsave(here("outputs", "figures",
-            "figure_4_indicator_species_(800dpi_10x6cm).tiff"),
+            "figure_4_indicator_species_800dpi_10x6cm.tiff"),
        dpi = 800, width = 10, height = 6, units = "cm")

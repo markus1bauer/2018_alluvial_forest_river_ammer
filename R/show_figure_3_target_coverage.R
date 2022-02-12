@@ -85,5 +85,5 @@ ggplot(sites, aes(treatment, value, colour = target)) +
   theme_mb()
 
 ggsave(here("outputs", "figures",
-            "figure_3_target_coverage_(800dpi_12x10cm).tiff"),
+            "figure_3_target_coverage_800dpi_12x10cm.tiff"),
        dpi = 800, width = 12, height = 10, units = "cm")
