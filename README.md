@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Alluvial forest vegetation in an active and inactive alpine floodplain – a case study from River Ammer (Bavaria)
 
 _Markus Bauer <a href="https://orcid.org/0000-0001-5372-4174"><img src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height = "16"></a>, Kilian Dorbath and Johannes Kollmann <a href="https://orcid.org/0000-0002-4990-3636"><img src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height = "16"></a>_  
@@ -11,7 +16,9 @@ _Markus Bauer <a href="https://orcid.org/0000-0001-5372-4174"><img src="https://
 ## Content of the repository
 
 1. __Data__: the folder `data` contains  
-    * The raw and processed data files of the vegetation surveys, site conditions, and functional plant traits (.csv) 
+    * The raw and processed data files of the vegetation surveys (.csv) 
+    * The raw and processed data files of the site conditions (.csv) 
+    * The raw and processed data files of the functional plant traits (.csv) 
     
 3. __Outputs__: the folder `outputs` contains  
     * The figures (.tiff) generated.
