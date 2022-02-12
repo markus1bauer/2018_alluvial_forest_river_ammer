@@ -9,7 +9,7 @@ library(tidyverse)
 library(vegan)
 library(FD) #dbFD
 library(naniar) #are_na
-remotes::install_github("inbo", "checklist")
+remotes::install_github(file.path("inbo", "checklist"))
 library(checklist)
 
 checklist::setup_source()
