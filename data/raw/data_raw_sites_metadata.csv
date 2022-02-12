@@ -1,4 +1,4 @@
-Ôªøvariable;definition;source;unit;type;value;"comment		"
+variable;definition;source;unit;type;value;"comment		"
 id;plot ID;NA;NA;factor;NA;"NA		"
 year;year of the vegetation surveys;NA;NA;numeric;NA;NA
 treatment;location of the plot;NA;NA;factor;behind_dam, no_dam, infront_dam;have a look on the map
@@ -6,15 +6,15 @@ barrierDistance;distance from plot center to weir;NA;m;numeric;NA;NA
 ditchDistance;distance from plot center to the ditch edge behind the dam;NA;m;numeric;NA;NA
 riverDistance;distance from plot center to the edge of the river bed of River Ammer;NA;m;numeric;NA;NA
 plotHeight;height above water level of ditch or River Ammer;NA;NA;factor;high = higher than 1m;NA
-plotSize;size of vegetation survey;NA;m^2;numeric;NA;NA
-treeCover;coverage of the tree layer;NA;%;numeric;NA;NA
-shrubCover;coverage of the shrub layer;NA;%;numeric;NA;NA
-herbHeight;average height of vegetation in the plot measured in the field;NA;cm;numeric;NA;"NA		"
-herbCover;coverage of the herb layer;NA;%;numeric;NA;"NA		"
-deadwoodCover;coverage of deadwood;NA;%;numeric;NA;"NA		"
+plotSize;size of vegetation survey;NA;meterSquared;numeric;NA;NA
+treeCover;coverage of the tree layer;NA;percent;numeric;NA;NA
+shrubCover;coverage of the shrub layer;NA;percent;numeric;NA;NA
+herbHeight;average height of vegetation in the plot measured in the field;NA;centimeter;numeric;NA;"NA		"
+herbCover;coverage of the herb layer;NA;percent;numeric;NA;"NA		"
+deadwoodCover;coverage of deadwood;NA;percent;numeric;NA;"NA		"
 bankType;type of river bank;NA;NA;factor;NA;NA
 structureType;type of forest;NA;NA;character;NA;NA
-easting;Easting of the plot in Gau√ü-Kr√ºger 4;NA;NA;numeric;NA;"NA		"
-northing;Northing of the plot in Gau√ü-Kr√ºger 4;NA;NA;numeric;NA;"NA		"
+easting;Easting of the plot in Gauﬂ-Kr¸ger 4;NA;NA;numeric;NA;"NA		"
+northing;Northing of the plot in Gauﬂ-Kr¸ger 4;NA;NA;numeric;NA;"NA		"
 photoID;filename of the photo;NA;NA;character;NA;"NA		"
 surveyDate;date of the vegetation survey and of the photoID;NA;YYYY-mm-dd;date;NA;"NA		"
