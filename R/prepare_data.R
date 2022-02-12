@@ -10,6 +10,7 @@ library(vegan)
 library(FD) #dbFD
 library(naniar) #are_na
 remotes::install_github("inbo", "checklist")
+library(checklist)
 
 checklist::setup_source()
 x <- checklist::check_source()
