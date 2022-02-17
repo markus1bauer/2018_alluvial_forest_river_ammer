@@ -21,7 +21,7 @@ rm(list = ls())
 setwd(here("data", "processed"))
 
 ### Load data ###
-sites <- read_csv2("data_processed_sites.csv", col_names = TRUE,
+sites <- read_csv("data_processed_sites.csv", col_names = TRUE,
                    col_types =
                      cols(
                        .default = col_double(),
@@ -76,7 +76,6 @@ simulateResiduals(m1, plot = TRUE)
 
 #### c model check ------------------------------------------------------
 simulation_output <- simulateResiduals(m1, plot = TRUE)
-par(mfrow = c(2, 2))
 plotResiduals(main = "treatment",
               simulation_output$scaledResiduals, sites$treatment)
 plotResiduals(main = "type", simulation_output$scaledResiduals, sites$type)
@@ -87,8 +86,12 @@ plotResiduals(main = "type", simulation_output$scaledResiduals, sites$type)
 ### Model output --------------------------------------------------------
 summary(m1)[1]
 summary(m1)
-car::Anova(m1, type = 3)
+(table <- car::Anova(m1, type = 2))
+tidytable <- broom::tidy(table)
 
 ### Effect sizes --------------------------------------------------------
-(emm <- emmeans(m1, revpairwise ~ treatment | type, type = "response"))
+(emm <- emmeans(m1, revpairwise ~ treatment, type = "response"))
 plot(emm, comparison = TRUE)
+
+### Save ###
+write.csv(tidytable, here("outputs", "statistics", "table_anova_fdis_single.csv"))

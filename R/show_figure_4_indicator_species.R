@@ -18,7 +18,7 @@ rm(list = ls())
 setwd(here("data", "processed"))
 
 ### Load data ###
-sites <- read_csv2("data_processed_sites.csv", col_names = TRUE,
+sites <- read_csv("data_processed_sites.csv", col_names = TRUE,
                    col_types =
                      cols(
                        .default = col_double(),
@@ -67,9 +67,10 @@ ggplot(sites, aes(treatment, n)) +
   facet_wrap(~indicator) +
   scale_y_continuous(limits = c(0, 10), breaks = seq(0, 100, 2)) +
   labs(x = "", y = "Species richness [#]", shape = "") +
-  guides(shape = FALSE) +
+  guides(shape = "none") +
   theme_mb()
 
+### Save ###
 ggsave(here("outputs", "figures",
             "figure_4_indicator_species_800dpi_10x6cm.tiff"),
        dpi = 800, width = 10, height = 6, units = "cm")

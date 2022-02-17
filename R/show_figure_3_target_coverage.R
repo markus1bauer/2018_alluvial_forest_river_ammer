@@ -18,7 +18,7 @@ rm(list = ls())
 setwd(here("data", "processed"))
 
 ### Load data ###
-sites <- read_csv2("data_processed_sites.csv", col_names = TRUE,
+sites <- read_csv("data_processed_sites.csv", col_names = TRUE,
                    col_types =
                      cols(
                        .default = col_double(),
@@ -84,6 +84,7 @@ ggplot(sites, aes(treatment, value, colour = target)) +
   labs(x = "", y = "Coverage [%]", colour = "") +
   theme_mb()
 
+### Save ###
 ggsave(here("outputs", "figures",
             "figure_3_target_coverage_800dpi_12x10cm.tiff"),
        dpi = 800, width = 12, height = 10, units = "cm")

@@ -1,30 +1,52 @@
-﻿variable;definition;source;unit;type;value;"comment		"
-id;plot ID;NA;NA;factor;NA;"NA		"
-treatment;location of the plot;NA;NA;factor;behind_dam, no_dam, infront_dam;have a look on the map
-barrierDistance;distance from plot center to weir;NA;m;numeric;NA;NA
-treeCover;coverage of the tree layer;NA;%;numeric;NA;NA
-shrubCover;coverage of the shrub layer;NA;%;numeric;NA;NA
-herbHeight;average height of vegetation in the plot measured in the field;NA;cm;numeric;NA;"NA		"
-herbCover;coverage of the herb layer;NA;%;numeric;NA;"NA		"
-conf.low;dummy variable for confidence interval;NA;NA;numeric;NA;NA
-conf.high;dummy variable for confidence interval;NA;NA;numeric;NA;NA
-targetClass;accumulated coverage of character species of target class;NA;NA;numeric;NA;NA
-nontargetClass;accumulated coverage of character species of non-target classes;NA;NA;numeric;NA;NA
-targetOrder;accumulated coverage of character species of target order;NA;NA;numeric;NA;NA
-nontargetOrder;accumulated coverage of character species of non-target orders within the target class;NA;NA;numeric;NA;NA
-targetAlliance;accumulated coverage of character species of target alliance;NA;NA;numeric;NA;NA
-nontargetAlliance;accumulated coverage of character species of non-target alliances within the target order;NA;NA;numeric;NA;NA
-targetAssociation;accumulated coverage of character species of target association;NA;NA;numeric;NA;NA
-nontargetAssociation;accumulated coverage of character species of non-target associations within the target alliance;NA;NA;numeric;NA;NA
-speciesRichness;species richness;NA;NA;numeric;NA;NA
-floodRichness;species richness of Ellenberg flood indicators;NA;NA;numeric;NA;NA
-chwetRichness;species richness of Ellenberg changing wet conditions indicators;NA;NA;numeric;NA;NA
-cwmAbuN;community weighted mean of Ellenberg N values (abundance based not presence-absence);NA;NA;numeric;NA;NA
-cwmAbuF;community weighted mean of Ellenberg F values (abundance based not presence-absence);NA;NA;numeric;NA;NA
-fdisAbuLHS;functional dispersion of leaf dry matter content, seed mass, and canopy height (abundance based not presence-absence);NA;NA;numeric;NA;NA
-fdisAbuLdmc;functional dispersion of leaf dry matter content (abundance based not presence-absence);NA;NA;numeric;NA;NA
-cwmAbuLdmc;community weighted mean of leaf dry matter content (abundance based not presence-absence);NA;mg g^-1;numeric;NA;NA
-fdisAbuSeedmass;functional dispersion of seed mass (abundance based not presence-absence);NA;NA;numeric;NA;NA
-cwmAbuSeedmass;community weighted mean of seed mass (abundance based not presence-absence);NA;mg;numeric;NA;NA
-fdisAbuHeight;functional dispersion of canopy height (abundance based not presence-absence);NA;NA;numeric;NA;NA
-cwmAbuHeight;community weighted mean of canopy weight (abundance based not presence-absence);NA;m;numeric;NA;NA
+﻿variable,definition,unit,type,value,comment
+id,plot ID,NA,factor,NA,NA
+treatment,location of the plot,NA,factor,behind_dam / no_dam / infront_dam,have a look on the map
+barrierDistance,distance from plot center to weir,meter,numeric,NA,NA
+treeCover,coverage of the tree layer,percent,numeric,NA,NA
+shrubCover,coverage of the shrub layer,percent,numeric,NA,NA
+herbHeight,average height of vegetation in the plot measured in the field ,centimeter,numeric,NA,NA
+herbCover,coverage of the herb layer,percent,numeric,NA,NA
+conf.low,dummy variable for confidence interval,dimensionless,numeric,NA,NA
+conf.high,dummy variable for confidence interval,dimensionless,numeric,NA,NA
+targetClass,accumulated coverage of character species of target class,percent,numeric,NA,NA
+nontargetClass,accumulated coverage of character species of non-target classes,percent,numeric,NA,NA
+targetOrder,accumulated coverage of character species of target order,percent,numeric,NA,NA
+nontargetOrder,accumulated coverage of character species of non-target orders within the target class,percent,numeric,NA,NA
+targetAlliance,accumulated coverage of character species of target alliance,percent,numeric,NA,NA
+nontargetAlliance,accumulated coverage of character species of non-target alliances within the target order,percent,numeric,NA,NA
+targetAssociation,accumulated coverage of character species of target association,percent,numeric,NA,NA
+nontargetAssociation,accumulated coverage of character species of non-target associations within the target alliance,percent,numeric,NA,NA
+speciesRichness,species richness,dimensionless,numeric,NA,NA
+floodRichness,species richness of Ellenberg flood indicators,dimensionless,numeric,NA,NA
+chwetRichness,species richness of Ellenberg changing wet conditions indicators,dimensionless,numeric,NA,NA
+cwmAbuN,community weighted mean of Ellenberg N values (abundance based not presence-absence),dimensionless,numeric,NA,NA
+cwmAbuF,community weighted mean of Ellenberg F values (abundance based not presence-absence),dimensionless,numeric,NA,NA
+fdisAbuLHS,functional dispersion of leaf dry matter content,dimensionless,numeric,NA,NA
+fdisAbuLdmc,functional dispersion of leaf dry matter content (abundance based not presence-absence),dimensionless,numeric,NA,NA
+cwmAbuLdmc,community weighted mean of leaf dry matter content (abundance based not presence-absence),milligramPerGram,numeric,NA,NA
+fdisAbuSeedmass,functional dispersion of seed mass (abundance based not presence-absence),dimensionless,numeric,NA,NA
+cwmAbuSeedmass,community weighted mean of seed mass (abundance based not presence-absence),milligram,numeric,NA,NA
+fdisAbuHeight,functional dispersion of canopy height (abundance based not presence-absence),dimensionless,numeric,NA,NA
+cwmAbuHeight,community weighted mean of canopy weight (abundance based not presence-absence),meter,numeric,NA,NA
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+ seed mass, and canopy height (abundance based not presence-absence);NA;NA;numeric;NA;NA,,,,

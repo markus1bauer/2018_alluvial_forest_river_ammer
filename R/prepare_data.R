@@ -9,12 +9,9 @@ library(tidyverse)
 library(vegan)
 library(FD) #dbFD
 library(naniar) #are_na
-remotes::install_github(file.path("inbo", "checklist"))
 
 ### Start ###
 #installr::updateR(browse_news = FALSE, install_R = TRUE, copy_packages = TRUE, copy_Rprofile.site = TRUE, keep_old_packages = TRUE, update_packages = TRUE, start_new_R = FALSE, quit_R = TRUE)
-checklist::setup_source()
-checklist::check_source()
 rm(list = ls())
 setwd(here("data", "raw"))
 
@@ -27,17 +24,10 @@ setwd(here("data", "raw"))
 
 ### 1 Sites ############################################################
 
-sites <- read_csv2("data_raw_sites.csv", col_names = TRUE,
+sites <- read_csv("data_raw_sites.csv", col_names = TRUE,
                    col_types =
                     cols(
-                      .default = col_double(),
-                      id = col_factor(),
-                      treatment = col_factor(),
-                      plotHeight = col_factor(),
-                      bankType = col_factor(),
-                      structureType = col_character(),
-                      photoID = col_character(),
-                      surveyDate = col_date()
+                      .default = "?"
                       )) %>%
   select(id, treatment, barrierDistance, treeCover, shrubCover, herbHeight) %>%
   filter(treatment != "infront_dam")
@@ -45,16 +35,15 @@ sites <- read_csv2("data_raw_sites.csv", col_names = TRUE,
 
 ### 2 Species ##########################################################
 
-species <- read_csv2("data_raw_species.csv", col_names = TRUE,
+species <- read_csv("data_raw_species.csv", col_names = TRUE,
                      col_types =
                     cols(
-                      .default = col_double(),
-                      name = col_factor(),
-                      abb = col_factor(),
-                      layer = col_factor()
+                      .default = "d",
+                      name = "f",
+                      layer = "f"
                       )
                     ) %>%
-  select(-abb, -(Extra1:Extra4)) %>%
+  select(-(Extra1:Extra4)) %>%
   filter(layer == "h") %>%
   group_by(name) %>%
   mutate(sum = sum(c_across(IN1:AC6)),
@@ -66,24 +55,10 @@ species <- read_csv2("data_raw_species.csv", col_names = TRUE,
 
 ### 3 Traits ###########################################################
 
-traits <- read_csv2("data_raw_traits.csv", col_names = TRUE,
+traits <- read_csv("data_raw_traits.csv", col_names = TRUE,
                     col_types =
                       cols(
-                        .default = col_double(),
-                        name = col_factor(),
-                        descriptor = col_character(),
-                        nomenclature = col_factor(),
-                        abb = col_factor(),
-                        nameTraits = col_factor(),
-                        layer = col_factor(),
-                        lifeform = col_factor(),
-                        lifeformEllenberg = col_factor(),
-                        flood = col_factor(),
-                        chwet = col_factor(),
-                        legal = col_factor(),
-                        rlg = col_factor(),
-                        rlb = col_factor(),
-                        neophyte = col_factor()
+                        .default = "?"
                       )
                    ) %>%
   filter(layer == "herb")
@@ -323,6 +298,7 @@ traits_height <- traits %>%
   drop_na()
 
 ### a All --------------------------------------------------------------
+
 data_species <- semi_join(species, traits_lhs, by = "name")
 data_traits <- semi_join(traits_lhs, data_species, by = "name")
 data_species <- data_species %>%
@@ -337,9 +313,9 @@ sites <- sites %>%
   mutate(fdisAbuLHS = data_abundance$FDis,
          fdisAbuLHS = as.character(fdisAbuLHS),
          fdisAbuLHS = as.numeric(fdisAbuLHS))
-  
 
 ### b LDMC -------------------------------------------------------------
+
 data_species <- semi_join(species, traits_ldmc, by = "name")
 data_traits <- semi_join(traits_ldmc, data_species, by = "name")
 data_species <- data_species %>%
@@ -359,7 +335,8 @@ sites <- sites %>%
          x = as.numeric(x),
          cwmAbuLdmc = exp(x))
 
-### b Seed mass --------------------------------------------------------
+### C Seed mass --------------------------------------------------------
+
 data_species <- semi_join(species, traits_seedmass, by = "name")
 data_traits <- semi_join(traits_seedmass, data_species, by = "name")
 data_species <- data_species %>%
@@ -379,7 +356,8 @@ sites <- sites %>%
          x = as.numeric(x),
          cwmAbuSeedmass = exp(x))
 
-### c Canopy height ----------------------------------------------------
+### D Canopy height ----------------------------------------------------
+
 data_species <- semi_join(species, traits_height, by = "name")
 data_traits <- semi_join(traits_height, data_species, by = "name")
 data_species <- data_species %>%
@@ -413,6 +391,6 @@ sites <- sites %>%
 
 
 setwd(here("data", "processed"))
-write_csv2(sites, "data_processed_sites.csv")
-write_csv2(species, "data_processed_species.csv")
-write_csv2(traits, "data_processed_traits.csv")
+write_csv(sites, "data_processed_sites.csv")
+write_csv(species, "data_processed_species.csv")
+write_csv(traits, "data_processed_traits.csv")

@@ -18,7 +18,7 @@ rm(list = ls())
 setwd(here("data", "processed"))
 
 ### Load data ###
-sites <- read_csv2("data_processed_sites.csv", col_names = TRUE,
+sites <- read_csv("data_processed_sites.csv", col_names = TRUE,
                    col_types =
                      cols(
                        .default = col_double(),
@@ -55,9 +55,10 @@ theme_mb <- function() {
 ggplot(sites, aes(treatment, cwmAbuHeight)) +
   geom_boxplot(colour = "black") +
   geom_quasirandom(color = "black", dodge.width = .6, size = .8) +
-  scale_y_continuous(limits = c(0.3, 0.6), breaks = seq(0, 100, 0.1)) +
+  scale_y_continuous(limits = c(0.3, .8), breaks = seq(0, 100, 0.1)) +
   labs(x = "", y = "CWM canopy heihgt [m]", size = 3) +
   theme_mb()
 
+### Save ###
 ggsave(here("outputs", "figures", "figure_6_cwm_height_800dpi_6x6cm.tiff"),
        dpi = 800, width = 6, height = 6, units = "cm")

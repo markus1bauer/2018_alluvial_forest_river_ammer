@@ -28,8 +28,9 @@ register_google(key = "AIzaSyB5nQU_dgB_kPsQkk-_cq7pA0g1-2qka4E")
 ## 1 Base map ##########################################################
 
 ger <- raster::getData("GADM", country = "DEU", level = 0)
-ger <- st_as_sf(ger)
-ger <- st_set_crs(ger, 4326)
+ger <- ger %>%
+  st_as_sf() %>%
+  st_set_crs(4326)
 
 background_toner <- get_map(
   location = c(lon = 10.95948, lat = 47.77405),
@@ -52,7 +53,7 @@ ggmap(background_terrain)
 
 ## 2 Sites #############################################################
 
-sites <- read_csv2("data_raw_sites.csv", col_names = TRUE,
+sites <- read_csv("data_raw_sites.csv", col_names = TRUE,
                    col_types =
                      cols(
                        .default = col_double(),
@@ -97,11 +98,11 @@ vecDraw(
 
 
 save(background_toner,
-     file = here("data", "processed", "shp_files", "background_toner.rda"))
+     file = here("data", "processed", "spatial", "background_toner.rda"))
 save(background_terrain,
-     file = here("data", "processed", "shp_files", "background_terrain.rda"))
+     file = here("data", "processed", "spatial", "background_terrain.rda"))
 st_write(ger, layer = "germany.shp", driver = "ESRI Shapefile",
-         dsn = here("data", "processed", "shp_files"))
+         dsn = here("data", "processed", "spatial"))
 st_write(sites, layer = "sites.shp", driver = "ESRI Shapefile",
-         dsn = here("data", "processed", "shp_files"))
-write_csv2(sites2, file = here("data", "processed", "shp_files", "sites2.csv"))
+         dsn = here("data", "processed", "spatial"))
+write_csv(sites2, file = here("data", "processed", "spatial", "sites2.csv"))

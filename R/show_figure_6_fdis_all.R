@@ -18,7 +18,7 @@ rm(list = ls())
 setwd(here("data", "processed"))
 
 ### Load data ###
-sites <- read_csv2("data_processed_sites.csv", col_names = TRUE,
+sites <- read_csv("data_processed_sites.csv", col_names = TRUE,
                    col_types =
                      cols(
                        .default = col_double(),
@@ -59,5 +59,6 @@ ggplot(sites, aes(treatment, fdisAbuLHS)) +
   labs(x = "", y = "FDis", size = 3) +
   theme_mb()
 
+### Save ###
 ggsave(here("outputs", "figures", "figure_6_fdis_all_800dpi_6x6cm.tiff"),
        dpi = 800, width = 6, height = 6, units = "cm")

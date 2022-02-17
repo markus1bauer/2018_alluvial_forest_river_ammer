@@ -19,14 +19,14 @@ library(patchwork)
 
 ### Start ###
 rm(list = ls())
-setwd(here("data", "processed", "shp_files"))
+setwd(here("data", "processed", "spatial"))
 
 
 ### Load data ###
 ger <- st_read("germany.shp")
 weir <- st_read("weir")
 sites <- st_read("sites.shp")
-sites2 <- read_csv2("sites2.csv", col_names = TRUE,
+sites2 <- read_csv("sites2.csv", col_names = TRUE,
                     col_types =
                       cols(
                         id = col_factor(),
@@ -90,7 +90,7 @@ theme_mb <- function() {
 ger_graph <- ggplot() +
    geom_sf(data = ger, fill = "transparent", colour = "black") +
    geom_point(aes(x = 10.95948, y = 47.77405), size = 1, colour = "white") +
-   themeMB() +
+   theme_mb() +
    theme(
      plot.background = element_blank()
    )

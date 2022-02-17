@@ -1,13 +1,13 @@
-﻿Variable;Definition;Source;Unit;Type;Levels;Comment;;
-name;botanical species name;see column nomenclature;NA;factor;NA;NA;;
-abb;abbreviation of species name;NA;NA;factor;NA;NA;;
-ldmc;leaf dry matter content;LEDA traitbase;mg g^-1;numeric;NA;NA;;
-height;canopy height;LEDA traitbase;m;numeric;NA;NA;;
-seedmass;seed mass;LEDA traitbase;mg;numeric;NA;NA;;
-l;Ellenberg L value;Ellenberg et al. 2001;NA;numeric;NA;NA;;
-f;Ellenberg F value;Ellenberg et al. 2001;NA;numeric;NA;NA;;
-n;Ellenberg N value;Ellenberg et al. 2001;NA;numeric;NA;NA;;
-flood;Ellenberg flooding indicator;Ellenberg et al. 2001;NA;factor;yes, no;NA;;
-chwet;Ellenberg changing wetness indicator;Ellenberg et al. 2001;NA;factor;yes, no;NA;;
-legal;legally protected in Germany;BArtSchV 2005;NA;factor;BG=besonders geschützt, SG=streng geschützt;NA;;
-sociality;Location in plant sociology;Ellenberg et al. 2001;NA;numeric;NA;NA;;"			"
+﻿Variable,Definition,Unit,Type,Levels,Comment,,"	"
+name,botanical species name,NA,factor,NA,The Plant List (2013) Version 1.1. Published on the Internet http://www.theplantlist.org/,,
+abb,abbreviation of species name,NA,factor,NA,NA,,
+ldmc,leaf dry matter content,milligramPerGram,numeric,NA,Kleyer et al. (2008) https://doi.org/10.1111/j.1365-2745.2008.01430.x,,
+height,canopy height,meter,numeric,NA,Kleyer et al. (2008) https://doi.org/10.1111/j.1365-2745.2008.01430.x,,
+seedmass,seed mass,milligram,numeric,NA,Kleyer et al. (2008) https://doi.org/10.1111/j.1365-2745.2008.01430.x,,
+l,Ellenberg L value,dimensionless,numeric,NA,Ellenbeg H (2001) Zeigerwerte von Pflanzen in Mitteleuropa. 3rd ed. Scripta geobotanica 18 / 9-166. ISBN 3884525182,,
+f,Ellenberg F value,dimensionless,numeric,NA,Ellenbeg H (2001) Zeigerwerte von Pflanzen in Mitteleuropa. 3rd ed. Scripta geobotanica 18 / 9-166. ISBN 3884525182,,
+n,Ellenberg N value,dimensionless,numeric,NA,Ellenbeg H (2001) Zeigerwerte von Pflanzen in Mitteleuropa. 3rd ed. Scripta geobotanica 18 / 9-166. ISBN 3884525182,,
+flood,Ellenberg flooding indicator,NA,factor,yes / no,Ellenbeg H (2001) Zeigerwerte von Pflanzen in Mitteleuropa. 3rd ed. Scripta geobotanica 18 / 9-166. ISBN 3884525182,,
+chwet,Ellenberg changing wetness indicator,NA,factor,yes / no,Ellenbeg H (2001) Zeigerwerte von Pflanzen in Mitteleuropa. 3rd ed. Scripta geobotanica 18 / 9-166. ISBN 3884525182,,
+legal,legally protected in Germany,NA,factor,BG = besonders geschützt / SG = streng geschützt,"BArtSchV (2005) Bundesartenschutzverordnung vom 16. Februar 2005 (BGBl. I S. 258, 896), die zuletzt durch Artikel 10 des Gesetzes vom 21. Januar 2013 (BGBl. I S. 95) geändert worden ist",,
+sociality,Location in plant sociology,NA,numeric,NA,NA,,

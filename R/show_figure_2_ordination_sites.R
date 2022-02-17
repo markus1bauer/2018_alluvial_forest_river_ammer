@@ -17,7 +17,7 @@ rm(list = ls())
 setwd(here("data", "processed"))
 
 ### Load data ###
-sites <- read_csv2("data_processed_sites.csv", col_names = TRUE,
+sites <- read_csv("data_processed_sites.csv", col_names = TRUE,
                    col_types =
                      cols(
                        .default = col_double(),
@@ -31,12 +31,11 @@ sites <- read_csv2("data_processed_sites.csv", col_names = TRUE,
                                 "Inactive" = "behind_dam"))
 
 
-species <- read_csv2("data_processed_species.csv", col_names = TRUE, na = "na",
+species <- read_csv("data_processed_species.csv", col_names = TRUE, na = "na",
                      col_types =
                        cols(
                          .default = col_double(),
-                         name = col_factor(),
-                         abb = col_factor()
+                         name = col_factor()
                        )) %>%
   pivot_longer(-name, "site", "value") %>%
   pivot_wider(site, name) %>%
@@ -44,8 +43,10 @@ species <- read_csv2("data_processed_species.csv", col_names = TRUE, na = "na",
 
 #### a Choosen model ---------------------------------------------------
 (ordi <- metaMDS(species, try = 99, previous.best = TRUE, na.rm = TRUE))
-ef <- envfit(ordi ~ (herbHeight) + (treeCover) + (barrierDistance),
-             data = sites, na.rm = TRUE) #Modell, Daten und Variablen eingeben
+ef <- envfit(ordi ~ herbHeight + treeCover + barrierDistance,
+             data = sites,
+             permu = 999,
+             na.rm = TRUE)
 
 
 

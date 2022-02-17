@@ -18,7 +18,7 @@ rm(list = ls())
 setwd(here("data", "processed"))
 
 ### Load data ###
-sites <- read_csv2("data_processed_sites.csv", col_names = TRUE,
+sites <- read_csv("data_processed_sites.csv", col_names = TRUE,
                    col_types =
                      cols(
                        .default = col_double(),
@@ -27,16 +27,14 @@ sites <- read_csv2("data_processed_sites.csv", col_names = TRUE,
                      )) %>%
   select(id, treatment, treeCover, shrubCover, barrierDistance, herbHeight)
 
-species <- read_csv2("data_processed_species.csv", col_names = TRUE, na = "na",
+species <- read_csv("data_processed_species.csv", col_names = TRUE, na = "na",
                      col_types =
                        cols(
                          .default = col_double(),
-                         name = col_factor(),
-                         abb = col_factor()
+                         name = col_factor()
                        )) %>%
-  select(-name) %>%
-  pivot_longer(-abb, "site", "value") %>%
-  pivot_wider(site, abb) %>%
+  pivot_longer(-name, "site", "value") %>%
+  pivot_wider(site) %>%
   column_to_rownames("site")
 
 
