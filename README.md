@@ -31,8 +31,6 @@ This work is licensed under a
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
 [cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
 
-***
-
 When using the __data available__ in this repository, please cite the original publication.  
 
 **Citation**
