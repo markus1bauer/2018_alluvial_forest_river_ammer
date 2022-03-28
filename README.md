@@ -31,9 +31,9 @@ This work is licensed under a
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
 [cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
 
-When using the __data available__ in this repository, please cite the original publication.  
+When using the __data available__ in this repository, please cite the original publication:
 
-**Citation**
+**Publication**
 
 > Bauer M, Dorbath K, Kollmann J (2018). Alluvial forest vegetation in an active and inactive alpine floodplain – a case study from River Ammer (Bavaria). _Tuexenia_ 38, 43-60. https://doi.org/10.14471/2018.38.006
 
