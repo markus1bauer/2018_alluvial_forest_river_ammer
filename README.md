@@ -8,6 +8,8 @@ _Markus Bauer <a href="https://orcid.org/0000-0001-5372-4174"><img src="https://
 
 [![DOI:10.14471/2018.38.006](http://img.shields.io/badge/DOI-10.14471/2018.38.006-informational.svg)](https://doi.org/10.14471/2018.38.006)
 
+**Study region**: [Schnalz](https://www.openstreetmap.org/#map=16/47.7737/10.9615)
+
 ## Content of the repository
 
 1. __Data__: the folder `data` contains  
@@ -45,7 +47,7 @@ When using the __data available__ in this repository, please cite the original p
 
 > Bauer M, Dorbath K, Kollmann J (2018). Alluvial forest vegetation in an active and inactive alpine floodplain – a case study from River Ammer (Bavaria). – *Tuexenia* 38, 43-60. https://doi.org/10.14471/2018.38.006
 
-__Dataset__
+**Dataset**
 
 > Bauer M, Dorbath K & Kollmann J (2022) Data and code for Bauer et al. (2018) Tuexenia (v1.1.0) [Data set]. – *Zenodo*. https://doi.org/10.5281/zenodo.6125176
 
