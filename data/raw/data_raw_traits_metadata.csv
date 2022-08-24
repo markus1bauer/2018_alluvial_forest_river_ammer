@@ -1,7 +1,6 @@
 ﻿Variable,Definition,Source,Unit,Type,Levels,Comment
 name,botanical species name,see column nomenclature,NA,character,NA,NA
-descriptor,descriptor of the species,Plant List/Wisskirchen & Haeupler 1998,NA,character,NA,NA
-nomenclature,nomenclature used for the species name,NA,NA,factor,PL = The Plant List / RM = Rothmaler Ed. 20,The Plant List (2013) Version 1.1. Published on the Internet http://www.theplantlist.org / Jäger E (2011) Rothmaler - Exkursionsflora von Deutschland. Gefaesspflanzen: Grundband. Springer Spektrum: Berlin Heidelberg. ISBN 978-3-8274-1606-3 
+nomenclature,nomenclature used for the species name,World Flora Online,NA,character,NA,NA
 nameTraits,species names for getting functional plant traits,NA,NA,character,NA,NA
 layer,layer of vegetation,NA,NA,factor,tree / shrub / herb,NA
 lifeform,simplification of lifeformEllenberg,lifeformEllenberg,NA,factor,wood / perannial / perannial_annual,NA
