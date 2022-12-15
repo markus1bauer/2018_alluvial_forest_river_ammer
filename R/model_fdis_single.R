@@ -1,11 +1,12 @@
+# Alluvial forest River Ammer
 # Model for functional dispersion all ####
 # Markus Bauer
 
 
 
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# A Preparation #########################################################
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# A Preparation ################################################################
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 ### Packages ###
@@ -36,14 +37,14 @@ sites <- read_csv("data_processed_sites.csv", col_names = TRUE,
 
 
 
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# B Statistics ##########################################################
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# B Statistics #################################################################
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-### 1 Data exploration ##################################################
+### 1 Data exploration #########################################################
 
-#### a Graphs -----------------------------------------------------------
+#### a Graphs ------------------------------------------------------------------
 #simple effects:
 plot(value ~ treatment, sites)
 plot(value ~ type, sites)
@@ -52,7 +53,7 @@ ggplot(sites, aes(type, value, color = treatment)) +
   geom_boxplot() +
   geom_quasirandom(dodge.width = .7, groupOnX = TRUE)
 
-##### b Outliers, zero-inflation, transformations? ----------------------
+##### b Outliers, zero-inflation, transformations? -----------------------------
 dotchart((sites$value), groups = factor(sites$treatment),
          main = "Cleveland dotplot")
 dotchart((sites$value), groups = factor(sites$type),
@@ -65,33 +66,34 @@ ggplot(sites, aes(value)) + geom_density()
 ggplot(sites, aes(log(value))) + geom_density()
 
 
-## 2 Model building #####################################################
+## 2 Model building ############################################################
 
-#### a models -----------------------------------------------------------
+#### a models ------------------------------------------------------------------
 #random structure
 m1 <- lm(value ~ treatment * type, sites)
 simulateResiduals(m1, plot = TRUE)
 
-#### b comparison -------------------------------------------------------
+#### b comparison --------------------------------------------------------------
 
-#### c model check ------------------------------------------------------
+#### c model check -------------------------------------------------------------
 simulation_output <- simulateResiduals(m1, plot = TRUE)
 plotResiduals(main = "treatment",
               simulation_output$scaledResiduals, sites$treatment)
 plotResiduals(main = "type", simulation_output$scaledResiduals, sites$type)
 
 
-## 3 Chosen model output ################################################
+## 3 Chosen model output #######################################################
 
-### Model output --------------------------------------------------------
-summary(m1)[1]
+### Model output ---------------------------------------------------------------
 summary(m1)
-(table <- car::Anova(m1, type = 2))
-tidytable <- broom::tidy(table)
+(tidytable <- car::Anova(m1, type = 2) %>%
+    broom::tidy(table))
 
-### Effect sizes --------------------------------------------------------
+### Effect sizes ---------------------------------------------------------------
 (emm <- emmeans(m1, revpairwise ~ treatment, type = "response"))
 plot(emm, comparison = TRUE)
 
 ### Save ###
-write.csv(tidytable, here("outputs", "statistics", "table_anova_fdis_single.csv"))
+write.csv(
+  tidytable, here("outputs", "statistics", "table_anova_fdis_single.csv")
+  )

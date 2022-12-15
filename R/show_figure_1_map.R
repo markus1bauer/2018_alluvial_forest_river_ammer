@@ -1,11 +1,12 @@
+# Alluvial forest River Ammer
 # Show map of the Schnalz floodplain ####
 # Markus Bauer
 
 
 
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# A Preparation #########################################################
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# A Preparation ################################################################
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 ### Packages ###
@@ -37,9 +38,9 @@ load("background_terrain.rda")
 
 
 
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# B Plot ################################################################
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# B Plot #######################################################################
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 theme_mb <- function() {
@@ -57,9 +58,9 @@ theme_mb <- function() {
   )
 }
 
-## 1 Preparation ########################################################
+## 1 Preparation ###############################################################
 
-### a Map of project site -----------------------------------------------
+### a Map of project site ------------------------------------------------------
 (sites_graph <- ggmap(background_terrain) +
     geom_point(data = sites2, aes(x = lon, y = lat, shape = Floodplain),
               size = 2, color = "black") +
@@ -72,21 +73,25 @@ theme_mb <- function() {
              label = "Inactive floodplain", size = 3) +
     annotate("text", x = 10.9652, y = 47.77475,
              label = "Active floodplain", size = 3) +
-    ggspatial::annotation_scale(location = "br",
-                                pad_y = unit(0.6, "cm"),
-                                pad_x = unit(0.7, "cm"),
-                                width_hint = 0.4,
-                                height = unit(0.2, "cm")) +
-    ggspatial::annotation_north_arrow(location = "br",
-                                      pad_y = unit(1.1, "cm"),
-                                      pad_x = unit(0.6, "cm"),
-                                      which_north = "true",
-                                      style = ggspatial::north_arrow_fancy_orienteering(),
-                                      height = unit(1, "cm"),
-                                      width = unit(1, "cm")) +
+    ggspatial::annotation_scale(
+      location = "br",
+      pad_y = unit(0.6, "cm"),
+      pad_x = unit(0.7, "cm"),
+      width_hint = 0.4,
+      height = unit(0.2, "cm")
+    ) +
+    ggspatial::annotation_north_arrow(
+      location = "br",
+      pad_y = unit(1.1, "cm"),
+      pad_x = unit(0.6, "cm"),
+      which_north = "true",
+      style = ggspatial::north_arrow_fancy_orienteering(),
+      height = unit(1, "cm"),
+      width = unit(1, "cm")
+    ) +
     theme_mb())
 
-### b Germany -----------------------------------------------------------
+### b Germany ------------------------------------------------------------------
 ger_graph <- ggplot() +
    geom_sf(data = ger, fill = "transparent", colour = "black") +
    geom_point(aes(x = 10.95948, y = 47.77405), size = 1, colour = "white") +
@@ -95,13 +100,15 @@ ger_graph <- ggplot() +
      plot.background = element_blank()
    )
 
-### c Inset --------------------------------------------------------------
+### c Inset --------------------------------------------------------------------
 sites_graph + inset_element(ger_graph, .01, .65, .3, .99, on_top = TRUE)
 
 
 
-# 2 Save #################################################################
+# 2 Save #######################################################################
 
-ggsave("figure_1_map_300dpi_12x10cm.tiff",
-       dpi = 300, width = 12, height = 10, units = "cm",
-       path = here("outputs", "figures"))
+ggsave(
+  "figure_1_map_300dpi_12x10cm.tiff",
+  dpi = 300, width = 12, height = 10, units = "cm",
+  path = here("outputs", "figures")
+)

@@ -1,3 +1,4 @@
+# Alluvial forest River Ammer
 # Show Figure target species coverage ####
 # Markus Bauer
 
@@ -36,19 +37,24 @@ sites <- read_csv("data_processed_sites.csv", col_names = TRUE,
   separate(type, c("target", "type"), sep = "target") %>%
   mutate(target = as_factor(paste0(target, "target")),
          type = as_factor(str_to_lower(type)),
-         type = fct_recode(type,
-                           "Querco-Fagetea" = "class",
-                           "Fagetalia sylvaticae" = "order",
-                           "Alno-Ulmion minoris" = "alliance",
-                           "Alnetum incanae" = "association"
-                           ),
-         target = fct_recode(target,
-                           "Character species of target vegetation" = "target",
-                           "Character species of other plant communities" = "nontarget"),
+         type = fct_recode(
+           type,
+           "Querco-Fagetea" = "class",
+           "Fagetalia sylvaticae" = "order",
+           "Alno-Ulmion minoris" = "alliance",
+           "Alnetum incanae" = "association"
+           ),
+         target = fct_recode(
+           target,
+           "Character species of target vegetation" = "target",
+           "Character species of other plant communities" = "nontarget"
+         ),
          treatment = fct_relevel(treatment, c("no_dam", "behind_dam")),
-         treatment = fct_recode(treatment,
-                                "Active" = "no_dam",
-                                "Inactive" = "behind_dam"))
+         treatment = fct_recode(
+           treatment,
+           "Active" = "no_dam",
+           "Inactive" = "behind_dam")
+         )
 
 
 
@@ -85,6 +91,7 @@ ggplot(sites, aes(treatment, value, colour = target)) +
   theme_mb()
 
 ### Save ###
-ggsave(here("outputs", "figures",
-            "figure_3_target_coverage_800dpi_12x10cm.tiff"),
-       dpi = 800, width = 12, height = 10, units = "cm")
+ggsave(
+  here("outputs", "figures", "figure_3_target_coverage_800dpi_12x10cm.tiff"),
+  dpi = 800, width = 12, height = 10, units = "cm"
+)

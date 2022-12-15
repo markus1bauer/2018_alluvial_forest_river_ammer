@@ -1,11 +1,12 @@
+# Alluvial forest River Ammer
 # Model for graminoid's cover ratio ####
 # Markus Bauer
 
 
 
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# A Preparation #########################################################
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# A Preparation ################################################################
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 ### Packages ###
@@ -36,19 +37,21 @@ sites <- read_csv("data_processed_sites.csv", col_names = TRUE,
                  targetAssociation, nontargetAssociation),
                names_to = "type", values_to = "value") %>%
   separate(type, c("target", "type"), sep = "target") %>%
-  mutate(target = as_factor(paste0(target, "target"))) %>%
-  mutate(type = as_factor(str_to_lower(type)))
+  mutate(
+    target = as_factor(paste0(target, "target")),
+    type = type %>% str_to_lower() %>% as_factor()
+    )
   
 
 
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# B Statistics ##########################################################
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# B Statistics #################################################################
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-### 1 Data exploration ##################################################
+### 1 Data exploration #########################################################
 
-#### a Graphs -----------------------------------------------------------
+#### a Graphs ------------------------------------------------------------------
 #simple effects:
 plot(value ~ treatment, sites)
 plot(value ~ target, sites)
@@ -69,7 +72,7 @@ ggplot(sites, aes(treatment, value, color = target)) +
   geom_quasirandom(dodge.width = .7, groupOnX = TRUE) +
   facet_grid(~type)
 
-##### b Outliers, zero-inflation, transformations? ----------------------
+##### b Outliers, zero-inflation, transformations? -----------------------------
 dotchart((sites$value), groups = factor(sites$treatment),
          main = "Cleveland dotplot")
 boxplot(sites$value)
@@ -79,9 +82,9 @@ ggplot(sites, aes(value)) + geom_density()
 ggplot(sites, aes(log(value + 1))) + geom_density()
 
 
-## 2 Model building #####################################################
+## 2 Model building ############################################################
 
-#### a models -----------------------------------------------------------
+#### a models ------------------------------------------------------------------
 #random structure
 m1 <- lm(log(value + 1) ~ treatment * target * type, sites)
 simulateResiduals(m1, plot = TRUE) #not good

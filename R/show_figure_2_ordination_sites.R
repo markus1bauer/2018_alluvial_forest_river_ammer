@@ -1,3 +1,4 @@
+# Alluvial forest River Ammer
 # Show Figure ordination ####
 # Markus Bauer
 
@@ -124,6 +125,7 @@ ggplot() +
   labs(fill = "", colour = "") +
   theme_mb()
 
-ggsave(here("outputs", "figures",
-            "figure_2_ordination_sites_800dpi_12x10cm.tiff"),
-       dpi = 800, width = 12, height = 10, units = "cm")
+ggsave(
+  here("outputs", "figures", "figure_2_ordination_sites_800dpi_12x10cm.tiff"),
+  dpi = 800, width = 12, height = 10, units = "cm"
+)
