@@ -22,7 +22,7 @@ Bauer M, Dorbath K, Kollmann J (2018). __Alluvial forest vegetation in an active
 4. __R__: the folder `R` contains  
     * Scripts (.R) for statistical analyses and to generate all figures used in the manuscript.
 
-### Package versioning
+#### Package versioning
 
 The used versions of R and the packages are saved in `2018_alluvial_forest_river_ammer/renv.lock`.
 
