@@ -2,7 +2,7 @@
 
 _Markus Bauer <a href="https://orcid.org/0000-0001-5372-4174"><img src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height = "16"></a>, Kilian Dorbath and Johannes Kollmann <a href="https://orcid.org/0000-0002-4990-3636"><img src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height = "16"></a>_  
 
-Bauer M, Dorbath K, Kollmann J (2018). _Alluvial forest vegetation in an active and inactive alpine floodplain – a case study from River Ammer (Bavaria)._ – _Tuexenia_ 38, 43-60.
+Bauer M, Dorbath K, Kollmann J (2018). __Alluvial forest vegetation in an active and inactive alpine floodplain – a case study from River Ammer (Bavaria).__ – _Tuexenia_ 38, 43-60.
 
 [![DOI:10.14471/2018.38.006](http://img.shields.io/badge/DOI-10.14471/2018.38.006-informational.svg)](https://doi.org/10.14471/2018.38.006)
 
@@ -40,11 +40,11 @@ This work is licensed under a
 
 When using the __data available__ in this repository, please cite the original publication and the dataset:
 
-**Publication**
+__Publication__
 
 > Bauer M, Dorbath K, Kollmann J (2018). Alluvial forest vegetation in an active and inactive alpine floodplain – a case study from River Ammer (Bavaria). – *Tuexenia* 38, 43-60. [DOI: 10.14471/2018.38.006](https://doi.org/10.14471/2018.38.006)
 
-**Dataset**
+__Dataset__
 
 > Bauer M, Dorbath K & Kollmann J (2022) Data and code for Bauer et al. (2018) Tuexenia (v1.1.0) [Data set]. – *Zenodo*. [DOI: 10.5281/zenodo.6054867](https://doi.org/10.5281/zenodo.6054867)
 
