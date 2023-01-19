@@ -1,15 +1,14 @@
-# Alluvial forest vegetation in an active and inactive alpine floodplain – a case study from River Ammer (Bavaria)
+# Data and code for Bauer et al. (2018) Tuexenia
 
 _Markus Bauer <a href="https://orcid.org/0000-0001-5372-4174"><img src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height = "16"></a>, Kilian Dorbath and Johannes Kollmann <a href="https://orcid.org/0000-0002-4990-3636"><img src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height = "16"></a>_  
 
-***
-
-**Journal**: [Tuexenia](https://www.tuexenia.de/publikationen/tuexenia/)
+Bauer M, Dorbath K, Kollmann J (2018). _Alluvial forest vegetation in an active and inactive alpine floodplain – a case study from River Ammer (Bavaria)._ – _Tuexenia_ 38, 43-60.
 
 [![DOI:10.14471/2018.38.006](http://img.shields.io/badge/DOI-10.14471/2018.38.006-informational.svg)](https://doi.org/10.14471/2018.38.006)
 
 **Study region**: [Schnalz](https://www.openstreetmap.org/#map=16/47.7737/10.9615)
-
+<br>
+<br>
 ## Content of the repository
 
 1. __Data__: the folder `data` contains  
@@ -25,13 +24,13 @@ _Markus Bauer <a href="https://orcid.org/0000-0001-5372-4174"><img src="https://
 
 ***
 
-__Package versioning__
+### Package versioning
 
 The used versions of R and the packages are saved in `2018_alluvial_forest_river_ammer/renv.lock`.
 
 You can restore this state by executing `renv::restore()` in the console.
 
-***
+## Citation
 
 [![CC BY 4.0][cc-by-shield]][cc-by]
 
